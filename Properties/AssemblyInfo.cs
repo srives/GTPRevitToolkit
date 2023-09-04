@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GTP Revit Toolkit")]
-[assembly: AssemblyDescription("A suite of automation tools for Revit 2019, 2020, 2021, 2022, and 2023.")]
+[assembly: AssemblyDescription("For Revit 2019, 2020, 2021, 2022, and 2023.")]
 [assembly: AssemblyConfiguration("Internal")]
-[assembly: AssemblyCompany("Dynamic Systems, Inc.")]
+[assembly: AssemblyCompany("GTP Software, Inc.")]
 [assembly: AssemblyProduct("GTP Toolkit")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
