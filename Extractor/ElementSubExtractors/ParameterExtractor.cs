@@ -1,61 +1,30 @@
 ﻿using Autodesk.Revit.DB;
 using Gtpx.ModelSync.CAD.Cache;
 using Gtpx.ModelSync.CAD.Services;
+using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
 using Gtpx.ModelSync.DataModel.Enums;
 using Gtpx.ModelSync.DataModel.Models;
 using Gtpx.ModelSync.Export.Revit.Caches;
-using Gtpx.ModelSync.Export.Revit.Interfaces;
 using Gtpx.ModelSync.Export.Revit.Providers;
 using Gtpx.ModelSync.Export.Revit.Services;
-using Gtpx.ModelSync.Pipeline.Models;
 using System.Collections.Generic;
-using System.Windows.Markup;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
+using PropertyDefinition = Gtpx.ModelSync.DataModel.Models.PropertyDefinition;
 using RevitElement = Autodesk.Revit.DB.Element;
 
 namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 {
-    public class ParameterExtractor : IElementSubExtractor
+    public static class ParameterExtractor
     {
-        private readonly CurrentModelContext currentModelContext;
-        private readonly DerivedPropertySubExtractor derivedPropertySubExtractor;
-        private readonly Document document;
-        private readonly ParameterValueService parameterValueService;
-        private readonly PropertyDataTypesProvider propertyDataTypesProvider;
-        private readonly PropertyNameService propertyNameService;
-        private readonly PropertyDefinitionCache propertyDefinitionCache;
-        private readonly ParameterBasedAssemblyCache parameterBasedAssemblyCache;
-        private readonly RevitPropertyForAssembliesService revitPropertyForAssembliesService;
-        private HashSet<string> propertyNamesToExclude;
-        private bool cacheElementsForAssemblies;
-        private string propertyNameForAssembly;
-        private bool retrievedPropertyNameForAssembly;
-        private readonly GTProfiler _profiler;
+        public static HashSet<string> PartPropertyNamesToExclude { get; set; } // TO DO: Get this from input to user
+        private static PropertyDefinitionCache propertyDefinitionCache;
+        private static bool cacheElementsForAssemblies;
+        private static string propertyNameForAssembly;
+        private static bool retrievedPropertyNameForAssembly;
+        private static GTProfiler _profiler = new GTProfiler();
 
-        public ParameterExtractor(CurrentModelContext currentModelContext,
-                                  DerivedPropertySubExtractor derivedPropertySubExtractor,
-                                  Document document,
-                                  ParameterValueService parameterValueService,
-                                  PropertyDataTypesProvider propertyDataTypesProvider,
-                                  PropertyNameService propertyNameService,
-                                  PropertyDefinitionCache propertyDefinitionCache,
-                                  ParameterBasedAssemblyCache parameterBasedAssemblyCache,
-                                  RevitPropertyForAssembliesService revitPropertyForAssembliesService)
-        {
-            this.currentModelContext = currentModelContext;
-            this.derivedPropertySubExtractor = derivedPropertySubExtractor;
-            this.document = document;
-            this.parameterValueService = parameterValueService;
-            this.propertyDataTypesProvider = propertyDataTypesProvider;
-            this.propertyNameService = propertyNameService;
-            this.propertyDefinitionCache = propertyDefinitionCache;
-            this.parameterBasedAssemblyCache = parameterBasedAssemblyCache;
-            this.revitPropertyForAssembliesService = revitPropertyForAssembliesService;
-            this._profiler = new GTProfiler();
-        }
-
-        public void ProcessElement(RevitElement revitElement,
+        public static void ProcessElement(Document document, Notifier logger, RevitElement revitElement,
                                    GtpxElement element)
         {
             SetElementIdProperty(revitElement, element);
@@ -64,7 +33,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             if (familyInstance != null && familyInstance.Symbol != null)
             {
                 // add family type parameters for family instances
-                AddPropertiesForParameterSet(revitElement, element, familyInstance.Symbol.Parameters);
+                AddPropertiesForParameterSet(document, logger, revitElement, element, familyInstance.Symbol.Parameters);
             }
             else
             {
@@ -76,20 +45,20 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                     RevitElement typeElement = document.GetElement(typeId);
                     if (typeElement != null)
                     {
-                        AddPropertiesForParameterSet(revitElement, element, typeElement.Parameters);
+                        AddPropertiesForParameterSet(document, logger, revitElement, element, typeElement.Parameters);
                     }
                 }
             }
 
             // add all revit element parameters          
-            var usedParameters = AddPropertiesForParameterSet(revitElement, element, revitElement.Parameters);
+            var usedParameters = AddPropertiesForParameterSet(document, logger, revitElement, element, revitElement.Parameters);
 
             // Save statistics for the log file (useful for GTP Service Desk diagnostics on publishes)
             _profiler.SaveValue("propertyDefinitionCacheSize", propertyDefinitionCache.Count);
             _profiler.Accum("Element.Parameters.UsedCount", usedParameters);
 
             // process derived properties, which will leverage element.Properties more efficiently than revit parameters
-            derivedPropertySubExtractor.ProcessElement(revitElement, element);
+            DerivedPropertySubExtractor.ProcessElement(revitElement, element);
 
             // Setting the element description requires the Description derived property to have already been extracted.  
             // So this call must happen after the derivedPropertySubExtractor.ProcessElement has been called.
@@ -98,14 +67,14 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             CacheElementForAssembly(revitElement, element);
         }
 
-        private int AddPropertiesForParameterSet(RevitElement revitElement,
+        private static int AddPropertiesForParameterSet(Document document, Notifier logger, RevitElement revitElement,
                                                           GtpxElement element,
                                                           ParameterSet parameterSet)
         {
             var ct = 0;
             foreach (Parameter parameter in parameterSet)
             {
-                if (parameter != null && GetProperty(revitElement, element, parameter, out Property property))
+                if (parameter != null && GetProperty(document, logger, revitElement, element, parameter, out Property property))
                 {
                     element.NameToPropertyMap[property.Name] = property;
                     ct++;
@@ -114,7 +83,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             return ct;
         }
 
-        private void SetElementDescription(GtpxElement element)
+        private static void SetElementDescription(GtpxElement element)
         {
             // The element description is identical to the derived Description property value
             if (element.NameToDerivedPropertyMap.TryGetValue("Description", out Property property))
@@ -123,7 +92,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             }
         }
 
-        private void SetElementIdProperty(RevitElement revitElement,
+        private static void SetElementIdProperty(RevitElement revitElement,
                                           GtpxElement element)
         {
             propertyDefinitionCache.Add(
@@ -143,7 +112,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             };
         }
 
-        private bool GetProperty(RevitElement revitElement,
+        private static bool GetProperty(Document document, Notifier logger, RevitElement revitElement,
                                  GtpxElement element,
                                  Parameter parameter,
                                  out Property property)
@@ -153,19 +122,19 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             var definition = parameter.Definition;
             if (definition != null)
             {
-                var definitionName = propertyNameService.CleanName(definition.Name);
+                var definitionName = PropertyNameService.CleanName(definition.Name);
                 if (!IsExcluded(definitionName))
                 {
-                    var hasValue = parameterValueService.GetValue(revitElement, parameter, definitionName, out var value);
+                    var hasValue = ParameterValueService.GetValue(document, logger, revitElement, parameter, definitionName, out var value);
 
 #if Revit2019 || Revit2020 || Revit2021
-                    propertyDataTypesProvider.GetPropertyDataTypes(parameter,
+                    PropertyDataTypesProvider.GetPropertyDataTypes(parameter,
                                                                    parameter.StorageType,
                                                                    definition.ParameterType,
                                                                    out PropertyDataType displayDataType,
                                                                    out PropertyDataType storageDataType);
 #else
-                    propertyDataTypesProvider.GetPropertyDataTypes(parameter,
+                    PropertyDataTypesProvider.GetPropertyDataTypes(parameter,
                                                                    parameter.StorageType,
                                                                    definition.GetDataType(),
                                                                    out PropertyDataType displayDataType,
@@ -195,21 +164,18 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             return status;
         }
 
-        private bool IsExcluded(string propertyName)
+        private static bool IsExcluded(string propertyName)
         {
-            if (propertyNamesToExclude == null)
-            {
-                propertyNamesToExclude = currentModelContext.Company.RevitAutoCADPropertyMappings.PartPropertyNamesToExclude;
-            }
-            return propertyNamesToExclude.Contains(propertyName);
+            return PartPropertyNamesToExclude.Contains(propertyName);
         }
 
-        private void CacheElementForAssembly(RevitElement revitElement,
+        private static void CacheElementForAssembly(RevitElement revitElement,
                                              GtpxElement element)
         {
             if (!retrievedPropertyNameForAssembly)
             {
-                var useRevitPropertyForAssemblies = revitPropertyForAssembliesService.UseRevitPropertiesForAssemblies(out var revitPropertyForAssemblies, out _);
+                var revitPropertyForAssemblies = string.Empty; // TO DO: Ask user for this value
+                var useRevitPropertyForAssemblies = false; // TO DO: Ask user RevitPropertyForAssembliesService.UseRevitPropertiesForAssemblies(out var revitPropertyForAssemblies, out _);
                 if (useRevitPropertyForAssemblies)
                 {
                     propertyNameForAssembly = revitPropertyForAssemblies;
@@ -223,7 +189,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                 if (element.NameToPropertyMap.TryGetValue(propertyNameForAssembly, out var property) &&
                     !string.IsNullOrWhiteSpace(property.Value))
                 {
-                    parameterBasedAssemblyCache.Add(revitElement.Id, property.Value);
+                    ParameterBasedAssemblyCache.Add(revitElement.Id, property.Value);
                 }
             }
         }

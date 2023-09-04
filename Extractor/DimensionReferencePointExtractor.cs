@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using GTP.Services;
 using Gtpx.ModelSync.CAD;
+using Gtpx.ModelSync.DataModel.Enums;
 using Gtpx.ModelSync.DataModel.Models;
 using Gtpx.ModelSync.Export.Revit.Caches;
 using Gtpx.ModelSync.Export.Revit.Extensions;
@@ -16,16 +17,15 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.FamilyInstances
     public static class DimensionReferencePointExtractor
     {
         private static AuditResults auditResults = new AuditResults();
-        private static ConnectorCache connectorCache;
         private static int dimensionPointThreshold = 40; // come from Settings.json file
         private static bool getSelectedViewInvoked = false;
         private static Options options;
         private static View3D selectedView;
 
-        public static void initDimensionReferencePointExtractor(ConnectorCache cc, AuditResults ar)
+        public static void Reset(AuditResults ar)
         {
             auditResults = ar;
-            connectorCache = cc;
+            ConnectorCache.Reset();
             getSelectedViewInvoked = false;
         }
 
@@ -84,7 +84,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.FamilyInstances
                 if (familyInstance.Category != null)
                 {
                     var categoryName = familyInstance.Category.Name;
-                    if (!connectorCache.GetConnectors(familyInstance).Any() ||
+                    if (!ConnectorCache.GetConnectors(familyInstance).Any() ||
                         categoryName == "Electrical Equipment" ||
                         categoryName == "Mechanical Equipment" ||
                         categoryName == "Specialty Equipment")

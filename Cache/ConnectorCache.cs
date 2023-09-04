@@ -5,21 +5,21 @@ using System.Linq;
 
 namespace Gtpx.ModelSync.Export.Revit.Caches
 {
-    public class ConnectorCache
+    public static class ConnectorCache
     {
-        private readonly Dictionary<ElementId, IEnumerable<Connector>> elementIdToConnectorsMap;
-        private readonly RTree<Connector> connectorRTree;
-        private const double connectionTolerance = 0.5 / 12.0;
-        private const double lengthTolerance = 1.0 / 32.0 / 12.0;
+        private static Dictionary<ElementId, IEnumerable<Connector>> elementIdToConnectorsMap = new Dictionary<ElementId, IEnumerable<Connector>>();
+        private static RTree<Connector> connectorRTree = new RTree<Connector>();
+        private static double connectionTolerance = 0.5 / 12.0;
+        private static double lengthTolerance = 1.0 / 32.0 / 12.0;
 
-        public ConnectorCache()
+        public static void Reset()
         {
             elementIdToConnectorsMap = new Dictionary<ElementId, IEnumerable<Connector>>();
             connectorRTree = new RTree<Connector>();
         }
 
         /// <returns>true if success, false if errors</returns>
-        public bool CacheConnectors(Element element)
+        public static bool CacheConnectors(Element element)
         {
             IEnumerable<Connector> connectors = new List<Connector>();
 
@@ -41,7 +41,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
             return StoreConnectorsInRTree(connectors);
         }
 
-        public IEnumerable<Connector> GetConnectors(Element element)
+        public static IEnumerable<Connector> GetConnectors(Element element)
         {
             IEnumerable<Connector> connectors = new Connector[] { };
 
@@ -53,7 +53,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
             return connectors;
         }
 
-        public IEnumerable<Element> GetNearbyElements(
+        public static IEnumerable<Element> GetNearbyElements(
             Connector connector,
             Document document)
         {
@@ -68,7 +68,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
             return elementIds.Select(x => document.GetElement(new ElementId(x)));
         }
 
-        public bool TryGet(
+        public static bool TryGet(
            Connector connector,
            IEnumerable<Connector> otherEndConnectors,
            Element otherElement,
@@ -99,7 +99,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
             return foundMate;
         }
 
-        private IEnumerable<Connector> GetNearestConnectors(
+        private static IEnumerable<Connector> GetNearestConnectors(
             Connector connector,
             double connectionTolerance)
         {
@@ -115,7 +115,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
             return connectorRTree.Contains(rect).Where(x => x.Owner.Id != connector.Owner.Id);
         }
 
-        private IEnumerable<Connector> GetConnectors(ConnectorManager connectorManager)
+        private static IEnumerable<Connector> GetConnectors(ConnectorManager connectorManager)
         {
             IEnumerable<Connector> connectors = new Connector[] { };
 
@@ -133,7 +133,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
         }
 
         /// <returns>true if success, false if errors</returns>
-        private bool StoreConnectorsInRTree(IEnumerable<Connector> connectors)
+        private static bool StoreConnectorsInRTree(IEnumerable<Connector> connectors)
         {
             var success = true;
             foreach (var connector in connectors)

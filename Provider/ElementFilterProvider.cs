@@ -4,6 +4,8 @@ using System.Linq;
 using GTP.Services;
 using Autodesk.Revit.Creation;
 using Document = Autodesk.Revit.DB.Document;
+using System.Diagnostics;
+using Gtpx.ModelSync.Export.Revit.Caches;
 
 namespace GTP.Providers
 {
@@ -51,7 +53,7 @@ namespace GTP.Providers
                 {
                     uniqueIdToElementMap[element.UniqueId] = element;
                     
-                    if (!connectorCache.CacheConnectors(element))
+                    if (!ConnectorCache.CacheConnectors(element))
                     {
                         Debug.Assert(true);
                     }                    

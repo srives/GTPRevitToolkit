@@ -1,22 +1,9 @@
 ﻿using System;
 using System.IO;
+using Gtpx.ModelSync.DataModel.Enums;
 
 namespace Gtpx.ModelSync.Services.Models
 {
-    public enum PlatformType
-    {
-        Revit = 1,
-        AutoCAD = 2
-    }
-    public enum ModelSyncMode
-    {
-        None = 0,
-        Extract = 1,
-        Load = 2,
-        CreateAssembly = 3,
-        SetProjectInfo = 4
-    }
-
     public class LocalFileContext
     {
         public bool IsSilentMode { get; set; }

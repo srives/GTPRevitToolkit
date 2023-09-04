@@ -1,4 +1,6 @@
-﻿namespace Gtpx.ModelSync.DataModel.Models
+﻿using Gtpx.ModelSync.DataModel.Enums;
+
+namespace Gtpx.ModelSync.DataModel.Models
 {
     public class Point
     {

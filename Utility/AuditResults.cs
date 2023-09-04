@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
+using Gtpx.ModelSync.DataModel.Enums;
 
 namespace Gtpx.ModelSync.CAD
 {
-    public enum AuditType
-    {
-        DimensionPointThresholdExceeded = 0
-    }
-
     public class AuditResult
     {
         public AuditType AuditType { get; set; }

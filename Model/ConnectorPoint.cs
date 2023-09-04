@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Gtpx.ModelSync.DataModel.Enums;
 
 namespace Gtpx.ModelSync.DataModel.Models
 {
@@ -14,19 +15,6 @@ namespace Gtpx.ModelSync.DataModel.Models
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
-    }
-
-    public enum PointType
-    {
-        Connector = 1,
-        Anchor = 2,
-        GTP = 3,
-        Wall = 4,
-        Centroid = 5,
-        TapConnector = 6,
-        CenterlineIntersection = 7,
-        DimensionReference = 8,
-        Positioning = 9
     }
 
     public class ConnectorPoint

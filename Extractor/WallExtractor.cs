@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Gtpx.ModelSync.DataModel.Enums;
 using Gtpx.ModelSync.DataModel.Models;
 using Gtpx.ModelSync.Export.Revit.Extensions;
 using System.Collections.Generic;

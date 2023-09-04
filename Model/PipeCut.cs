@@ -1,12 +1,7 @@
-﻿namespace Gtpx.ModelSync.DataModel.Models
-{
-    public enum PipeCutType
-    {
-        Straight = 1,
-        Saddle = 4,
-        Hole = 6
-    };
+﻿using Gtpx.ModelSync.DataModel.Enums;
 
+namespace Gtpx.ModelSync.DataModel.Models
+{
     public class PipeCut
     {
         public string ConnectorName { get; set; }

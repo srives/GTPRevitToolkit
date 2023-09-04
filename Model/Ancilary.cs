@@ -1,36 +1,8 @@
 ﻿using System.Collections.Generic;
+using Gtpx.ModelSync.DataModel.Enums;
 
 namespace Gtpx.ModelSync.DataModel.Models
 {
-    public enum AncillaryType
-    {
-        AirturnTrack = 0,
-        AirturnVane = 1,
-        AncillaryMaterial = 2,
-        Clip = 3,
-        Corner = 4,
-        Fixing = 5,
-        Gasket = 6,
-        Isolator = 7,
-        Sealant = 8,
-        SeamMaterial = 9,
-        SupportRod = 10,
-        TieRod = 11,
-        Unknown = 12,
-        SupportSeismic = 13
-    }
-    public enum AncillaryUsageType
-    {
-        Airturn = 0,
-        Connector = 1,
-        Hanger = 2,
-        Loose = 3,
-        Seam = 4,
-        Splitter = 5,
-        Stiffener = 6,
-        Undefined = 7
-    }
-
     public class Ancillary
     {
         public AncillaryType AncillaryType { get; set; }

@@ -2,18 +2,10 @@
 using Serilog;
 using System;
 using System.Windows;
+using Gtpx.ModelSync.DataModel.Enums;
 
 namespace Gtpx.ModelSync.CAD.UI
 {
-    public enum LogLevel
-    {
-        Debug = 0,
-        Information,
-        Warning,
-        Error,
-        Fatal
-    }
-
     public class NotificationEventArgs
     {
         public LogLevel LogLevel { get; set; }
@@ -58,7 +50,7 @@ namespace Gtpx.ModelSync.CAD.UI
                 {
                     // A dialog with the Notification window is not open, bring up a message box
                     MessageBox.Show(message,
-                                    $"GTP STRATUS [v{GetType().Assembly.GetName().Version}-{cadVersionService.Get()}]",
+                                    $"GTP STRATUS [v{GetType().Assembly.GetName().Version}-CodeKill]", 
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }

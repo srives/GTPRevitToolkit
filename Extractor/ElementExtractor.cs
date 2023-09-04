@@ -3,6 +3,7 @@ using GTP.Providers;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
 using Gtpx.ModelSync.Export.Revit.Extractors;
+using Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors;
 using Gtpx.ModelSync.Export.Revit.Extractors.FamilyInstances;
 using System.Linq;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
@@ -56,11 +57,12 @@ namespace GTP.Extractors
                     profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
                 }
 
-                elementSubExtractor.ProcessElement(revitElement, element);
-                profiler.CatchTime($"{nameof(elementSubExtractor)}.{element.TemplateId}");
+                ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
+                profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
-
-                partTemplateExtractor.ProcessElement(revitElement, element);
+                /*
+                 * TO DO: Add the following
+                PartTemplateExtractor.ProcessElement(revitElement, element);
                 profiler.CatchTime($"{nameof(partTemplateExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
 
@@ -82,6 +84,7 @@ namespace GTP.Extractors
                     }
                     profiler.CatchMemory("ElementExtractor");
                 }
+                */
             }
 
             profiler.CatchMemory("ElementExtractor");

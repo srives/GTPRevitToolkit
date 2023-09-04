@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Gtpx.ModelSync.DataModel.Enums;
 
 namespace Gtpx.ModelSync.DataModel.Models
 {
-    public enum SourceSystemType
-    {
-        AddIn = 1
-    }
-
     public class Element
     {
         public List<Ancillary> Ancillaries { get; set; } = new List<Ancillary>();

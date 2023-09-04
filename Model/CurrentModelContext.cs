@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GTP.Model
+﻿namespace Gtpx.ModelSync.Pipeline.Models
 {
-    internal class CurrentModelContext
+    public class CurrentModelContext
     {
+        public string Bim360UserId { get; set; }
+        public string DesktopPlatform { get; set; }
+        public int GtpModelVersionId { get; set; }
+        public int GtpModelVersionNumber { get; set; }
+        public bool IsPublishWithoutFabricationDb { get; set; } = false;
+        public int JobId { get; set; }
+        public int LastActivityDefinitionId { get; set; }
+        public int LastActivityEventId { get; set; }
+        public int LocaleId { get; set; }
+        public string ModelFabConfigId { get; set; }
+        public string ModelId { get; set; }
+        public string ModelName { get; set; }
     }
 }
