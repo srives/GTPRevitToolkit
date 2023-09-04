@@ -1,0 +1,19 @@
+-----------------------------------------------------------------------------------
+GTP Revit Toolkit
+
+Release Notes:
+
+	03 Sept 23
+        * This checkin is the skeletal version of the addin.
+        * A new GTP Revit Toolkit for general purpose tools we want to share with clients 
+		* Create install scripts/build scripts (see Readme.txt)
+		* Installer installs Revit 2018, 2019, 2020, 2021, 2022, and 2023
+		* Short user manual (Readme.txt)	
+		* 32bit and 64bit installs (I have only tested  with 64)
+        * Creates basic addin, points all version to debugable DLLs.
+        * Ribbon bar with icon
+		 
+
+Code Kill, 2023
+https://github.com/srives/GTPRevitToolkit
+-----------------------------------------------------------------------------------

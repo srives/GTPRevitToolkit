@@ -1,0 +1,11 @@
+RevitAddInUtility.dll
+RevitAPI.dll
+RevitAPI.xml
+RevitAPIBrowserUtils.dll
+RevitAPIExtData.dll
+RevitAPIFoundation.dll
+RevitAPIIFC.dll
+RevitAPIUI.dll
+RevitAPIUI.xml
+RevitAPIUI.xml
+RevitUIAPI.dll
