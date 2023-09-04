@@ -1,0 +1,1252 @@
+[
+  {
+    "UnitTypeName": "Acres",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Amperes",
+    "DisplayDataTypeName": "Amps",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Atmospheres",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Bars",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnits",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerDegreeFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerHourCubicFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerHourFootDegreeFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerHourSquareFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerHourSquareFootDegreeFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerPound",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerPoundDegreeFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "BritishThermalUnitsPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Calories",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CaloriesPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Candelas",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CandelasPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Celsius",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CelsiusInterval",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Centimeters",
+    "DisplayDataTypeName": "DecimalCentimeters",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "CentimetersPerMinute",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CentimetersToTheFourthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CentimetersToTheSixthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Centipoises",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicCentimeters",
+    "DisplayDataTypeName": "CubicCentimeters",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicFeet",
+    "DisplayDataTypeName": "CubicFeet",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicFeetPerKip",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicFeetPerMinute",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicFeetPerMinuteCubicFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicFeetPerMinuteSquareFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicFeetPerMinuteTonOfRefrigeration",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicInches",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicMeters",
+    "DisplayDataTypeName": "CubicMeters",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicMetersPerHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicMetersPerKilonewton",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicMetersPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicMillimeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CubicYards",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Currency",
+    "DisplayDataTypeName": "CurrencyUSD",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Custom",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "CyclesPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Decimeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Degrees",
+    "DisplayDataTypeName": "AngleDegrees",
+    "StorageDataTypeName": "AngleRadians"
+  },
+  {
+    "UnitTypeName": "DegreesMinutes",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DekanewtonMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DekanewtonMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Dekanewtons",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DekanewtonsPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DekanewtonsPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Fahrenheit",
+    "DisplayDataTypeName": "TemperatureFarenheit",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FahrenheitInterval",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Feet",
+    "DisplayDataTypeName": "DecimalFeet",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "FeetFractionalInches",
+    "DisplayDataTypeName": "FeetInchesFraction",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "FeetOfWater39_2DegreesFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetOfWater39_2DegreesFahrenheitPer100Feet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetPerKip",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetPerMinute",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetPerSecondSquared",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetToTheFourthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FeetToTheSixthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Fixed",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Footcandles",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Footlamberts",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "FractionalInches",
+    "DisplayDataTypeName": "InchesFractions",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "General",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Gradians",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "GrainsPerHourSquareFootInchMercury",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Hectares",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Hertz",
+    "DisplayDataTypeName": "Hertz",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Horsepower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Hours",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "HourSquareFootDegreesFahrenheitPerBritishThermalUnit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Inches",
+    "DisplayDataTypeName": "DecimalInches",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "InchesOfMercury32DegreesFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InchesOfWater60DegreesFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InchesOfWater60DegreesFahrenheitPer100Feet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InchesPerSecondSquared",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InchesToTheFourthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InchesToTheSixthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InverseDegreesCelsius",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InverseDegreesFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InverseKilonewtons",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "InverseKips",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Joules",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "JoulesPerGram",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "JoulesPerGramDegreeCelsius",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "JoulesPerKelvin",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "JoulesPerKilogramDegreeCelsius",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kelvin",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KelvinInterval",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kiloamperes",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilocalories",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilocaloriesPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramForceMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramForceMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilograms",
+    "DisplayDataTypeName": "MassKilograms",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramsForce",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramsForcePerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramsForcePerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramsPerCubicMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramsPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilogramsPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilojoules",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilojoulesPerKelvin",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilometersPerHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilometersPerSecondSquared",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonMetersPerDegree",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonMetersPerDegreePerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilonewtons",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonsPerCubicMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonsPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonsPerSquareCentimeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonsPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilonewtonsPerSquareMillimeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilopascals",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilovoltAmperes",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilovolts",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KilowattHours",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kilowatts",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipFeet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipFeetPerDegree",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipFeetPerDegreePerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipFeetPerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Kips",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipsPerCubicFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipsPerCubicInch",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipsPerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipsPerInch",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipsPerSquareFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "KipsPerSquareInch",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Liters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "LitersPerMinute",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "LitersPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "LitersPerSecondCubicMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "LitersPerSecondKilowatt",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "LitersPerSecondSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Lumens",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "LumensPerWatt",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Lux",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MeganewtonMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MeganewtonMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Meganewtons",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MeganewtonsPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MeganewtonsPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Megapascals",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Meters",
+    "DisplayDataTypeName": "Meters",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "MetersCentimeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MetersPerKilonewton",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MetersPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MetersPerSecondSquared",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MetersToTheFourthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MetersToTheSixthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MicroinchesPerInchDegreeFahrenheit",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MicrometersPerMeterDegreeCelsius",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MilesPerHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MilesPerSecondSquared",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Milliamperes",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Millimeters",
+    "DisplayDataTypeName": "DecimalMillimeters",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "MillimetersOfMercury",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MillimetersToTheFourthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "MillimetersToTheSixthPower",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Milliseconds",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Millivolts",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Minutes",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "NanogramsPerPascalSecondSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "NewtonMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "NewtonMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Newtons",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "NewtonsPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "NewtonsPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "NewtonsPerSquareMillimeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "OhmMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "OneToRatio",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Pascals",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PascalSeconds",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PascalsPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Percentage",
+    "DisplayDataTypeName": "Percentage",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PerMille",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundForceFeet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundForceFeetPerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsForce",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsForcePerCubicFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsForcePerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsForcePerSquareFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsForcePerSquareInch",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMass",
+    "DisplayDataTypeName": "MassPounds",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMassPerCubicFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMassPerCubicInch",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMassPerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMassPerFootHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMassPerFootSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "PoundsMassPerSquareFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Radians",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RadiansPerSecond",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Rankine",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RankineInterval",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RatioTo10",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RatioTo12",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RiseDividedBy1000Millimeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RiseDividedBy10Feet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RiseDividedBy120Inches",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RiseDividedBy12Inches",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "RiseDividedBy1Foot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Seconds",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SlopeDegrees",
+    "DisplayDataTypeName": "AngleDegrees",
+    "StorageDataTypeName": "AngleRadians"
+  },
+  {
+    "UnitTypeName": "SquareCentimeters",
+    "DisplayDataTypeName": "SquareMeters",
+    "StorageDataTypeName": "AngleRadians"
+  },
+  {
+    "UnitTypeName": "SquareCentimetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareFeet",
+    "DisplayDataTypeName": "SquareFeet",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareFeetPer1000BritishThermalUnitsPerHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareFeetPerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareFeetPerKip",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareFeetPerTonOfRefrigeration",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareInches",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareInchesPerFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareMeterKelvinsPerWatt",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareMeters",
+    "DisplayDataTypeName": "SquareMeters",
+    "StorageDataTypeName": "SquareFeet"
+  },
+  {
+    "UnitTypeName": "SquareMetersPerKilonewton",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareMetersPerKilowatt",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareMillimeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "SquareMillimetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "StationingFeet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "StationingMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Therms",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "TonneForceMeters",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "TonneForceMetersPerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Tonnes",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "TonnesForce",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "TonnesForcePerMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "TonnesForcePerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "TonsOfRefrigeration",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "UsGallons",
+    "DisplayDataTypeName": "Gallons",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "UsGallonsPerHour",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "UsGallonsPerMinute",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "UsSurveyFeet",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "UsTonnesForce",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "UsTonnesMass",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "VoltAmperes",
+    "DisplayDataTypeName": "VoltAmps",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Volts",
+    "DisplayDataTypeName": "Volts",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "Watts",
+    "DisplayDataTypeName": "Watts",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "WattsPerCubicFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "WattsPerCubicMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "WattsPerMeterKelvin",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "WattsPerSquareFoot",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "WattsPerSquareMeter",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "WattsPerSquareMeterKelvin",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  }
+]

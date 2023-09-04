@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using GTP.Providers;
+using Gtpx.ModelSync.CAD.Cache;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
 using Gtpx.ModelSync.Export.Revit.Extractors;

@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.DataModel.Enums;
 using Gtpx.ModelSync.Export.Revit.Models;
 using Newtonsoft.Json;
@@ -12,20 +13,19 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
 {
     public static class PropertyDataTypesProvider
     {
-        private static ILogger logger;
+        private static ILogger _logger;
         private static Dictionary<string, PropertyDataType> nameToPropertyDataTypeMap;
         private static List<PropertyDataTypesConfiguration> propertyDataTypesConfigurations;
 
 #if Revit2019 || Revit2020
-        private static Dictionary<DisplayUnitType, PropertyDataTypes> displayUnitTypeToPropertyDataTypesMap;
+        private static Dictionary<DisplayUnitType, PropertyDataTypes> displayUnitTypeToPropertyDataTypesMap = null;
 #else
-        private static Dictionary<ForgeTypeId, PropertyDataTypes> forgeTypeIdToPropertyDataTypesMap;
+        private static Dictionary<ForgeTypeId, PropertyDataTypes> forgeTypeIdToPropertyDataTypesMap = null;
 #endif
 
-        public static void initPropertyDataTypesProvider(ILogger logger)
+        public static void Reset(ILogger logger)
         {
-            logger = logger;
-
+            _logger = logger;
             nameToPropertyDataTypeMap = new Dictionary<string, PropertyDataType>();
             propertyDataTypesConfigurations = new List<PropertyDataTypesConfiguration>();
 
@@ -41,7 +41,7 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
         }
 
 #if Revit2019 || Revit2020 || Revit2021
-        public static void GetPropertyDataTypes(Parameter parameter,
+        public static void GetPropertyDataTypes(Parameter parameter, ILogger logger,
                                          StorageType storageType,
                                          ParameterType parameterType,
                                          out PropertyDataType displayDataType,
@@ -60,6 +60,15 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                         try
                         {
 #if Revit2019 || Revit2020
+                            if (displayUnitTypeToPropertyDataTypesMap == null)
+#else
+                            if (forgeTypeIdToPropertyDataTypesMap == null)
+#endif
+                            {
+                                Reset(logger);
+                            }
+
+#if Revit2019 || Revit2020
                             if (displayUnitTypeToPropertyDataTypesMap.TryGetValue(parameter.DisplayUnitType, out PropertyDataTypes propertyDataTypes))
 #else
                             if (forgeTypeIdToPropertyDataTypesMap.TryGetValue(parameter.GetUnitTypeId(), out PropertyDataTypes propertyDataTypes))
@@ -76,7 +85,7 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
 #if Revit2019 || Revit2020
                                 logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} Unrecognized unit type ID: {parameter.DisplayUnitType}.");
 #else
-                                logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} Unrecognized unit type ID: {parameter.GetUnitTypeId()}.");
+                                _logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} Unrecognized unit type ID: {parameter.GetUnitTypeId()}.");
 #endif
                                 return;
                             }
@@ -84,7 +93,7 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                         catch
                         {
                             // For some reason calling parameter.DisplayUnitType sometimes causes an exception 
-                            logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} unit type ID does not exist.");
+                            _logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} unit type ID does not exist.");
                             return;
                         }
                     }
@@ -110,12 +119,12 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                     break;
 
                 default:
-                    logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} Unrecognized storage type: {storageType}.");
+                    _logger.Debug($"{nameof(PropertyDataTypesProvider)}.{nameof(GetPropertyDataTypes)} Unrecognized storage type: {storageType}.");
                     break;
             }
         }
 #else
-        public static void GetPropertyDataTypes(Parameter parameter,
+         public static void GetPropertyDataTypes(Parameter parameter, ILogger logger,
                                          StorageType storageType,
                                          ForgeTypeId forgeTypeId,
                                          out PropertyDataType displayDataType,
@@ -133,6 +142,10 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                     {
                         try
                         {
+                            if (forgeTypeIdToPropertyDataTypesMap == null)
+                            {
+                                Reset(logger);
+                            }
                             if (forgeTypeIdToPropertyDataTypesMap.TryGetValue(parameter.GetUnitTypeId(), out PropertyDataTypes propertyDataTypes))
                             {
                                 displayDataType = propertyDataTypes.DisplayDataType;
@@ -192,19 +205,21 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                 }
                 else
                 {
-                    logger.Warning($"Matching PropertyDataType not found for name: {name}.");
+                    _logger.Warning($"Matching PropertyDataType not found for name: {name}.");
                 }
             }
         }
-
+        
         private static void LoadPropertyDataTypesConfigurations()
         {
             var assembly = typeof(PropertyDataTypesProvider).GetTypeInfo().Assembly;
 
+            var names = typeof(PropertyDataTypesProvider).GetTypeInfo().Assembly.GetManifestResourceNames();
+
 #if Revit2019 || Revit2020
-            var resourceName = $"Gtpx.ModelSync.Export.Revit.Configuration.PropertyDataTypesConfigurationForRevit2017,2018,2019,2020.json";
+            var resourceName = $"GTP.Configuration.PropertyDataTypesConfigurationForRevit2017,2018,2019,2020.json";
 #else
-            var resourceName = $"Gtpx.ModelSync.Export.Revit.Configuration.PropertyDataTypesConfigurationForRevit2021AndNewer.json";
+            var resourceName = $"GTP.Configuration.PropertyDataTypesConfigurationForRevit2021AndNewer.json";
 #endif
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))
@@ -252,7 +267,7 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                 }
                 else
                 {
-                    logger.Warning($"Matching ForgeTypeId not found for name:{propertyDataTypesConfiguration.UnitTypeName}.");
+                    _logger.Warning($"Matching ForgeTypeId not found for name:{propertyDataTypesConfiguration.UnitTypeName}.");
                 }
 #endif
             }

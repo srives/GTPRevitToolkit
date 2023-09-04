@@ -1,0 +1,1247 @@
+[
+  {
+    "UnitTypeName": "DUT_1_RATIO",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_ACRES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_AMPERES",
+    "DisplayDataTypeName": "Amps",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_ATMOSPHERES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BARS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNIT_PER_FAHRENHEIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_HOUR_CUBIC_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_HOUR_FOOT_FAHRENHEIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_HOUR_SQUARE_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_HOUR_SQUARE_FOOT_FAHRENHEIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_POUND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_POUND_FAHRENHEIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_BRITISH_THERMAL_UNITS_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CALORIES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CALORIES_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CANDELAS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CANDELAS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CANDLEPOWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CELSIUS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CELSIUS_DIFFERENCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CENTIMETERS",
+    "DisplayDataTypeName": "DecimalCentimeters",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_CENTIMETERS_PER_MINUTE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CENTIMETERS_TO_THE_FOURTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CENTIMETERS_TO_THE_SIXTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CENTIPOISES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_CENTIMETERS",
+    "DisplayDataTypeName": "CubicCentimeters",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_FEET",
+    "DisplayDataTypeName": "CubicFeet",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_FEET_PER_KIP",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_FEET_PER_MINUTE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_FEET_PER_MINUTE_CUBIC_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_FEET_PER_MINUTE_SQUARE_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_FEET_PER_MINUTE_TON_OF_REFRIGERATION",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_INCHES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_METERS",
+    "DisplayDataTypeName": "CubicMeters",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_METERS_PER_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_METERS_PER_KILONEWTON",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_METERS_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_MILLIMETERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUBIC_YARDS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CURRENCY",
+    "DisplayDataTypeName": "CurrencyUSD",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CUSTOM",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_CYCLES_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DECANEWTON_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DECANEWTON_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DECANEWTONS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DECANEWTONS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DECANEWTONS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DECIMAL_DEGREES",
+    "DisplayDataTypeName": "AngleDegrees",
+    "StorageDataTypeName": "AngleRadians"
+  },
+  {
+    "UnitTypeName": "DUT_DECIMAL_FEET",
+    "DisplayDataTypeName": "DecimalFeet",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_DECIMAL_INCHES",
+    "DisplayDataTypeName": "DecimalInches",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_DECIMETERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_DEGREES_AND_MINUTES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FAHRENHEIT",
+    "DisplayDataTypeName": "TemperatureFarenheit",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FAHRENHEIT_DIFFERENCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_FRACTIONAL_INCHES",
+    "DisplayDataTypeName": "FeetInchesFraction",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_OF_WATER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_OF_WATER_PER_100FT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_PER_KIP",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_PER_MINUTE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_PER_SECOND_SQUARED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_TO_THE_FOURTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FEET_TO_THE_SIXTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FIXED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FOOTCANDLES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FOOTLAMBERTS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_FRACTIONAL_INCHES",
+    "DisplayDataTypeName": "InchesFractions",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_GALLONS_US",
+    "DisplayDataTypeName": "Gallons",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_GALLONS_US_PER_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_GALLONS_US_PER_MINUTE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_GENERAL",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_GRADS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_GRAINS_PER_HOUR_SQUARE_FOOT_INCH_MERCURY",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_HECTARES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_HERTZ",
+    "DisplayDataTypeName": "Hertz",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_HORSEPOWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_HOUR_SQUARE_FOOT_FAHRENHEIT_PER_BRITISH_THERMAL_UNIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_HOURS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INCHES_OF_MERCURY",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INCHES_OF_WATER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INCHES_OF_WATER_PER_100FT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INCHES_PER_SECOND_SQUARED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INCHES_TO_THE_FOURTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INCHES_TO_THE_SIXTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INV_CELSIUS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INV_FAHRENHEIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INV_KILONEWTONS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_INV_KIPS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_JOULES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_JOULES_PER_GRAM",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_JOULES_PER_GRAM_CELSIUS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_JOULES_PER_KELVIN",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_JOULES_PER_KILOGRAM_CELSIUS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KELVIN",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KELVIN_DIFFERENCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOAMPERES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOCALORIES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOCALORIES_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAM_FORCE_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAM_FORCE_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_FORCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_FORCE_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_FORCE_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_MASS",
+    "DisplayDataTypeName": "MassKilograms",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_MASS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_MASS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOGRAMS_PER_CUBIC_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOJOULES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOJOULES_PER_KELVIN",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOMETERS_PER_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOMETERS_PER_SECOND_SQUARED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTON_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTON_METERS_PER_DEGREE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTON_METERS_PER_DEGREE_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTON_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTONS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTONS_PER_CUBIC_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTONS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTONS_PER_SQUARE_CENTIMETER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTONS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILONEWTONS_PER_SQUARE_MILLIMETER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOPASCALS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOVOLT_AMPERES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOVOLTS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOWATT_HOURS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KILOWATTS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIP_FEET",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIP_FEET_PER_DEGREE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIP_FEET_PER_DEGREE_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIP_FEET_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS_PER_CUBIC_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS_PER_CUBIC_INCH",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS_PER_INCH",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS_PER_SQUARE_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_KIPS_PER_SQUARE_INCH",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LITERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LITERS_PER_MINUTE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LITERS_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LITERS_PER_SECOND_CUBIC_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LITERS_PER_SECOND_KILOWATTS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LITERS_PER_SECOND_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LUMENS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LUMENS_PER_WATT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_LUX",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MEGANEWTON_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MEGANEWTON_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MEGANEWTONS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MEGANEWTONS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MEGANEWTONS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MEGAPASCALS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_METERS",
+    "DisplayDataTypeName": "Meters",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_METERS_CENTIMETERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_METERS_PER_KILONEWTON",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_METERS_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_METERS_PER_SECOND_SQUARED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_METERS_TO_THE_FOURTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_METERS_TO_THE_SIXTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MICROINCHES_PER_INCH_FAHRENHEIT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MICROMETERS_PER_METER_CELSIUS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILES_PER_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILES_PER_SECOND_SQUARED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILISECONDS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILLIAMPERES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILLIMETERS",
+    "DisplayDataTypeName": "DecimalMillimeters",
+    "StorageDataTypeName": "DecimalFeet"
+  },
+  {
+    "UnitTypeName": "DUT_MILLIMETERS_OF_MERCURY",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILLIMETERS_TO_THE_FOURTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILLIMETERS_TO_THE_SIXTH_POWER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MILLIVOLTS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_MINUTES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NANOGRAMS_PER_PASCAL_SECOND_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NEWTON_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NEWTON_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NEWTONS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NEWTONS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NEWTONS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_NEWTONS_PER_SQUARE_MILLIMETER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_OHM_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_PASCAL_SECONDS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_PASCALS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_PASCALS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_PER_MILLE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_PERCENTAGE",
+    "DisplayDataTypeName": "Percentage",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUND_FORCE_FEET",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUND_FORCE_FEET_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_FORCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_FORCE_PER_CUBIC_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_FORCE_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_FORCE_PER_SQUARE_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_FORCE_PER_SQUARE_INCH",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS",
+    "DisplayDataTypeName": "MassPounds",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS_PER_CUBIC_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS_PER_CUBIC_INCH",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS_PER_FOOT_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS_PER_FOOT_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_POUNDS_MASS_PER_SQUARE_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RADIANS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RADIANS_PER_SECOND",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RANKINE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RANKINE_DIFFERENCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RATIO_10",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RATIO_12",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RISE_OVER_10_FEET",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RISE_OVER_120_INCHES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RISE_OVER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RISE_OVER_INCHES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_RISE_OVER_MMS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SECONDS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SLOPE_DEGREES",
+    "DisplayDataTypeName": "AngleDegrees",
+    "StorageDataTypeName": "AngleRadians"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_CENTIMETERS",
+    "DisplayDataTypeName": "SquareMeters",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_CENTIMETERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_FEET",
+    "DisplayDataTypeName": "SquareFeet",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_FEET_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_FEET_PER_KIP",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_FEET_PER_THOUSAND_BRITISH_THERMAL_UNITS_PER_HOUR",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_FEET_PER_TON_OF_REFRIGERATION",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_INCHES",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_INCHES_PER_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_METER_KELVIN_PER_WATT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_METERS",
+    "DisplayDataTypeName": "SquareMeters",
+    "StorageDataTypeName": "SquareFeet"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_METERS_PER_KILONEWTON",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_METERS_PER_KILOWATTS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_MILLIMETERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_SQUARE_MILLIMETERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_THERMS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TON_OF_REFRIGERATION",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TONNE_FORCE_METERS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TONNE_FORCE_METERS_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TONNES_FORCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TONNES_FORCE_PER_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TONNES_FORCE_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_TONNES_MASS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_UNDEFINED",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_USTONNES_FORCE",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_USTONNES_MASS",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_VOLT_AMPERES",
+    "DisplayDataTypeName": "VoltAmps",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_VOLTS",
+    "DisplayDataTypeName": "Volts",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS",
+    "DisplayDataTypeName": "Watts",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS_PER_CUBIC_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS_PER_CUBIC_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS_PER_METER_KELVIN",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS_PER_SQUARE_FOOT",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS_PER_SQUARE_METER",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  },
+  {
+    "UnitTypeName": "DUT_WATTS_PER_SQUARE_METER_KELVIN",
+    "DisplayDataTypeName": "String",
+    "StorageDataTypeName": "Double"
+  }
+]

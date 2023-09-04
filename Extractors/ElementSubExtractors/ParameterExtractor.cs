@@ -9,6 +9,7 @@ using Gtpx.ModelSync.Export.Revit.Caches;
 using Gtpx.ModelSync.Export.Revit.Providers;
 using Gtpx.ModelSync.Export.Revit.Services;
 using System.Collections.Generic;
+using System.Threading;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 using PropertyDefinition = Gtpx.ModelSync.DataModel.Models.PropertyDefinition;
 using RevitElement = Autodesk.Revit.DB.Element;
@@ -17,12 +18,16 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 {
     public static class ParameterExtractor
     {
-        public static HashSet<string> PartPropertyNamesToExclude { get; set; } // TO DO: Get this from input to user
-        private static PropertyDefinitionCache propertyDefinitionCache;
+        private static HashSet<string> partPropertyNamesToExclude = new HashSet<string>();
         private static bool cacheElementsForAssemblies;
         private static string propertyNameForAssembly;
         private static bool retrievedPropertyNameForAssembly;
         private static GTProfiler _profiler = new GTProfiler();
+
+        public static void Reset(HashSet<string> excludeList)
+        {
+            partPropertyNamesToExclude = excludeList;
+        }
 
         public static void ProcessElement(Document document, Notifier logger, RevitElement revitElement,
                                    GtpxElement element)
@@ -54,7 +59,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             var usedParameters = AddPropertiesForParameterSet(document, logger, revitElement, element, revitElement.Parameters);
 
             // Save statistics for the log file (useful for GTP Service Desk diagnostics on publishes)
-            _profiler.SaveValue("propertyDefinitionCacheSize", propertyDefinitionCache.Count);
+            _profiler.SaveValue("propertyDefinitionCacheSize", PropertyDefinitionCache.Count);
             _profiler.Accum("Element.Parameters.UsedCount", usedParameters);
 
             // process derived properties, which will leverage element.Properties more efficiently than revit parameters
@@ -95,7 +100,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
         private static void SetElementIdProperty(RevitElement revitElement,
                                           GtpxElement element)
         {
-            propertyDefinitionCache.Add(
+            PropertyDefinitionCache.Add(
                 new PropertyDefinition
                 {
                     DisplayDataType = PropertyDataType.String,
@@ -112,7 +117,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             };
         }
 
-        private static bool GetProperty(Document document, Notifier logger, RevitElement revitElement,
+        private static bool GetProperty(Document document, Notifier notifier, RevitElement revitElement,
                                  GtpxElement element,
                                  Parameter parameter,
                                  out Property property)
@@ -125,23 +130,23 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                 var definitionName = PropertyNameService.CleanName(definition.Name);
                 if (!IsExcluded(definitionName))
                 {
-                    var hasValue = ParameterValueService.GetValue(document, logger, revitElement, parameter, definitionName, out var value);
+                    var hasValue = ParameterValueService.GetValue(document, notifier, revitElement, parameter, definitionName, out var value);
 
 #if Revit2019 || Revit2020 || Revit2021
-                    PropertyDataTypesProvider.GetPropertyDataTypes(parameter,
+                    PropertyDataTypesProvider.GetPropertyDataTypes(parameter, notifier.Logger,
                                                                    parameter.StorageType,
                                                                    definition.ParameterType,
                                                                    out PropertyDataType displayDataType,
                                                                    out PropertyDataType storageDataType);
 #else
-                    PropertyDataTypesProvider.GetPropertyDataTypes(parameter,
+                    PropertyDataTypesProvider.GetPropertyDataTypes(parameter, notifier.Logger,
                                                                    parameter.StorageType,
                                                                    definition.GetDataType(),
                                                                    out PropertyDataType displayDataType,
                                                                    out PropertyDataType storageDataType);
 #endif
 
-                    propertyDefinitionCache.Add(
+                    PropertyDefinitionCache.Add(
                         new PropertyDefinition
                         {
                             DisplayDataType = displayDataType,
@@ -166,7 +171,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 
         private static bool IsExcluded(string propertyName)
         {
-            return PartPropertyNamesToExclude.Contains(propertyName);
+            return partPropertyNamesToExclude.Contains(propertyName);
         }
 
         private static void CacheElementForAssembly(RevitElement revitElement,

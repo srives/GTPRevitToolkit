@@ -14,12 +14,11 @@ namespace Gtpx.ModelSync.Export.Revit.Services
     public static class DerivedPropertyDefinitionService
     {
         private static Dictionary<string, DerivedPropertyDefinition> derivedPropertyDefinitions = null;
-        private static PropertyDefinitionCache propertyDefinitionCache;
         private static UnitType unitType = UnitType.Imperial;
 
         private static Dictionary<string, DerivedPropertyDefinition> LoadDefinitions()
         {
-            var resourceName = $"Gtpx.ModelSync.Export.Revit.Configuration.DerivedPropertyDefinitionConfigurations.json";
+            var resourceName = $"GTP.Configuration.DerivedPropertyDefinitionConfigurations.json";
             using (var stream = typeof(DerivedPropertyDefinitionService).Assembly.GetManifestResourceStream(resourceName))
             using (var streamReader = new System.IO.StreamReader(stream))
             {
@@ -95,7 +94,7 @@ namespace Gtpx.ModelSync.Export.Revit.Services
         public static void SetDerivedProperty(Element element, string name, string value, bool isRevitFamily = false)
         {
             var derivedPropertyDefinition = GetDefinition(name);
-            propertyDefinitionCache.Add(
+            PropertyDefinitionCache.Add(
                 new PropertyDefinition
                 {
                     DisplayDataType = isRevitFamily ? GetDisplayDataTypeForRevitFamily(derivedPropertyDefinition) : GetDisplayDataType(derivedPropertyDefinition),

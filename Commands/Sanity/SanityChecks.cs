@@ -14,6 +14,12 @@ using System.CodeDom;
 using System.Windows;
 using System.Windows.Forms;
 using System.Diagnostics;
+using GTP.Extractors;
+using Gtpx.ModelSync.CAD.UI;
+using Gtpx.ModelSync.Services.Models;
+using Gtpx.ModelSync.CAD.Cache;
+using Gtpx.ModelSync.Export.Revit.Providers;
+using Newtonsoft.Json;
 
 namespace GTP.Commands.Sanity
 {
@@ -25,15 +31,26 @@ namespace GTP.Commands.Sanity
 		/// </summary>
 		private protected ApplicationContext context;
 
-		public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
 		{
 			var ver = string.Empty;
 			try
 			{
-				var dt = File.GetCreationTime(GetType().Assembly.Location);
-				if (dt != null && dt != DateTime.MinValue)
+                UIApplication uiApp = commandData?.Application;
+				if (uiApp != null)
 				{
-					ver += $" v{dt.Year}.{dt.Month}.{dt.Day}";
+
+                    Document doc = uiApp.ActiveUIDocument.Document;
+					LocalFileContext lfc = new LocalFileContext();
+					Notifier logger = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
+                    ElementExtractor.Execute(doc, logger);
+
+
+                    var dt = File.GetCreationTime(GetType().Assembly.Location);
+					if (dt != null && dt != DateTime.MinValue)
+					{
+						ver += $" v{dt.Year}.{dt.Month}.{dt.Day}";
+					}
 				}
 				return Result.Succeeded;
 			}

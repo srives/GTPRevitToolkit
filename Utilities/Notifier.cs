@@ -23,6 +23,8 @@ namespace Gtpx.ModelSync.CAD.UI
         private const string silentPrefix = "LOGSILENT:";
         public event EventHandler<NotificationEventArgs> NotificationReceived;
 
+        public ILogger Logger => logger;
+
         public Notifier(LocalFileContext localFileContext,
                         ILogger logger)
         {

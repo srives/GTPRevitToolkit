@@ -649,45 +649,45 @@
     <Compile Include="Cache\PropertyDefinitionCache.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\XYZExtensions.cs" />
-    <Compile Include="Extractor\AnchorPointExtractor.cs" />
-    <Compile Include="Extractor\ElementSubExtractors\ColorSubExtractor.cs" />
-    <Compile Include="Extractor\DimensionReferencePointExtractor.cs" />
-    <Compile Include="Extractor\ElementExtractor.cs" />
-    <Compile Include="Extractor\ElementSubExtractors\DerivedPropertySubExtractor.cs" />
-    <Compile Include="Extractor\ElementSubExtractors\ElementSubExtractor.cs" />
-    <Compile Include="Extractor\ElementSubExtractors\FamilyInstanceSubExtractor.cs" />
-    <Compile Include="Extractor\ElementSubExtractors\ParameterExtractor.cs" />
-    <Compile Include="Extractor\ElementSubExtractors\PartTemplateIdSubExtractor.cs" />
-    <Compile Include="Extractor\EvPointExtractor.cs" />
-    <Compile Include="Extractor\GtpPointExtractor.cs" />
-    <Compile Include="Extractor\WallExtractor.cs" />
-    <Compile Include="Model\Ancilary.cs" />
+    <Compile Include="Extractors\AnchorPointExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\ColorSubExtractor.cs" />
+    <Compile Include="Extractors\DimensionReferencePointExtractor.cs" />
+    <Compile Include="Extractors\ElementExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\DerivedPropertySubExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\ElementSubExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\FamilyInstanceSubExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\ParameterExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\PartTemplateIdSubExtractor.cs" />
+    <Compile Include="Extractors\EvPointExtractor.cs" />
+    <Compile Include="Extractors\GtpPointExtractor.cs" />
+    <Compile Include="Extractors\WallExtractor.cs" />
+    <Compile Include="Models\Ancilary.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Commands\Sanity\SanityChecks.cs" />
-    <Compile Include="Model\ConnectorPoint.cs" />
-    <Compile Include="Model\CurrentModelContext.cs" />
-    <Compile Include="Model\DerivedPropertyDefinition.cs" />
-    <Compile Include="Model\Element.cs" />
-    <Compile Include="Model\PipeCut.cs" />
-    <Compile Include="Model\Point.cs" />
-    <Compile Include="Model\PropertyDataTypes.cs" />
-    <Compile Include="Model\PropertyDataTypesConfiguration.cs" />
-    <Compile Include="Model\PropertyDefinition.cs" />
+    <Compile Include="Models\ConnectorPoint.cs" />
+    <Compile Include="Models\CurrentModelContext.cs" />
+    <Compile Include="Models\DerivedPropertyDefinition.cs" />
+    <Compile Include="Models\Element.cs" />
+    <Compile Include="Models\PipeCut.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\PropertyDataTypes.cs" />
+    <Compile Include="Models\PropertyDataTypesConfiguration.cs" />
+    <Compile Include="Models\PropertyDefinition.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Property.cs" />
-    <Compile Include="Provider\ElementFilterProvider.cs" />
-    <Compile Include="Provider\FabricationItemElementFilterProvider.cs" />
-    <Compile Include="Provider\PropertyDataTypesProvider.cs" />
-    <Compile Include="Provider\StratusSettingsProvider.cs" />
-    <Compile Include="Service\DerivedPropertyDefinitionService.cs" />
-    <Compile Include="Service\FamilySymbolService.cs" />
-    <Compile Include="Service\ParameterValueService.cs" />
-    <Compile Include="Service\PropertyNameService.cs" />
-    <Compile Include="Service\StringFormatService.cs" />
+    <Compile Include="Models\Property.cs" />
+    <Compile Include="Providers\ElementFilterProvider.cs" />
+    <Compile Include="Providers\FabricationItemElementFilterProvider.cs" />
+    <Compile Include="Providers\PropertyDataTypesProvider.cs" />
+    <Compile Include="Providers\StratusSettingsProvider.cs" />
+    <Compile Include="Services\DerivedPropertyDefinitionService.cs" />
+    <Compile Include="Services\FamilySymbolService.cs" />
+    <Compile Include="Services\ParameterValueService.cs" />
+    <Compile Include="Services\PropertyNameService.cs" />
+    <Compile Include="Services\StringFormatService.cs" />
     <Compile Include="UI\ConfirmationWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -695,19 +695,30 @@
       <DependentUpon>ConfirmationWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\AuditResults.cs" />
+    <Compile Include="Utilities\AuditResults.cs" />
     <Compile Include="Cache\ConnectorCache.cs" />
-    <Compile Include="Utility\GTProfiler.cs" />
-    <Compile Include="Utility\LocalFileContext.cs" />
-    <Compile Include="Utility\Notifier.cs" />
+    <Compile Include="Utilities\GTProfiler.cs" />
+    <Compile Include="Utilities\LocalFileContext.cs" />
+    <Compile Include="Utilities\Notifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
     <None Include="app.config" />
+    <None Include="Configuration\PropertyDataTypesConfigurationForRevit2017,2018,2019,2020.xlsx" />
+    <None Include="Configuration\PropertyDataTypesConfigurationForRevit2021AndNewer.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\DerivedPropertyDefinitionConfigurations.json" />
+    <EmbeddedResource Include="Configuration\PropertyDataTypesConfigurationForRevit2017,2018,2019,2020.json" />
+    <EmbeddedResource Include="Configuration\PropertyDataTypesConfigurationForRevit2021AndNewer.json" />
+  </ItemGroup>
+
+  
+  
   <ItemGroup>
     <EmbeddedResource Include="UI\ConfirmationWindow.resx">
       <DependentUpon>ConfirmationWindow.cs</DependentUpon>

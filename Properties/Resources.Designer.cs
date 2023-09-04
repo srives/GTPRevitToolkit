@@ -61,6 +61,16 @@ namespace GTP.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] DerivedPropertyDefinitionConfigurations {
+            get {
+                object obj = ResourceManager.GetObject("DerivedPropertyDefinitionConfigurations", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap doc {
@@ -85,6 +95,26 @@ namespace GTP.Properties {
         public static string GTP_SERVICE_TYPE_GUID {
             get {
                 return ResourceManager.GetString("GTP_SERVICE_TYPE_GUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] PropertyDataTypesConfigurationForRevit2017_2018_2019_2020 {
+            get {
+                object obj = ResourceManager.GetObject("PropertyDataTypesConfigurationForRevit2017_2018_2019_2020", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] PropertyDataTypesConfigurationForRevit2021AndNewer {
+            get {
+                object obj = ResourceManager.GetObject("PropertyDataTypesConfigurationForRevit2021AndNewer", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
