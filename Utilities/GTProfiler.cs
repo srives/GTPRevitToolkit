@@ -19,7 +19,7 @@ namespace Gtpx.ModelSync.CAD.Utilities
         public enum GTProfOptions { None = 0, Memory = 1, Time = 2, Values = 4, Stats = 8, All = 15 };
 
         // you can have multiple stop watches (_timerId is the default one)
-        private readonly int _timerId = 0;
+        private int _timerId = 0;
         static private List<Stopwatch> _sw = new List<Stopwatch>();
 
         // When you CatchTime, you save the length of time, and the number of times CatchTime was called
@@ -39,6 +39,18 @@ namespace Gtpx.ModelSync.CAD.Utilities
         /// Set to false to turn off all stop watches
         /// </summary>
         static public bool TimerEnabled { get; set; } = true;
+
+        public void Reset()
+        {
+            StopCollectingTime();
+            _sw = new List<Stopwatch>();
+            _timings = new Dictionary<string, long>();
+            _timingCounts = new Dictionary<string, long>();
+            _memory = new Dictionary<string, (long, long)>();
+            _stats = new Dictionary<string, (int, double, double, double)>();
+            _values = new Dictionary<string, double>();
+            TimerEnabled = true;
+        }
 
         /// <summary>
         /// If you are using multiple GTPProfiler() objects, you can give each one a unique id 

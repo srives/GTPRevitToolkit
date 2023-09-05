@@ -3,6 +3,7 @@ using GTP.Providers;
 using Gtpx.ModelSync.CAD.Cache;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
+using Gtpx.ModelSync.Export.Revit.Caches;
 using Gtpx.ModelSync.Export.Revit.Extractors;
 using Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors;
 using Gtpx.ModelSync.Export.Revit.Extractors.FamilyInstances;
@@ -18,7 +19,12 @@ namespace GTP.Extractors
         static GTProfiler profiler = new GTProfiler();
 
         static public List<KeyValuePair<string,long>> Execute(Document document, Notifier notifier)
-        {            
+        {
+            // Fresh run
+            profiler.Reset();
+            PropertyDefinitionCache.Reset(); 
+            ConnectorCache.Reset(); 
+
             var revitElements = ElementFilterProvider.GetFilteredElements(document);
             var numElements = revitElements.Count();
             var numFabElements = 0;
