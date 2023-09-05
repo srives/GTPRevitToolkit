@@ -346,5 +346,6 @@ rem -------------------------------------------------------------------
 	
 :FINI
 echo Your INSTALLER is: %EXEFile%
-echo Upload to GTP Sharepoint
+echo Copying installer to ..
+copy "%EXEFile%" ..
 echo.

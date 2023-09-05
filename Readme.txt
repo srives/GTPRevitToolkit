@@ -18,28 +18,29 @@ https://github.com/srives/GTPRevitToolkit
    
          C:\repos\GTP\GTPRevitToolkit
                                                                           
-                09/03/2023  01:59 PM    <DIR>          bin
-                09/03/2023  01:51 PM    <DIR>          Commands
-                09/03/2023  01:51 PM    <DIR>          Core
-                09/02/2023  02:32 PM    <DIR>          ExternalLibraries
-                09/03/2023  01:51 PM    <DIR>          Filters
-                09/02/2023  05:06 PM    <DIR>          install
-                09/03/2023  01:59 PM    <DIR>          obj
-                09/02/2023  02:32 PM    <DIR>          packages
-                09/03/2023  01:51 PM    <DIR>          Properties
-                09/03/2023  01:51 PM    <DIR>          Resources
-                09/03/2023  01:51 PM    <DIR>          UI
-                11/01/2022  06:33 PM               568 .editorconfig
-                11/01/2022  06:33 PM             2,518 .gitattributes
-                11/01/2022  06:33 PM             5,778 .gitignore
-                11/09/2022  07:18 PM               710 app.config
-                09/02/2023  05:01 PM            23,835 Application.cs
-                09/03/2023  01:53 PM            45,777 GTPRevitToolkit.csproj
-                12/03/2022  10:24 PM               617 GTPRevitToolkit.csproj.user
-                09/03/2023  01:52 PM            13,651 GTPRevitToolkit.sln
-                11/09/2022  07:18 PM             1,536 packages.config
-                09/02/2023  11:08 PM             4,164 Readme.txt
-                09/03/2023  01:58 PM               691 ReleaseNotes.txt
+                09/04/2023  04:36 PM    <DIR>          Cache
+                09/04/2023  04:42 PM    <DIR>          Commands
+                09/04/2023  04:44 PM    <DIR>          Configuration
+                09/04/2023  12:32 PM    <DIR>          Enums
+                09/04/2023  01:27 AM    <DIR>          Extensions
+                09/04/2023  09:34 AM    <DIR>          ExternalLibraries
+                09/04/2023  12:47 PM    <DIR>          Extractors
+                09/04/2023  05:06 PM    <DIR>          install                              <-------------- Build scripts and install creator
+                09/04/2023  09:55 PM    <DIR>          Models
+                09/04/2023  12:11 AM    <DIR>          packages
+                09/04/2023  04:04 PM    <DIR>          Properties
+                09/04/2023  09:32 AM    <DIR>          Providers
+                09/04/2023  09:19 PM    <DIR>          Resources
+                09/04/2023  04:37 PM    <DIR>          Services
+                09/04/2023  12:31 PM    <DIR>          UI
+                09/04/2023  12:47 PM    <DIR>          Utilities
+                09/04/2023  09:40 AM            44,101 GTPRevitToolkit.csproj
+                09/04/2023  03:36 PM             2,045 GTPRevitToolkit.csproj.user
+                09/04/2023  09:27 AM            13,409 GTPRevitToolkit.sln
+                09/04/2023  12:50 PM         4,141,056 GTPRevitToolkit64bit.exe             <-------------- One stop installer for distribution files
+                09/04/2023  01:28 AM             1,602 packages.config
+                09/04/2023  09:51 AM             5,228 Readme.txt                           <-------------- This file
+                09/04/2023  09:50 AM               887 ReleaseNotes.txt
 
 4.  Inside the revit-toolkit\install directory, you will find the build scripts.
 
@@ -47,7 +48,7 @@ https://github.com/srives/GTPRevitToolkit
 
                 09/03/2023  02:01 PM             5,054 build.cmd
                 09/03/2023  02:02 PM            14,267 CreateInstall.cmd
-                11/21/2022  02:45 PM               201 excludeFiles.txt
+                09/03/2023  02:45 PM               201 excludeFiles.txt
                 09/03/2023  02:00 PM             8,834 install.bat
                 09/02/2023  05:58 PM                83 Install.message.txt
                 09/03/2023  02:06 PM                56 InstallTitle.txt

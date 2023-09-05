@@ -36,6 +36,7 @@ namespace GTP.UI
         private async void btnRun_Click(object sender, EventArgs e)
         {
             tabs.SelectTab(1);
+            ClearDataGrid();
             progress.Visible = true;
             lblProgress.Visible = true;
             RefreshRunTab();
@@ -88,6 +89,11 @@ namespace GTP.UI
             UpdateGrid(e.TemplateIdRunTimeList, 60);
             RefreshRunTab();
         }
+        private string Seconds(long ms)
+        {
+            return $"{(ms + 650L) / 1000L}"; // add 650 to round up
+        }
+
         private void UpdateGrid(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
         {
             if (grid.Rows.Count >= max && max > 0)
@@ -103,7 +109,7 @@ namespace GTP.UI
                 UpdateGridCreate(TemplateIdRunTimeList, max);
             }
         }
-
+       
         private void UpdateGridRefresh(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
         {
             var ct = TemplateIdRunTimeList.Count;
@@ -118,13 +124,13 @@ namespace GTP.UI
                 {
                     grid.Invoke(new Action(() =>
                     {
-                        grid.Rows[i].Cells[0].Value = $"{TemplateIdRunTimeList[i].Value}";
+                        grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Value);
                         grid.Rows[i].Cells[1].Value = TemplateIdRunTimeList[i].Key;
                     }));
                 }
                 else
                 {
-                    grid.Rows[i].Cells[0].Value = $"{TemplateIdRunTimeList[i].Value}";
+                    grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Value);
                     grid.Rows[i].Cells[1].Value = TemplateIdRunTimeList[i].Key;
                 }
             }
@@ -159,15 +165,32 @@ namespace GTP.UI
                 {
                     grid.Invoke(new Action(() =>
                     {
-                        grid.Rows.Add($"{TemplateIdRunTimeList[i].Value}", TemplateIdRunTimeList[i].Key);
+                        grid.Rows.Add(Seconds(TemplateIdRunTimeList[i].Value), TemplateIdRunTimeList[i].Key);
                     }));
                 }
                 else
                 {
-                    grid.Rows.Add($"{TemplateIdRunTimeList[i].Value}", TemplateIdRunTimeList[i].Key);
+                    grid.Rows.Add(Seconds(TemplateIdRunTimeList[i].Value), TemplateIdRunTimeList[i].Key);
                 }
             }
 
+            grid.Update();
+            grid.Refresh();
+        }
+
+        private void ClearDataGrid()
+        {
+            if (grid.InvokeRequired)
+            {
+                grid.Invoke(new Action(() =>
+                {
+                    grid.Rows.Clear();
+                }));
+            }
+            else
+            {
+                grid.Rows.Clear();
+            }
             grid.Update();
             grid.Refresh();
         }
