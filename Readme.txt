@@ -1,5 +1,16 @@
 -----------------------------------------------------------------------------------
-About the GTP Revit Toolkit
+GTP Revit Toolkit, a Revit Addin for Checking Model Health
+                   Run the addin, and it will show you which element types are
+                   slowing down your publish to STRATUS.
+                   
+                   
+
+    Download and Install:
+
+    https://github.com/srives/GTPRevitToolkit/blob/master/GTPRevitToolkit64bit.exe
+
+
+
 
 This readme.txt will tell you how to build and release this software.
 
@@ -25,7 +36,7 @@ https://github.com/srives/GTPRevitToolkit
                 09/04/2023  01:27 AM    <DIR>          Extensions
                 09/04/2023  09:34 AM    <DIR>          ExternalLibraries
                 09/04/2023  12:47 PM    <DIR>          Extractors
-                09/04/2023  05:06 PM    <DIR>          install                              <-------------- Build scripts and install creator
+                09/04/2023  05:06 PM    <DIR>          install                      <------- Build scripts
                 09/04/2023  09:55 PM    <DIR>          Models
                 09/04/2023  12:11 AM    <DIR>          packages
                 09/04/2023  04:04 PM    <DIR>          Properties
@@ -37,9 +48,9 @@ https://github.com/srives/GTPRevitToolkit
                 09/04/2023  09:40 AM            44,101 GTPRevitToolkit.csproj
                 09/04/2023  03:36 PM             2,045 GTPRevitToolkit.csproj.user
                 09/04/2023  09:27 AM            13,409 GTPRevitToolkit.sln
-                09/04/2023  12:50 PM         4,141,056 GTPRevitToolkit64bit.exe             <-------------- One stop installer for distribution files
+                09/04/2023  12:50 PM         4,141,056 GTPRevitToolkit64bit.exe      <------- Distribution Package
                 09/04/2023  01:28 AM             1,602 packages.config
-                09/04/2023  09:51 AM             5,228 Readme.txt                           <-------------- This file
+                09/04/2023  09:51 AM             5,228 Readme.txt                    <------- This file
                 09/04/2023  09:50 AM               887 ReleaseNotes.txt
 
 4.  Inside the revit-toolkit\install directory, you will find the build scripts.
