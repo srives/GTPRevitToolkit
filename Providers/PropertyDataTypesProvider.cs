@@ -20,7 +20,7 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
 #if Revit2019 || Revit2020
         private static Dictionary<DisplayUnitType, PropertyDataTypes> displayUnitTypeToPropertyDataTypesMap = null;
 #else
-        private static Dictionary<ForgeTypeId, PropertyDataTypes> forgeTypeIdToPropertyDataTypesMap = null;
+        private static Dictionary<Autodesk.Revit.DB.ForgeTypeId, PropertyDataTypes> forgeTypeIdToPropertyDataTypesMap = null;
 #endif
 
         public static void Reset(ILogger logger)
@@ -248,7 +248,7 @@ namespace Gtpx.ModelSync.Export.Revit.Providers
                 }
                 else
                 {
-                    logger.Warning($"Matching DisplayUnitType not found for name:{propertyDataTypesConfiguration.UnitTypeName}.");
+                    _logger.Warning($"Matching DisplayUnitType not found for name:{propertyDataTypesConfiguration.UnitTypeName}.");
                 }
 #else
                 var value = typeof(UnitTypeId).GetProperty(propertyDataTypesConfiguration.UnitTypeName, BindingFlags.Public | BindingFlags.Static)

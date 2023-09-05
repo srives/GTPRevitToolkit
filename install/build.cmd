@@ -69,7 +69,7 @@ rem ------------------------------ MAIN -------------------------------------
 
     echo Building GTP Revit Toolkit with Visual Studio version %VSVER%
 	if (%WHICH%)==(Both) echo Building both DEBUG and RELEASE (use -Release or -Debug to build only one).
-	if (%1)==() echo Building toolkit to work with all version of Revit: 2018,2019,2020,2021,2022 and 2023
+	if (%1)==() echo Building toolkit to work with all version of Revit: 2019,2020,2021,2022,2023 and 2024
 	if (%1)==() echo          (use -2023 to build only 2023, or -2022 to build only for Revit 2022, etc.)
 	if not (%1)==() echo Building toolkit to work with only Revit %1
     if (%BIT%)==(64) echo Buidling 64bit (use -32 to build 32bit)
@@ -79,12 +79,12 @@ rem ------------------------------ MAIN -------------------------------------
 	if not (%1)==() call :Build %1
 	if not (%1)==() goto :DONE
 
-	call :Build 2018
 	call :Build 2019
 	call :Build 2020
 	call :Build 2021
 	call :Build 2022
 	call :Build 2023
+	call :Build 2024
 	
 	:DONE
 	cd install
@@ -103,7 +103,7 @@ rem ------------------------ Subroutine: Build() ---------------------------
     if (%WHICH%)==(Release) goto :Release
     echo. > debug%1.txt
     del .\bin\%1\Debug\GTPRevitToolkit.dll 1>nul 2>nul
-	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Debug (Revit %1)" /p:Platform=x%BIT% >> debug%1.txt
+	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Debug (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 >> debug%1.txt
     if exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"       echo          %1 Debug   build: SUCCESS
     if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   echo          %1 Debug   build: FAILED to create bin\x%BIT%\Debug (Revit %1)\Debug\GTPRevitToolkit.dll
     if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   type debug%1.txt | find "Error"
@@ -113,10 +113,11 @@ rem ------------------------ Subroutine: Build() ---------------------------
     if (%WHICH%)==(Debug) goto :EOF	
     del .\bin\%1\Release\GTPRevitToolkit.dll 1>nul 2>nul	
     echo. > release%1.txt
-	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Release (Revit %1)" /p:Platform=x%BIT% >> release%1.txt
+	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Release (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 >> release%1.txt
     if exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll"     echo          %1 Release build: SUCCESS
     if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" echo          %1 Release build: FAILED to create bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll
-	if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" type release%1.txt | find "Error"
+	if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" type release%1.txt | find /I "error"
+    rem | find "Error"
 	del release%1.txt 1>nul 2>nul
 	
 goto :EOF

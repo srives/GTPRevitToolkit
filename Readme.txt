@@ -94,12 +94,12 @@ https://github.com/srives/GTPRevitToolkit
 	   This is useful if you are trying to isolate any copy or build problems.
 	   	   
 11.	Adding new versions of Revit
-    At the time of this writing, Revit 2023 was the latest version of Revit.
-	a. If you want to add Revit 24, update all the .CMD files
+    At the time of this writing, Revit 2024 was the latest version of Revit.
+	a. If you want to add Revit 2025, update all the .CMD files
 	b. Edit the .sln file for the project, and edit the .csproj
-	c. Install Revit 2024, and copy the DLLs to:	
+	c. Install Revit 2025, and copy the DLLs to:	
 	
-           C:\repos\GTP\GTPRevitToolkit\ExternalLibraries\2024\
+           C:\repos\GTP\GTPRevitToolkit\ExternalLibraries\2025\
 		   
     ExternalLibraries is a directory that contains all the needed Revit DLLs
 	

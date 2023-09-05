@@ -12,6 +12,10 @@ Release Notes:
 		* 32bit and 64bit installs (I have only tested  with 64)
         * Creates basic addin, points all version to debugable DLLs.
         * Ribbon bar with icon
+
+	04 Sept 23
+		* Installer installs Revit 2019, 2020, 2021, 2022, 2023, and 2024
+        * UI for MVP checked in
 		 
 
 Code Kill, 2023

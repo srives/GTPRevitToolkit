@@ -39,7 +39,6 @@ rem -------------------------------------------------------------------
   
   echo Autodesk Revit Addin Location: %adpath%
   
-  call :RevitYear 2018
   call :RevitYear 2019
   call :RevitYear 2020
   call :RevitYear 2021

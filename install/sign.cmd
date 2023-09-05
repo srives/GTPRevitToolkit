@@ -69,12 +69,13 @@ rem ----------------------------------------------------------------------------
 	echo Sign all EXEs we place on the client computer
 	echo About to sign GTP Revit Toolkit
 
-	call :sign_it 2018
 	call :sign_it 2019
 	call :sign_it 2020
 	call :sign_it 2021
 	call :sign_it 2022
 	call :sign_it 2023
+	call :sign_it 2024
+    
 goto :EOF
 
 rem ----------------------------------------------------------------------------------------------

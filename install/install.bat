@@ -154,12 +154,12 @@ rem --------------------- Install these DLLS -------------------------
   echo Autodesk Revit Addin Location: %adpath%
   echo Autodesk Revit Addin Location: %adpath% >> "%installLog%"
 
-  call :RevitYear 2018
   call :RevitYear 2019
   call :RevitYear 2020
   call :RevitYear 2021
   call :RevitYear 2022
   call :RevitYear 2023
+  call :RevitYear 2024
 
   echo ------------------------------------------------ >> "%installLog%"
   echo GTP Revit Toolkit Install finished >> "%installLog%"
@@ -194,7 +194,7 @@ rem ----------------------------------------------------------------------------
   
   rem If we are DEV=1, then we don't copy the DLLs over to any place (we run them out of the build dir)
   rem 
-  rem In case of DEV:C:\repos\GTP\GTPRevitToolkit\bin\x64\Debug (Revit 2018)
+  rem In case of DEV:C:\repos\GTP\GTPRevitToolkit\bin\x64\Debug (Revit 2023)
   if (%DEV%)==(1) set DLL=%DLLPATH%\%WHAT% (Revit %1)\GTPRevitToolkit.dll
   if (%DEV%)==(1) echo Running Developer Mode
   if (%DEV%)==(1) echo Running Developer Mode >> "%installLog%"
@@ -222,11 +222,12 @@ rem ----------------------------------------------------------------------------
   rem -----------------------------------------------------------------------------
   :make_manifest
   rem Create Manifest
+  mkdir %adpath%%1 1>nul 2>nul
   set manifest=%adpath%%1\GTPRevitToolkit%1.addin
   echo Creating %1 manifest, pointing to %DLL%
   echo Creating %1 manifest, pointing to %DLL% >> "%installLog%"
   
-      echo ^<?xml version="1.0" encoding="utf-8" ?^> > "%manifest%"
+      echo ^<?xml version="1.0" encoding="utf-8" ?^> > "%manifest%" 2>nul
       echo ^<RevitAddIns^> >> "%manifest%"
       echo   ^<AddIn Type="Application"^> >> "%manifest%"
       echo     ^<Name^>GTP Toolkit^</Name^> >> "%manifest%"

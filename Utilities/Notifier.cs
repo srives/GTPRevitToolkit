@@ -43,6 +43,8 @@ namespace Gtpx.ModelSync.CAD.UI
         {
             StatsReceived?.Invoke(this, new NotificationEventArgs()
             {
+                Total= total,
+                Progress= progress,
                 TemplateIdRunTimeList = templateIdSeconds
             });
         }

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -22,23 +23,38 @@ namespace GTP.UI
     public partial class GTPDashboard : Form
     {
         Document _document;
+        bool stopProcess = false;
+
         public GTPDashboard(Document document, string version)
         {
             InitializeComponent();
             _document = document;
+            progress.Visible = false;
+            lblProgress.Visible = false;
         }
 
-        private void btnRun_Click(object sender, EventArgs e)
+        private async void btnRun_Click(object sender, EventArgs e)
         {
             tabs.SelectTab(1);
+            progress.Visible = true;
+            lblProgress.Visible = true;
+            RefreshRunTab();
             LocalFileContext lfc = new LocalFileContext();
             Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
             notifier.StatsReceived += Notifier_StatsReceived;
             ElementExtractor.Execute(_document, notifier);
+            progress.Visible = false;
+            lblProgress.Visible = false;
+            RefreshRunTab();
         }
 
         private void Notifier_StatsReceived(object sender, NotificationEventArgs e)
         {
+            if (stopProcess)
+            {
+                return;
+            }
+
             if (lblProgress.InvokeRequired)
             {
                 lblProgress.Invoke(new Action(() =>
@@ -55,11 +71,13 @@ namespace GTP.UI
             {
                 progress.Invoke(new Action(() =>
                 {
+                    if (progress.Maximum != e.Total) progress.Maximum = (int)e.Total;
                     progress.Value = (int)e.Progress;
                 }));
             }
             else
             {
+                if (progress.Maximum != e.Total) progress.Maximum = (int)e.Total;
                 progress.Value = (int)e.Progress;
             }
 
@@ -80,6 +98,29 @@ namespace GTP.UI
             {
                 rtbResults.Text = answer;
             }
+            RefreshRunTab();
+        }
+
+        private void RefreshRunTab()
+        {
+            if (tabRun.InvokeRequired)
+            {
+                tabRun.Invoke(new Action(() =>
+                {
+                    tabRun.Update();
+                    tabRun.Refresh();
+                }));
+            }
+            else
+            {
+                tabRun.Update();
+                tabRun.Refresh();
+            }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            stopProcess = true;
         }
     }
 }

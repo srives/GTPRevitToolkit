@@ -34,9 +34,6 @@ rem
 rem     -NO: Don't build. 
 rem          You'd do this if you are testing only installer changes
 rem
-rem     2018:
-rem         Just build an installer for 2018 only
-rem
 rem     2019:
 rem         Just build an installer for 2019 only
 rem
@@ -51,6 +48,10 @@ rem         Just build an installer for 2022 only
 rem
 rem     2023:
 rem         Just build an installer for 2023 only
+rem
+rem     2024:
+rem         Just build an installer for 2024 only
+rem
 rem
 rem     Written for GTP, a Revit Toolkit
 rem     3 Sept 2023
@@ -161,12 +162,12 @@ rem -------------------------------------------------------------------
 rem -------------------------------------------------------------------
 :POST_BUILD
   set found=0
-  call :CHECK 2018
   call :CHECK 2019
   call :CHECK 2020
   call :CHECK 2021
   call :CHECK 2022
   call :CHECK 2023
+  call :CHECK 2024
   
   if (%found%)==(0) echo No files found to create install package. Missing DLL %MainDLL% for all versions of Revit %SHOW%bit %WHAT%
   if (%found%)==(0) goto :EOF  
@@ -195,12 +196,12 @@ rem -------------------------------------------------------------------
 	rd "%StageRoot%\" /s /q 1>nul 2>nul
 
 	mkdir "%StageRoot%\" 1>nul 2>nul
-	mkdir "%StageRoot%\2018" 1>nul 2>nul
 	mkdir "%StageRoot%\2019" 1>nul 2>nul
 	mkdir "%StageRoot%\2020" 1>nul 2>nul
 	mkdir "%StageRoot%\2021" 1>nul 2>nul
 	mkdir "%StageRoot%\2022" 1>nul 2>nul
 	mkdir "%StageRoot%\2023" 1>nul 2>nul
+	mkdir "%StageRoot%\2024" 1>nul 2>nul
 
 	echo Ready to create GTP Revit Install at c:\%AppName%\
 
@@ -223,12 +224,12 @@ rem -------------------------------------------------------------------
 	if not (%1)==() echo Files for year %1 *ONLY* are ready to be turned into a Zip
 	if not (%1)==() goto :ZIP
 
-		call :STAGE_BY_YEAR 2018
 		call :STAGE_BY_YEAR 2019
 		call :STAGE_BY_YEAR 2020
 		call :STAGE_BY_YEAR 2021
 		call :STAGE_BY_YEAR 2022
 		call :STAGE_BY_YEAR 2023
+		call :STAGE_BY_YEAR 2024
 
 	echo Files ready to be turned into a Zip
 goto :ZIP
