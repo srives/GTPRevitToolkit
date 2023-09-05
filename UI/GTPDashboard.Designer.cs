@@ -42,10 +42,13 @@
             this.tabRun = new System.Windows.Forms.TabPage();
             this.lblProgress = new System.Windows.Forms.Label();
             this.progress = new System.Windows.Forms.ProgressBar();
-            this.rtbResults = new System.Windows.Forms.RichTextBox();
+            this.grid = new System.Windows.Forms.DataGridView();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.tabRun.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -189,7 +192,7 @@
             this.tabRun.BackColor = System.Drawing.Color.Black;
             this.tabRun.Controls.Add(this.lblProgress);
             this.tabRun.Controls.Add(this.progress);
-            this.tabRun.Controls.Add(this.rtbResults);
+            this.tabRun.Controls.Add(this.grid);
             this.tabRun.Location = new System.Drawing.Point(4, 22);
             this.tabRun.Name = "tabRun";
             this.tabRun.Padding = new System.Windows.Forms.Padding(3);
@@ -199,9 +202,11 @@
             // 
             // lblProgress
             // 
+            this.lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProgress.AutoSize = true;
-            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblProgress.Location = new System.Drawing.Point(569, 525);
+            this.lblProgress.BackColor = System.Drawing.Color.White;
+            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblProgress.Location = new System.Drawing.Point(6, 525);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(58, 13);
             this.lblProgress.TabIndex = 2;
@@ -209,22 +214,42 @@
             // 
             // progress
             // 
-            this.progress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.progress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.progress.Location = new System.Drawing.Point(3, 523);
             this.progress.Name = "progress";
             this.progress.Size = new System.Drawing.Size(1159, 18);
             this.progress.TabIndex = 1;
             // 
-            // rtbResults
+            // grid
             // 
-            this.rtbResults.BackColor = System.Drawing.SystemColors.MenuText;
-            this.rtbResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbResults.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.rtbResults.Location = new System.Drawing.Point(3, 0);
-            this.rtbResults.Name = "rtbResults";
-            this.rtbResults.Size = new System.Drawing.Size(1160, 522);
-            this.rtbResults.TabIndex = 0;
-            this.rtbResults.Text = "";
+            this.grid.AllowUserToAddRows = false;
+            this.grid.AllowUserToDeleteRows = false;
+            this.grid.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Time,
+            this.TemplateId});
+            this.grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.grid.Location = new System.Drawing.Point(0, 0);
+            this.grid.Name = "grid";
+            this.grid.ReadOnly = true;
+            this.grid.RowHeadersVisible = false;
+            this.grid.Size = new System.Drawing.Size(1162, 548);
+            this.grid.TabIndex = 3;
+            // 
+            // Time
+            // 
+            this.Time.HeaderText = "Seconds";
+            this.Time.Name = "Time";
+            this.Time.ReadOnly = true;
+            // 
+            // TemplateId
+            // 
+            this.TemplateId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TemplateId.HeaderText = "TemplateId";
+            this.TemplateId.Name = "TemplateId";
+            this.TemplateId.ReadOnly = true;
             // 
             // GTPDashboard
             // 
@@ -240,6 +265,7 @@
             this.tabSettings.PerformLayout();
             this.tabRun.ResumeLayout(false);
             this.tabRun.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,6 +286,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.ProgressBar progress;
-        private System.Windows.Forms.RichTextBox rtbResults;
+        private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
     }
 }

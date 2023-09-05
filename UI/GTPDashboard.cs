@@ -39,12 +39,16 @@ namespace GTP.UI
             progress.Visible = true;
             lblProgress.Visible = true;
             RefreshRunTab();
+
             LocalFileContext lfc = new LocalFileContext();
             Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
+
             notifier.StatsReceived += Notifier_StatsReceived;
-            ElementExtractor.Execute(_document, notifier);
+            var templateIdRunTimeList = ElementExtractor.Execute(_document, notifier);
             progress.Visible = false;
             lblProgress.Visible = false;
+            UpdateGrid(templateIdRunTimeList);
+            // UpdateRTF(templateIdRunTimeList);
             RefreshRunTab();
         }
 
@@ -81,8 +85,98 @@ namespace GTP.UI
                 progress.Value = (int)e.Progress;
             }
 
+            UpdateGrid(e.TemplateIdRunTimeList, 60);
+            RefreshRunTab();
+        }
+        private void UpdateGrid(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
+        {
+            if (grid.Rows.Count >= max && max > 0)
+            {
+                UpdateGridRefresh(TemplateIdRunTimeList, max);
+            }
+            else if (grid.Rows.Count >= TemplateIdRunTimeList.Count)
+            {
+                UpdateGridRefresh(TemplateIdRunTimeList, max);
+            }
+            else // makes new rows, to expand the grid to hold more data
+            {
+                UpdateGridCreate(TemplateIdRunTimeList, max);
+            }
+        }
+
+        private void UpdateGridRefresh(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
+        {
+            var ct = TemplateIdRunTimeList.Count;
+            if (ct > max && max > 0)
+            {
+                ct = max;
+            }
+
+            for (int i = 0; i < ct; i++)
+            {
+                if (grid.InvokeRequired)
+                {
+                    grid.Invoke(new Action(() =>
+                    {
+                        grid.Rows[i].Cells[0].Value = $"{TemplateIdRunTimeList[i].Value}";
+                        grid.Rows[i].Cells[1].Value = TemplateIdRunTimeList[i].Key;
+                    }));
+                }
+                else
+                {
+                    grid.Rows[i].Cells[0].Value = $"{TemplateIdRunTimeList[i].Value}";
+                    grid.Rows[i].Cells[1].Value = TemplateIdRunTimeList[i].Key;
+                }
+            }
+
+            grid.Update();
+            grid.Refresh();
+        }
+
+        private void UpdateGridCreate(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max=-1)
+        {
+            var ct = TemplateIdRunTimeList.Count;
+            if (ct > max && max > 0)
+            {
+                ct = max;
+            }
+
+            if (grid.InvokeRequired)
+            {
+                grid.Invoke(new Action(() =>
+                {
+                    grid.Rows.Clear();
+                }));
+            }
+            else
+            {
+                grid.Rows.Clear();
+            }
+
+            for (int i = 0; i < ct; i++)
+            {
+                if (grid.InvokeRequired)
+                {
+                    grid.Invoke(new Action(() =>
+                    {
+                        grid.Rows.Add($"{TemplateIdRunTimeList[i].Value}", TemplateIdRunTimeList[i].Key);
+                    }));
+                }
+                else
+                {
+                    grid.Rows.Add($"{TemplateIdRunTimeList[i].Value}", TemplateIdRunTimeList[i].Key);
+                }
+            }
+
+            grid.Update();
+            grid.Refresh();
+        }
+
+        /*
+        private void UpdateRTF(List<KeyValuePair<string, long>> TemplateIdRunTimeList)
+        {
             var answer = string.Empty;
-            foreach (var item in e.TemplateIdRunTimeList)
+            foreach (var item in TemplateIdRunTimeList)
             {
                 answer += $"{item.Value} sec, {item.Key}{Environment.NewLine}";
             }
@@ -98,9 +192,8 @@ namespace GTP.UI
             {
                 rtbResults.Text = answer;
             }
-            RefreshRunTab();
         }
-
+        */
         private void RefreshRunTab()
         {
             if (tabRun.InvokeRequired)

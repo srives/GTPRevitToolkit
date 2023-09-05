@@ -46,28 +46,28 @@ namespace GTP.Extractors
                 profiler.RestartTimer();
                 PartTemplateIdSubExtractor.ProcessElement(document, notifier, revitElement, element);
                 profiler.CatchTime($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
-                profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
+                profiler.CatchTime($"TotalTime.{nameof(PartTemplateIdSubExtractor)}", 1);
 
                 if (revitElement is FamilyInstance familyInstance)
                 {
                     FamilyInstanceSubExtractor.ProcessFamilyInstance(document, familyInstance, element);
                     profiler.CatchTime($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
-                    profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
+                    profiler.CatchTime($"TotalTime.{nameof(FamilyInstanceSubExtractor)}", 1);
                 }
                 else if (revitElement is Wall wall)
                 {
                     WallExtractor.ProcessWall(wall, element);
                     profiler.CatchTime($"{nameof(WallExtractor)}.{element.TemplateId}");
-                    profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
+                    profiler.CatchTime($"TotalTime.{nameof(WallExtractor)}", 1);
                 }
 
                 ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
                 profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
-                profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
+                profiler.CatchTime($"TotalTime.{nameof(ElementSubExtractor)}", 1);
                                
                 PartTemplateExtractor.ProcessElement(revitElement, element);
                 profiler.CatchTime($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
-                profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
+                profiler.CatchTime($"TotalTime.{nameof(PartTemplateExtractor)}", 1);
 
                 if (element.CadType == "Autodesk.Revit.DB.FabricationPart" || element.CadType == "Autodesk.Fabrication.Item")
                 {
