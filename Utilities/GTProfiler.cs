@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows.Interop;
 
 namespace Gtpx.ModelSync.CAD.Utilities
 {
@@ -153,6 +155,12 @@ namespace Gtpx.ModelSync.CAD.Utilities
             if (memoryId == "") memoryId = timerId;
             CatchTime(timerId, level);
             CatchMemory(memoryId);
+        }
+
+        public List<KeyValuePair<string, long>> SortedList()
+        {
+            var sorted = from entry in _timings orderby entry.Value descending select entry;
+            return sorted.ToList<KeyValuePair<string, long>>();
         }
 
         public List<string> ToStrings(GTProfOptions options = GTProfOptions.All)

@@ -3,6 +3,8 @@ using Serilog;
 using System;
 using System.Windows;
 using Gtpx.ModelSync.DataModel.Enums;
+using System.Windows.Documents;
+using System.Collections.Generic;
 
 namespace Gtpx.ModelSync.CAD.UI
 {
@@ -10,6 +12,9 @@ namespace Gtpx.ModelSync.CAD.UI
     {
         public LogLevel LogLevel { get; set; }
         public string Message { get; set; }
+        public List<KeyValuePair<string,long>> TemplateIdRunTimeList { get; set; }
+        public long Progress { get; set; }
+        public long Total { get; set; }
     }
 
     public class Notifier
@@ -22,6 +27,7 @@ namespace Gtpx.ModelSync.CAD.UI
         private const string warningPrefix = "WARNING:";
         private const string silentPrefix = "LOGSILENT:";
         public event EventHandler<NotificationEventArgs> NotificationReceived;
+        public event EventHandler<NotificationEventArgs> StatsReceived;
 
         public ILogger Logger => logger;
 
@@ -31,6 +37,14 @@ namespace Gtpx.ModelSync.CAD.UI
             this.localFileContext = localFileContext;
             this.logger = logger;
             IsNotifyWindowLoaded = false;
+        }
+
+        public void Stats(List<KeyValuePair<string, long>> templateIdSeconds, long progress, long total)
+        {
+            StatsReceived?.Invoke(this, new NotificationEventArgs()
+            {
+                TemplateIdRunTimeList = templateIdSeconds
+            });
         }
 
         public void Error(string message,

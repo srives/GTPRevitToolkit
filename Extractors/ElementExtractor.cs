@@ -6,6 +6,8 @@ using Gtpx.ModelSync.CAD.Utilities;
 using Gtpx.ModelSync.Export.Revit.Extractors;
 using Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors;
 using Gtpx.ModelSync.Export.Revit.Extractors.FamilyInstances;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 
@@ -15,15 +17,16 @@ namespace GTP.Extractors
     {
         static GTProfiler profiler = new GTProfiler();
 
-        static public void Execute(Document document, Notifier notifier)
+        static public List<KeyValuePair<string,long>> Execute(Document document, Notifier notifier)
         {            
             var revitElements = ElementFilterProvider.GetFilteredElements(document);
             var numElements = revitElements.Count();
             var numFabElements = 0;
-
+            var progressInterval = 100;
             var index = 0;
             foreach (Element revitElement in revitElements.Reverse())
             {
+                index++;
                 var element = new GtpxElement
                 {
 #if Revit2024
@@ -35,7 +38,7 @@ namespace GTP.Extractors
 #endif
                     CadType = revitElement.GetType().ToString(),
                     FabricationItemKey = revitElement.UniqueId,
-                    Index = ++index,
+                    Index = index,
                     ElementId = revitElement.UniqueId
                 };
 
@@ -61,10 +64,9 @@ namespace GTP.Extractors
                 ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
                 profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
-                /*
-                 * TO DO: Add the following
+                               
                 PartTemplateExtractor.ProcessElement(revitElement, element);
-                profiler.CatchTime($"{nameof(partTemplateExtractor)}.{element.TemplateId}");
+                profiler.CatchTime($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{element.TemplateId}", 1);
 
                 if (element.CadType == "Autodesk.Revit.DB.FabricationPart" || element.CadType == "Autodesk.Fabrication.Item")
@@ -72,20 +74,20 @@ namespace GTP.Extractors
                     numFabElements++;
                 }
 
-                elementStorageProvider.Add(element, activityEvent);
+                // elementStorageProvider.Add(element, activityEvent);
 
                 if (index % progressInterval == 0)
                 {
+                    var stats = profiler.SortedList();
+                    notifier.Stats(stats, index, numElements);
                     profiler.CatchMemory("ElementExtractor");
-                    activityEventService.CreateProgressEvent(ActivityDefinition, Job, numElements, index);
                     notifier.Information($"Extracted {index} elements out of {numElements}.");
                     foreach (var time in profiler.ToStrings())
                     {
                         notifier.LogSilent(time);
                     }
                     profiler.CatchMemory("ElementExtractor");
-                }
-                */
+                }                
             }
 
             profiler.CatchMemory("ElementExtractor");
@@ -107,6 +109,8 @@ namespace GTP.Extractors
             propertyDefinitionStorageProvider.Finish(activityEvent);
             */
             notifier.Information($"Finished extracting {numElements} elements.");
+            var ret = profiler.SortedList();
+            return ret;
         }
     }
 }

@@ -657,6 +657,7 @@
     <Compile Include="Extractors\ElementSubExtractors\ElementSubExtractor.cs" />
     <Compile Include="Extractors\ElementSubExtractors\FamilyInstanceSubExtractor.cs" />
     <Compile Include="Extractors\ElementSubExtractors\ParameterExtractor.cs" />
+    <Compile Include="Extractors\ElementSubExtractors\PartTemplateExtractor.cs" />
     <Compile Include="Extractors\ElementSubExtractors\PartTemplateIdSubExtractor.cs" />
     <Compile Include="Extractors\EvPointExtractor.cs" />
     <Compile Include="Extractors\GtpPointExtractor.cs" />
@@ -668,6 +669,7 @@
     <Compile Include="Models\CurrentModelContext.cs" />
     <Compile Include="Models\DerivedPropertyDefinition.cs" />
     <Compile Include="Models\Element.cs" />
+    <Compile Include="Models\PartTemplate.cs" />
     <Compile Include="Models\PipeCut.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\PropertyDataTypes.cs" />
@@ -695,6 +697,12 @@
       <DependentUpon>ConfirmationWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\GTPDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\GTPDashboard.Designer.cs">
+      <DependentUpon>GTPDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\AuditResults.cs" />
     <Compile Include="Cache\ConnectorCache.cs" />
     <Compile Include="Utilities\GTProfiler.cs" />
@@ -710,15 +718,14 @@
     <None Include="Configuration\PropertyDataTypesConfigurationForRevit2021AndNewer.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
-  
   <ItemGroup>
     <EmbeddedResource Include="Configuration\DerivedPropertyDefinitionConfigurations.json" />
     <EmbeddedResource Include="Configuration\PropertyDataTypesConfigurationForRevit2017,2018,2019,2020.json" />
     <EmbeddedResource Include="Configuration\PropertyDataTypesConfigurationForRevit2021AndNewer.json" />
+    <EmbeddedResource Include="UI\GTPDashboard.resx">
+      <DependentUpon>GTPDashboard.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-
-  
-  
   <ItemGroup>
     <EmbeddedResource Include="UI\ConfirmationWindow.resx">
       <DependentUpon>ConfirmationWindow.cs</DependentUpon>
