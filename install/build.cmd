@@ -88,9 +88,21 @@ rem ------------------------------ MAIN -------------------------------------
 	
 	:DONE
 	cd install
-    if (%WHICH%)==(Release)       echo To debug, run: build -dev
-    if not (%WHICH%)==(Release)   echo Now run: install --dev 
-    if not (%WHICH%)==(Release)   echo          This will create .addin files for each version of the GTP Toolkit on your own local machine.
+    echo.
+    echo Next Steps: 
+    echo ------------------------------------------------------------------------------------------------------------
+    echo    Distribution Options:
+    echo          Run: CreateInstall
+    echo               This will create a distribution package you can send to anyone who wants to use this plugin.
+    echo.
+    echo ------------------------------------------------------------------------------------------------------------
+    echo    Testing Options:
+    echo.
+    echo          Run: install --dev 
+    echo               This will create a Debug DLL .addin file for each version of the GTP Toolkit on your own local machine.
+    echo.
+	echo          Run: install --rel
+    echo               This will create a Release DLL .addin file for each Revit version of the GTP Toolkit on your own local machine.
 	
 goto :EOF
 

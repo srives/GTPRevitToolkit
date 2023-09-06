@@ -44,8 +44,9 @@ namespace GTP.UI
             LocalFileContext lfc = new LocalFileContext();
             Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
 
+            
             notifier.StatsReceived += Notifier_StatsReceived;
-            var templateIdRunTimeList = ElementExtractor.Execute(_document, notifier);
+            var templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, (int)udProgressInterval.Value);
             progress.Visible = false;
             lblProgress.Visible = false;
             UpdateGrid(templateIdRunTimeList);

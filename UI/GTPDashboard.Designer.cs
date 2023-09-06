@@ -37,7 +37,6 @@
             this.lblncluded = new System.Windows.Forms.Label();
             this.includedList = new System.Windows.Forms.ListBox();
             this.version = new System.Windows.Forms.Label();
-            this.btnStop = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
             this.tabRun = new System.Windows.Forms.TabPage();
             this.lblProgress = new System.Windows.Forms.Label();
@@ -45,10 +44,13 @@
             this.grid = new System.Windows.Forms.DataGridView();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.udProgressInterval = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.tabRun.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -67,6 +69,8 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Black;
+            this.tabSettings.Controls.Add(this.label4);
+            this.tabSettings.Controls.Add(this.udProgressInterval);
             this.tabSettings.Controls.Add(this.label3);
             this.tabSettings.Controls.Add(this.label2);
             this.tabSettings.Controls.Add(this.listBox1);
@@ -74,7 +78,6 @@
             this.tabSettings.Controls.Add(this.lblncluded);
             this.tabSettings.Controls.Add(this.includedList);
             this.tabSettings.Controls.Add(this.version);
-            this.tabSettings.Controls.Add(this.btnStop);
             this.tabSettings.Controls.Add(this.btnRun);
             this.tabSettings.Location = new System.Drawing.Point(4, 22);
             this.tabSettings.Name = "tabSettings";
@@ -161,25 +164,12 @@
             this.version.TabIndex = 4;
             this.version.Text = "v2023.9.4";
             // 
-            // btnStop
-            // 
-            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.ForeColor = System.Drawing.Color.Lime;
-            this.btnStop.Location = new System.Drawing.Point(1073, 506);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 3;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
             // btnRun
             // 
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRun.ForeColor = System.Drawing.Color.Lime;
-            this.btnRun.Location = new System.Drawing.Point(986, 506);
+            this.btnRun.Location = new System.Drawing.Point(1073, 509);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(75, 23);
             this.btnRun.TabIndex = 2;
@@ -204,20 +194,21 @@
             // 
             this.lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProgress.AutoSize = true;
-            this.lblProgress.BackColor = System.Drawing.Color.White;
+            this.lblProgress.BackColor = System.Drawing.Color.Transparent;
+            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblProgress.Location = new System.Drawing.Point(6, 525);
+            this.lblProgress.Location = new System.Drawing.Point(4, 505);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(58, 13);
+            this.lblProgress.Size = new System.Drawing.Size(63, 16);
             this.lblProgress.TabIndex = 2;
-            this.lblProgress.Text = "lblProgress";
+            this.lblProgress.Text = "________";
             // 
             // progress
             // 
             this.progress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.progress.Location = new System.Drawing.Point(3, 523);
+            this.progress.Location = new System.Drawing.Point(-4, 523);
             this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(1159, 18);
+            this.progress.Size = new System.Drawing.Size(1166, 18);
             this.progress.TabIndex = 1;
             // 
             // grid
@@ -251,6 +242,46 @@
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
             // 
+            // udProgressInterval
+            // 
+            this.udProgressInterval.BackColor = System.Drawing.Color.Black;
+            this.udProgressInterval.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.udProgressInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.udProgressInterval.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.udProgressInterval.Location = new System.Drawing.Point(931, 480);
+            this.udProgressInterval.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.udProgressInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.udProgressInterval.Name = "udProgressInterval";
+            this.udProgressInterval.Size = new System.Drawing.Size(217, 20);
+            this.udProgressInterval.TabIndex = 11;
+            this.udProgressInterval.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Lime;
+            this.label4.Location = new System.Drawing.Point(928, 455);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(220, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Progress Interval (step size through elements)";
+            // 
             // GTPDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +297,7 @@
             this.tabRun.ResumeLayout(false);
             this.tabRun.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -281,7 +313,6 @@
         private System.Windows.Forms.Label lblncluded;
         private System.Windows.Forms.ListBox includedList;
         private System.Windows.Forms.Label version;
-        private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblProgress;
@@ -289,5 +320,7 @@
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown udProgressInterval;
     }
 }

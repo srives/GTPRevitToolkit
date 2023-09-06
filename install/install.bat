@@ -4,7 +4,7 @@ goto :Main
 
 :Usage
 echo.
-echo Usage: install [-?] [-dev] [-vs] [-32] [-64]
+echo Usage: install [-?] [-dev] [-rel] [-32] [-64]
 echo        CodeK ill install script for GTP Revit ToolKit 
 echo.
 echo  This script runs inside an installer, but it can also be run outside of the installer on the 
@@ -34,12 +34,9 @@ echo         and use your 32bit version.of your build
 echo.
 echo         You can run this instead of running, install -dev:
 echo.
-echo                          install --vs 2022
+echo                          install --rel
 echo.
-echo         Running this will use the development machine build path as the source of the
-echo         revit manifest files, but not the path made with build.cmd, rather, as built 
-echo         in Visual Studio.  Do this if using -dev doesn't let you debug the DLL because
-echo         VS can't find the pdb files.
+echo         Running this will point Revit to the locally built release DLLs
 echo.
 echo  To check install results, check this file:
 echo.
@@ -72,21 +69,20 @@ rem --------------------- Install these DLLS -------------------------
   
   set DEV=0
   set LOOP=0
-  set VS=0
   :LOOP_TOP  
       set /A LOOP=LOOP+1
-	  if /I (%1)==(--vs) if (%2)==() echo Specify the year you built with in VS
-	  if /I (%1)==(--vs) if (%2)==() goto :EOF
-	  if /I (%1)==(--vs) set DEV=1
-	  if /I (%1)==(--vs) set VS=%2
-	  if /I (%1)==(--vs) set WHAT=Debug
-	  if /I (%1)==(--vs) shift&shift
 	  if /I (%1)==(-dev) set DEV=1
 	  if /I (%1)==(-dev) set WHAT=Debug
 	  if /I (%1)==(-dev) shift
 	  if /I (%1)==(--dev) set DEV=1
 	  if /I (%1)==(--dev) set WHAT=Debug
 	  if /I (%1)==(--dev) shift
+	  if /I (%1)==(--rel) set DEV=1
+	  if /I (%1)==(--rel) set WHAT=Release
+	  if /I (%1)==(--rel) shift
+	  if /I (%1)==(-rel) set DEV=1
+	  if /I (%1)==(-rel) set WHAT=Release
+	  if /I (%1)==(-rel) shift
   	  if /I (%1)==(-64) set BIT=64
 	  if /I (%1)==(-64) shift
   	  if /I (%1)==(--64) set BIT=64
@@ -108,8 +104,8 @@ rem --------------------- Install these DLLS -------------------------
   if not (%LOOP%) == (3) goto :LOOP_TOP
 
   if (%DEV%)==(1) set GTPRoot=C:\repos\GTP\GTPRevitToolkit\bin\x%BIT%
-  if (%DEV%)==(1) if (%BIT%)==(86) echo Debugging 32bit DLLs
-  if (%DEV%)==(1) if (%BIT%)==(64) echo Debugging 64bit DLLs
+  if (%DEV%)==(1) if (%BIT%)==(86) echo Debugging 32bit DLLs (%WHAT%)
+  if (%DEV%)==(1) if (%BIT%)==(64) echo Debugging 64bit DLLs (%WHAT%)
   
   mkdir "%GTPRoot%" 1>nul 2>nul
   set installLog=%GTPRoot%\install.txt
@@ -187,8 +183,6 @@ rem directory
 rem ----------------------------------------------------------------------------------------------
 
   set DLLPATH=%GTPRoot%
-  if (%VS%)==(%1) set DLLPATH=C:\repos\GTP\GTPRevitToolkit\bin\%1\%WHAT%
-  if (%VS%)==(%1) echo **** Pointing %1 at the Visual Studio build.
 
   echo ------------------- %1 ------------------ >> "%installLog%"
   
@@ -196,8 +190,8 @@ rem ----------------------------------------------------------------------------
   rem 
   rem In case of DEV:C:\repos\GTP\GTPRevitToolkit\bin\x64\Debug (Revit 2023)
   if (%DEV%)==(1) set DLL=%DLLPATH%\%WHAT% (Revit %1)\GTPRevitToolkit.dll
-  if (%DEV%)==(1) echo Running Developer Mode
-  if (%DEV%)==(1) echo Running Developer Mode >> "%installLog%"
+  if (%DEV%)==(1) echo Running Developer Mode (%WHAT% DLLS)
+  if (%DEV%)==(1) echo Running Developer Mode (%WHAT% DLLS) >> "%installLog%"
   if (%DEV%)==(1) goto :make_manifest
 
   rem We copy all the GTP Revit Addin DLLs to the GTPRoot--e.g., to C:\Program Files (x86)\GTP Software, Inc\GTPRevitToolkit\2023\

@@ -18,7 +18,7 @@ namespace GTP.Extractors
     {
         static GTProfiler profiler = new GTProfiler();
 
-        static public List<KeyValuePair<string,long>> Execute(Document document, Notifier notifier)
+        static public List<KeyValuePair<string,long>> Execute(Document document, Notifier notifier, int progressInterval)
         {
             // Fresh run
             profiler.Reset();
@@ -28,9 +28,8 @@ namespace GTP.Extractors
             var revitElements = ElementFilterProvider.GetFilteredElements(document);
             var numElements = revitElements.Count();
             var numFabElements = 0;
-            var progressInterval = 100;
             var index = 0;
-            foreach (Element revitElement in revitElements.Reverse())
+            foreach (Element revitElement in revitElements)
             {
                 index++;
                 var element = new GtpxElement

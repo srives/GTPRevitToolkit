@@ -348,4 +348,6 @@ rem -------------------------------------------------------------------
 echo Your INSTALLER is: %EXEFile%
 echo Copying installer to ..
 copy "%EXEFile%" ..
+echo The distribution file is copied to your GIT root for pushing up to your master branch:
+echo     https://github.com/srives/GTPRevitToolkit/blob/master/GTPRevitToolkit64bit.exe
 echo.
