@@ -690,6 +690,7 @@
     <Compile Include="Utilities\AuditResults.cs" />
     <Compile Include="Cache\ConnectorCache.cs" />
     <Compile Include="Utilities\GTProfiler.cs" />
+    <Compile Include="Utilities\IntPtrToIWin32Window.cs" />
     <Compile Include="Utilities\LocalFileContext.cs" />
     <Compile Include="Utilities\Notifier.cs" />
   </ItemGroup>

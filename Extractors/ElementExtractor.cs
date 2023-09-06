@@ -42,6 +42,8 @@ namespace GTP.Extractors
             var skip = (index < start && start > -1);
             foreach (Element revitElement in revitElements)
             {
+                System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+
                 index++;
                 if (index < start && start > -1)
                     continue;

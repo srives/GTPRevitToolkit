@@ -346,8 +346,9 @@ rem -------------------------------------------------------------------
 	
 :FINI
 echo Your INSTALLER is: %EXEFile%
-echo Copying installer to ..
-copy "%EXEFile%" ..
-echo The distribution file is copied to your GIT root for pushing up to your master branch:
-echo     https://github.com/srives/GTPRevitToolkit/blob/master/GTPRevitToolkit64bit.exe
+echo Copying installer to ..\..\GTPRevitToolkitDownload\
+copy "%EXEFile%" ..\..\GTPRevitToolkitDownload\
+
+echo The distribution file is copied to your GIT root for pushing up to your master branch, users can then download it from here:
+echo     https://github.com/srives/GTPRevitToolkitDownload/blob/master/GTPRevitToolkit64bit.exe
 echo.

@@ -118,7 +118,7 @@ rem ------------------------ Subroutine: Build() ---------------------------
 	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Debug (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 >> debug%1.txt
     if exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"       echo          %1 Debug   build: SUCCESS
     if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   echo          %1 Debug   build: FAILED to create bin\x%BIT%\Debug (Revit %1)\Debug\GTPRevitToolkit.dll
-    if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   type debug%1.txt | find "Error"
+    if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   type debug%1.txt | find /I "Error"
 	del debug%1.txt 1>nul 2>nul
 		
 :Release
@@ -129,7 +129,6 @@ rem ------------------------ Subroutine: Build() ---------------------------
     if exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll"     echo          %1 Release build: SUCCESS
     if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" echo          %1 Release build: FAILED to create bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll
 	if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" type release%1.txt | find /I "error"
-    rem | find "Error"
 	del release%1.txt 1>nul 2>nul
 	
 goto :EOF

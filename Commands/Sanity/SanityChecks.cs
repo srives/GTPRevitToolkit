@@ -8,23 +8,21 @@ using GTP.Extractors;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.Services.Models;
 using GTP.UI;
+using System.Diagnostics;
+using GTP.Utilities;
+using System.Threading;
 
 namespace GTP.Commands.Sanity
 {
 	[Transaction(TransactionMode.Manual)]
     public class SanityChecks : IExternalCommand
     {
-		/// <summary>
-		/// The execution context for the addin.
-		/// </summary>
-		private protected ApplicationContext context;
-
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
 		{
 			try
 			{
                 UIApplication uiApp = commandData?.Application;
-				if (uiApp != null)
+                if (uiApp != null)
 				{
                     var ver = string.Empty;
                     var dt = File.GetCreationTime(GetType().Assembly.Location);
@@ -32,12 +30,14 @@ namespace GTP.Commands.Sanity
                     {
                         ver = $" v{dt.Year}.{dt.Month}.{dt.Day}";
                     }
+
                     Document doc = uiApp.ActiveUIDocument.Document;
 					using (GTPDashboard ui = new GTPDashboard(doc, ver))
 					{
-						ui.ShowDialog();
+						var win32 = new IntPtrToIWin32Window(uiApp.MainWindowHandle);
+						ui.ShowDialog(win32);
 					}
-				}
+                }
 				return Result.Succeeded;
 			}
 			catch (Autodesk.Revit.Exceptions.OperationCanceledException)

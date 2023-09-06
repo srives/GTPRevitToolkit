@@ -83,12 +83,12 @@ namespace GTP.UI
             {
                 lblProgress.Invoke(new Action(() =>
                 {
-                    lblProgress.Text = $"{e.Progress} of {e.Total}";
+                    lblProgress.Text = $"{DateTime.Now} {e.Progress} of {e.Total}";
                 }));
             }
             else
             {
-                lblProgress.Text = $"{e.Progress} of {e.Total}";
+                lblProgress.Text = $"{DateTime.Now} {e.Progress} of {e.Total}";
             }
 
             if (progress.InvokeRequired)
@@ -108,6 +108,7 @@ namespace GTP.UI
             UpdateGrid(e.TemplateIdRunTimeList, 60);
             RefreshRunTab();
         }
+
         private string Seconds(long ms)
         {
             return $"{(ms + 650L) / 1000L}"; // add 650 to round up
