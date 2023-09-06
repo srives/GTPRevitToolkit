@@ -27,7 +27,7 @@ namespace Gtpx.ModelSync.CAD.UI
         private const string warningPrefix = "WARNING:";
         private const string silentPrefix = "LOGSILENT:";
         public event EventHandler<NotificationEventArgs> NotificationReceived;
-        public event EventHandler<NotificationEventArgs> StatsReceived;
+        public event EventHandler<NotificationEventArgs> StatsReceived = null;
 
         public ILogger Logger => logger;
 

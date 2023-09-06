@@ -35,23 +35,41 @@ namespace GTP.UI
 
         private async void btnRun_Click(object sender, EventArgs e)
         {
-            tabs.SelectTab(1);
-            ClearDataGrid();
-            progress.Visible = true;
-            lblProgress.Visible = true;
-            RefreshRunTab();
-
-            LocalFileContext lfc = new LocalFileContext();
-            Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
-
-            
-            notifier.StatsReceived += Notifier_StatsReceived;
-            var templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, (int)udProgressInterval.Value);
-            progress.Visible = false;
-            lblProgress.Visible = false;
-            UpdateGrid(templateIdRunTimeList);
-            // UpdateRTF(templateIdRunTimeList);
-            RefreshRunTab();
+            bool success = true;
+            tbStart.ForeColor = System.Drawing.Color.Green;
+            tbStop.ForeColor = System.Drawing.Color.Green;
+            List<KeyValuePair<string, long>> templateIdRunTimeList = null;
+            success = int.TryParse(tbStart.Text, out var start);
+            if (success)
+            {
+                success = int.TryParse(tbStop.Text, out var stop);
+                if (success)
+                {
+                    ClearDataGrid();
+                    progress.Visible = true;
+                    lblProgress.Visible = true;
+                    tabs.SelectTab(1);
+                    RefreshRunTab();
+                    LocalFileContext lfc = new LocalFileContext();
+                    Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
+                    notifier.StatsReceived += Notifier_StatsReceived;
+                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, (int)udProgressInterval.Value, start, stop);
+                    progress.Visible = false;
+                    lblProgress.Visible = false;
+                    UpdateGrid(templateIdRunTimeList);
+                    RefreshRunTab();
+                }
+                else
+                {
+                    tbStop.ForeColor = System.Drawing.Color.Red;
+                    RefreshSettingTab();
+                }
+            }
+            else
+            {
+                tbStart.ForeColor = System.Drawing.Color.Red;
+                RefreshSettingTab();
+            }
         }
 
         private void Notifier_StatsReceived(object sender, NotificationEventArgs e)
@@ -97,6 +115,7 @@ namespace GTP.UI
 
         private void UpdateGrid(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
         {
+            if (TemplateIdRunTimeList == null) return;
             if (grid.Rows.Count >= max && max > 0)
             {
                 UpdateGridRefresh(TemplateIdRunTimeList, max);
@@ -113,6 +132,7 @@ namespace GTP.UI
        
         private void UpdateGridRefresh(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
         {
+            if (TemplateIdRunTimeList == null) return;
             var ct = TemplateIdRunTimeList.Count;
             if (ct > max && max > 0)
             {
@@ -142,6 +162,7 @@ namespace GTP.UI
 
         private void UpdateGridCreate(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max=-1)
         {
+            if (TemplateIdRunTimeList == null) return;
             var ct = TemplateIdRunTimeList.Count;
             if (ct > max && max > 0)
             {
@@ -232,6 +253,23 @@ namespace GTP.UI
             {
                 tabRun.Update();
                 tabRun.Refresh();
+            }
+        }
+
+        private void RefreshSettingTab()
+        {
+            if (tabRun.InvokeRequired)
+            {
+                tabRun.Invoke(new Action(() =>
+                {
+                    tabSettings.Update();
+                    tabSettings.Refresh();
+                }));
+            }
+            else
+            {
+                tabSettings.Update();
+                tabSettings.Refresh();
             }
         }
 
