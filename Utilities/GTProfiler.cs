@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Interop;
 
 namespace Gtpx.ModelSync.CAD.Utilities
 {
+
+    public class ProfilerStats
+    {
+        public string Key { get; set; }
+        public long HitCount { get; set; }
+        public long Milliseconds { get; set; }
+        public long Memory { get; set; } 
+    }
+
     /// <summary>
     /// This object can track 
     ///   1. How much time it takes to run a block of code
@@ -22,7 +32,7 @@ namespace Gtpx.ModelSync.CAD.Utilities
         private int _timerId = 0;
         static private List<Stopwatch> _sw = new List<Stopwatch>();
 
-        // When you CatchTime, you save the length of time, and the number of times CatchTime was called
+        // When you CatchTime, you save the length of time in milliseconds, and the number of times CatchTime was called
         static private Dictionary<string, long> _timings = new Dictionary<string, long>();
         static private Dictionary<string, long> _timingCounts = new Dictionary<string, long>();
 
@@ -40,9 +50,11 @@ namespace Gtpx.ModelSync.CAD.Utilities
         /// </summary>
         static public bool TimerEnabled { get; set; } = true;
 
+        private List<ProfilerStats> _statsCache = new List<ProfilerStats>();
         public void Reset()
         {
             StopCollectingTime();
+            _statsCache = new List<ProfilerStats>();
             _sw = new List<Stopwatch>();
             _timings = new Dictionary<string, long>();
             _timingCounts = new Dictionary<string, long>();
@@ -169,10 +181,37 @@ namespace Gtpx.ModelSync.CAD.Utilities
             CatchMemory(memoryId);
         }
 
-        public List<KeyValuePair<string, long>> SortedList()
+        public List<ProfilerStats> SortedList()
         {
-            var sorted = from entry in _timings orderby entry.Value descending select entry;
-            return sorted.ToList<KeyValuePair<string, long>>();
+            // Create a sorted list sorted by Milliseconds
+            var sortedByMS = (from entry in _timings orderby entry.Value descending select entry).ToList<KeyValuePair<string, long>>();
+            for (int i = 0; i < sortedByMS.Count; i++)
+            {
+                var key = sortedByMS[i].Key;
+                var memory = 0L;
+                if (_stats.TryGetValue(key, out var stats))
+                {
+                    memory = (long)stats.Item2;
+                }
+
+                if (i < _statsCache.Count)
+                {
+                    _statsCache[i].Key = key;
+                    _statsCache[i].Milliseconds = sortedByMS[i].Value;
+                    _statsCache[i].Memory = memory;
+                    _statsCache[i].HitCount = _timingCounts[key];
+                }
+                else
+                {
+                    _statsCache.Add(new ProfilerStats {
+                        Key = key,
+                        Milliseconds = sortedByMS[i].Value,
+                        Memory = memory,
+                        HitCount = _timingCounts[key]
+                    });
+                }
+            }
+            return _statsCache;
         }
 
         public List<string> ToStrings(GTProfOptions options = GTProfOptions.All)

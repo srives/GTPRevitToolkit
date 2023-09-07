@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB;
 using GTP.Extractors;
 using Gtpx.ModelSync.CAD.UI;
+using Gtpx.ModelSync.CAD.Utilities;
 using Gtpx.ModelSync.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace GTP.UI
     {
         Document _document;
         bool stopProcess = false;
+        CancellationTokenSource _source = null;
+        CancellationToken _token = CancellationToken.None;
 
         public GTPDashboard(Document document, string version)
         {
@@ -38,14 +41,17 @@ namespace GTP.UI
             bool success = true;
             tbStart.ForeColor = System.Drawing.Color.Green;
             tbStop.ForeColor = System.Drawing.Color.Green;
-            List<KeyValuePair<string, long>> templateIdRunTimeList = null;
+            List<ProfilerStats> templateIdRunTimeList = null;
             success = int.TryParse(tbStart.Text, out var start);
             if (success)
             {
                 success = int.TryParse(tbStop.Text, out var stop);
                 if (success)
                 {
+                    _source = new CancellationTokenSource();
+                    _token = _source.Token;
                     ClearDataGrid();
+                    grid.Columns[2].Visible = cbMemory.Checked;
                     progress.Visible = true;
                     lblProgress.Visible = true;
                     tabs.SelectTab(1);
@@ -53,7 +59,7 @@ namespace GTP.UI
                     LocalFileContext lfc = new LocalFileContext();
                     Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
                     notifier.StatsReceived += Notifier_StatsReceived;
-                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, (int)udProgressInterval.Value, start, stop);
+                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, cbHighRefreshRate.Checked, cbMemory.Checked, (int)udProgressInterval.Value, start, stop, _token);
                     progress.Visible = false;
                     lblProgress.Visible = false;
                     UpdateGrid(templateIdRunTimeList);
@@ -114,7 +120,7 @@ namespace GTP.UI
             return $"{(ms + 650L) / 1000L}"; // add 650 to round up
         }
 
-        private void UpdateGrid(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
+        private void UpdateGrid(List<ProfilerStats> TemplateIdRunTimeList, int max = -1)
         {
             if (TemplateIdRunTimeList == null) return;
             if (grid.Rows.Count >= max && max > 0)
@@ -131,7 +137,7 @@ namespace GTP.UI
             }
         }
        
-        private void UpdateGridRefresh(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max = -1)
+        private void UpdateGridRefresh(List<ProfilerStats> TemplateIdRunTimeList, int max = -1)
         {
             if (TemplateIdRunTimeList == null) return;
             var ct = TemplateIdRunTimeList.Count;
@@ -146,14 +152,18 @@ namespace GTP.UI
                 {
                     grid.Invoke(new Action(() =>
                     {
-                        grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Value);
-                        grid.Rows[i].Cells[1].Value = TemplateIdRunTimeList[i].Key;
+                        grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Milliseconds);
+                        grid.Rows[i].Cells[1].Value = $"{TemplateIdRunTimeList[i].HitCount:n0}";
+                        grid.Rows[i].Cells[2].Value = TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}";
+                        grid.Rows[i].Cells[3].Value = TemplateIdRunTimeList[i].Key;
                     }));
                 }
                 else
                 {
-                    grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Value);
-                    grid.Rows[i].Cells[1].Value = TemplateIdRunTimeList[i].Key;
+                    grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Milliseconds);
+                    grid.Rows[i].Cells[1].Value = $"{TemplateIdRunTimeList[i].HitCount:n0}";
+                    grid.Rows[i].Cells[2].Value = TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}";
+                    grid.Rows[i].Cells[3].Value = TemplateIdRunTimeList[i].Key;
                 }
             }
 
@@ -161,7 +171,7 @@ namespace GTP.UI
             grid.Refresh();
         }
 
-        private void UpdateGridCreate(List<KeyValuePair<string, long>> TemplateIdRunTimeList, int max=-1)
+        private void UpdateGridCreate(List<ProfilerStats> TemplateIdRunTimeList, int max=-1)
         {
             if (TemplateIdRunTimeList == null) return;
             var ct = TemplateIdRunTimeList.Count;
@@ -188,12 +198,21 @@ namespace GTP.UI
                 {
                     grid.Invoke(new Action(() =>
                     {
-                        grid.Rows.Add(Seconds(TemplateIdRunTimeList[i].Value), TemplateIdRunTimeList[i].Key);
+
+                        grid.Rows.Add(
+                            Seconds(TemplateIdRunTimeList[i].Milliseconds),
+                            $"{TemplateIdRunTimeList[i].HitCount:n0}",
+                            TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}",
+                            TemplateIdRunTimeList[i].Key);
                     }));
                 }
                 else
                 {
-                    grid.Rows.Add(Seconds(TemplateIdRunTimeList[i].Value), TemplateIdRunTimeList[i].Key);
+                    grid.Rows.Add(
+                        Seconds(TemplateIdRunTimeList[i].Milliseconds),
+                        $"{TemplateIdRunTimeList[i].HitCount:n0}",
+                        TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}",
+                        TemplateIdRunTimeList[i].Key);
                 }
             }
 
@@ -276,7 +295,21 @@ namespace GTP.UI
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            stopProcess = true;
+            if (_token != CancellationToken.None && _source != null && _token.CanBeCanceled)
+                _source.Cancel();
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (_token != CancellationToken.None && _source != null && _token.CanBeCanceled)
+                  _source.Cancel();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

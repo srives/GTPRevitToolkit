@@ -5,6 +5,7 @@ using System.Windows;
 using Gtpx.ModelSync.DataModel.Enums;
 using System.Windows.Documents;
 using System.Collections.Generic;
+using Gtpx.ModelSync.CAD.Utilities;
 
 namespace Gtpx.ModelSync.CAD.UI
 {
@@ -12,7 +13,7 @@ namespace Gtpx.ModelSync.CAD.UI
     {
         public LogLevel LogLevel { get; set; }
         public string Message { get; set; }
-        public List<KeyValuePair<string,long>> TemplateIdRunTimeList { get; set; }
+        public List<ProfilerStats> TemplateIdRunTimeList { get; set; }
         public long Progress { get; set; }
         public long Total { get; set; }
     }
@@ -39,7 +40,7 @@ namespace Gtpx.ModelSync.CAD.UI
             IsNotifyWindowLoaded = false;
         }
 
-        public void Stats(List<KeyValuePair<string, long>> templateIdSeconds, long progress, long total)
+        public void Stats(List<ProfilerStats> templateIdSeconds, long progress, long total)
         {
             StatsReceived?.Invoke(this, new NotificationEventArgs()
             {

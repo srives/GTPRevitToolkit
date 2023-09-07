@@ -25,7 +25,7 @@ namespace GTP.Commands.Sanity
                 if (uiApp != null)
 				{
                     var ver = string.Empty;
-                    var dt = File.GetCreationTime(GetType().Assembly.Location);
+                    var dt = File.GetLastWriteTime(GetType().Assembly.Location);
                     if (dt != null && dt != DateTime.MinValue)
                     {
                         ver = $" v{dt.Year}.{dt.Month}.{dt.Day}";

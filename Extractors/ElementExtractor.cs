@@ -10,6 +10,7 @@ using Gtpx.ModelSync.Export.Revit.Extractors.FamilyInstances;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Documents;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 
@@ -24,11 +25,12 @@ namespace GTP.Extractors
         /// </summary>
         /// <param name="document"></param>
         /// <param name="notifier"></param>
+        /// <param name="highRefreshRate">If true, we relinquish control to Revit more agressively for UI refresh</param>
         /// <param name="progressInterval"></param>
         /// <param name="start">0 based. -1 means ignore. We loop through X number of elements, and start is where to being that loop (with the starth element)</param>
         /// <param name="stop">Where to stop looping</param>
         /// <returns></returns>
-        static public List<KeyValuePair<string,long>> Execute(Document document, Notifier notifier, int progressInterval, int start=-1, int stop=-1)
+        static public List<ProfilerStats> Execute(Document document, Notifier notifier, bool highRefreshRate, bool collectMemoryStats, int progressInterval, int start, int stop, CancellationToken cancellationToken)
         {
             // Fresh run
             profiler.Reset();
@@ -42,7 +44,12 @@ namespace GTP.Extractors
             var skip = (index < start && start > -1);
             foreach (Element revitElement in revitElements)
             {
-                System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+                if (cancellationToken.IsCancellationRequested) break;
+
+                if (highRefreshRate)
+                {
+                    System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+                }
 
                 index++;
                 if (index < start && start > -1)
@@ -74,28 +81,46 @@ namespace GTP.Extractors
                 profiler.RestartTimer(1);
                 profiler.RestartTimer();
                 PartTemplateIdSubExtractor.ProcessElement(document, notifier, revitElement, element);
-                profiler.CatchTime($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
+                if (collectMemoryStats)
+                    profiler.CatchTimeAndMemory($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
+                else
+                    profiler.CatchTime($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{nameof(PartTemplateIdSubExtractor)}", 1);
 
+                if (cancellationToken.IsCancellationRequested) break;
                 if (revitElement is FamilyInstance familyInstance)
                 {
                     FamilyInstanceSubExtractor.ProcessFamilyInstance(document, familyInstance, element);
-                    profiler.CatchTime($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
+                    if (collectMemoryStats)
+                        profiler.CatchTimeAndMemory($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
+                    else
+                        profiler.CatchTime($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
                     profiler.CatchTime($"TotalTime.{nameof(FamilyInstanceSubExtractor)}", 1);
                 }
                 else if (revitElement is Wall wall)
                 {
                     WallExtractor.ProcessWall(wall, element);
-                    profiler.CatchTime($"{nameof(WallExtractor)}.{element.TemplateId}");
+                    if (collectMemoryStats)
+                        profiler.CatchTimeAndMemory($"{nameof(WallExtractor)}.{element.TemplateId}");
+                    else
+                        profiler.CatchTime($"{nameof(WallExtractor)}.{element.TemplateId}");
                     profiler.CatchTime($"TotalTime.{nameof(WallExtractor)}", 1);
                 }
 
+                if (cancellationToken.IsCancellationRequested) break;
                 ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
-                profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
+                if (collectMemoryStats)
+                    profiler.CatchTimeAndMemory($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
+                else
+                    profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{nameof(ElementSubExtractor)}", 1);
-                               
+
+                if (cancellationToken.IsCancellationRequested) break;
                 PartTemplateExtractor.ProcessElement(revitElement, element);
-                profiler.CatchTime($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
+                if (collectMemoryStats)
+                    profiler.CatchTimeAndMemory($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
+                else
+                    profiler.CatchTime($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{nameof(PartTemplateExtractor)}", 1);
 
                 if (element.CadType == "Autodesk.Revit.DB.FabricationPart" || element.CadType == "Autodesk.Fabrication.Item")
@@ -105,6 +130,7 @@ namespace GTP.Extractors
 
                 // elementStorageProvider.Add(element, activityEvent);
 
+                if (cancellationToken.IsCancellationRequested) break;
                 if (index % progressInterval == 0)
                 {
                     var stats = profiler.SortedList();
@@ -116,7 +142,11 @@ namespace GTP.Extractors
                         notifier.LogSilent(time);
                     }
                     profiler.CatchMemory("ElementExtractor");
-                }                
+                    if (!highRefreshRate)
+                    {
+                        System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+                    }
+                }
             }
 
             profiler.CatchMemory("ElementExtractor");

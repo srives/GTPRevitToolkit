@@ -30,11 +30,17 @@
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabSettings = new System.Windows.Forms.TabPage();
-            this.tbStop = new System.Windows.Forms.TextBox();
-            this.tbStart = new System.Windows.Forms.TextBox();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.cbMemory = new System.Windows.Forms.CheckBox();
+            this.cbHighRefreshRate = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.udProgressInterval = new System.Windows.Forms.NumericUpDown();
+            this.tbStop = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbStart = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -48,16 +54,15 @@
             this.progress = new System.Windows.Forms.ProgressBar();
             this.grid = new System.Windows.Forms.DataGridView();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elements = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Memory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).BeginInit();
             this.tabRun.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -76,6 +81,9 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Black;
+            this.tabSettings.Controls.Add(this.btnStop);
+            this.tabSettings.Controls.Add(this.cbMemory);
+            this.tabSettings.Controls.Add(this.cbHighRefreshRate);
             this.tabSettings.Controls.Add(this.panel1);
             this.tabSettings.Controls.Add(this.label3);
             this.tabSettings.Controls.Add(this.label2);
@@ -92,21 +100,55 @@
             this.tabSettings.TabIndex = 0;
             this.tabSettings.Text = "Settings";
             // 
-            // tbStop
+            // btnStop
             // 
-            this.tbStop.Location = new System.Drawing.Point(175, 72);
-            this.tbStop.Name = "tbStop";
-            this.tbStop.Size = new System.Drawing.Size(75, 20);
-            this.tbStop.TabIndex = 15;
-            this.tbStop.Text = "-1";
+            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnStop.Location = new System.Drawing.Point(1072, 508);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 21;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // tbStart
+            // cbMemory
             // 
-            this.tbStart.Location = new System.Drawing.Point(33, 72);
-            this.tbStart.Name = "tbStart";
-            this.tbStart.Size = new System.Drawing.Size(75, 20);
-            this.tbStart.TabIndex = 14;
-            this.tbStart.Text = "-1";
+            this.cbMemory.AutoSize = true;
+            this.cbMemory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbMemory.Location = new System.Drawing.Point(639, 510);
+            this.cbMemory.Name = "cbMemory";
+            this.cbMemory.Size = new System.Drawing.Size(125, 17);
+            this.cbMemory.TabIndex = 20;
+            this.cbMemory.Text = "Gather Memory Stats";
+            this.cbMemory.UseVisualStyleBackColor = true;
+            // 
+            // cbHighRefreshRate
+            // 
+            this.cbHighRefreshRate.AutoSize = true;
+            this.cbHighRefreshRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbHighRefreshRate.Location = new System.Drawing.Point(770, 510);
+            this.cbHighRefreshRate.Name = "cbHighRefreshRate";
+            this.cbHighRefreshRate.Size = new System.Drawing.Size(88, 17);
+            this.cbHighRefreshRate.TabIndex = 19;
+            this.cbHighRefreshRate.Text = "High Refresh";
+            this.cbHighRefreshRate.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.udProgressInterval);
+            this.panel1.Controls.Add(this.tbStop);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.tbStart);
+            this.panel1.Location = new System.Drawing.Point(877, 316);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(271, 184);
+            this.panel1.TabIndex = 18;
             // 
             // label5
             // 
@@ -119,16 +161,25 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "Range of Elements to Examine";
             // 
-            // label4
+            // label7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Lime;
-            this.label4.Location = new System.Drawing.Point(30, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Step Size";
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Lime;
+            this.label7.Location = new System.Drawing.Point(172, 56);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Stop (-1 == max)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Lime;
+            this.label6.Location = new System.Drawing.Point(30, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Start (-1 == min)";
             // 
             // udProgressInterval
             // 
@@ -159,6 +210,33 @@
             0,
             0,
             0});
+            // 
+            // tbStop
+            // 
+            this.tbStop.Location = new System.Drawing.Point(175, 72);
+            this.tbStop.Name = "tbStop";
+            this.tbStop.Size = new System.Drawing.Size(75, 20);
+            this.tbStop.TabIndex = 15;
+            this.tbStop.Text = "-1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Lime;
+            this.label4.Location = new System.Drawing.Point(30, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Step Size";
+            // 
+            // tbStart
+            // 
+            this.tbStart.Location = new System.Drawing.Point(33, 72);
+            this.tbStart.Name = "tbStart";
+            this.tbStart.Size = new System.Drawing.Size(75, 20);
+            this.tbStart.TabIndex = 14;
+            this.tbStart.Text = "-1";
             // 
             // label3
             // 
@@ -243,7 +321,7 @@
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRun.ForeColor = System.Drawing.Color.Lime;
-            this.btnRun.Location = new System.Drawing.Point(1073, 509);
+            this.btnRun.Location = new System.Drawing.Point(977, 508);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(75, 23);
             this.btnRun.TabIndex = 2;
@@ -271,7 +349,7 @@
             this.lblProgress.BackColor = System.Drawing.Color.White;
             this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblProgress.Location = new System.Drawing.Point(4, 502);
+            this.lblProgress.Location = new System.Drawing.Point(3, 503);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(10, 16);
             this.lblProgress.TabIndex = 2;
@@ -294,6 +372,8 @@
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Time,
+            this.Elements,
+            this.Memory,
             this.TemplateId});
             this.grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grid.Location = new System.Drawing.Point(0, 0);
@@ -309,47 +389,24 @@
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
             // 
+            // Elements
+            // 
+            this.Elements.HeaderText = "Elements";
+            this.Elements.Name = "Elements";
+            this.Elements.ReadOnly = true;
+            // 
+            // Memory
+            // 
+            this.Memory.HeaderText = "Memory";
+            this.Memory.Name = "Memory";
+            this.Memory.ReadOnly = true;
+            // 
             // TemplateId
             // 
             this.TemplateId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.TemplateId.HeaderText = "TemplateId";
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Lime;
-            this.label6.Location = new System.Drawing.Point(30, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Start (-1 == min)";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Lime;
-            this.label7.Location = new System.Drawing.Point(172, 56);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Stop (-1 == max)";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.udProgressInterval);
-            this.panel1.Controls.Add(this.tbStop);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.tbStart);
-            this.panel1.Location = new System.Drawing.Point(877, 316);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 184);
-            this.panel1.TabIndex = 18;
             // 
             // GTPDashboard
             // 
@@ -360,15 +417,16 @@
             this.Controls.Add(this.tabs);
             this.Name = "GTPDashboard";
             this.Text = "GTPDashboard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.tabs.ResumeLayout(false);
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).EndInit();
             this.tabRun.ResumeLayout(false);
             this.tabRun.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -389,8 +447,6 @@
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.ProgressBar progress;
         private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown udProgressInterval;
         private System.Windows.Forms.TextBox tbStop;
@@ -399,5 +455,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cbHighRefreshRate;
+        private System.Windows.Forms.CheckBox cbMemory;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elements;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Memory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
     }
 }
