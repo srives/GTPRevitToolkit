@@ -4,7 +4,8 @@ rem
 rem Uninstall the GTP toolkit from all versions of Revit
 rem This is useful during testing
 rem
-rem     3 Sept 2023
+rem     3 Sept 2023 v 1.0
+rem     28 Mar 2025 v 1.1 added Revit 2025
 rem     CodeKill
 rem     https://github.com/srives/GTPRevitToolkit
 rem
@@ -45,6 +46,7 @@ rem -------------------------------------------------------------------
   call :RevitYear 2022
   call :RevitYear 2023
   call :RevitYear 2024
+  call :RevitYear 2025
   
   goto :EOF
 

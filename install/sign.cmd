@@ -14,7 +14,8 @@ rem     -Release: To sign Release DLLS
 rem     -Debug:   To sign Debug DLLS
 rem     -Both:    To sign both Release and Debug DLLs (default) 
 rem       
-rem   3 Sept 2023
+rem   3 Sept 2023 v 1.0
+rem   28 Mar 2025 v 1.1 added Revit 2025
 rem   Code Kill
 rem   https://github.com/srives/GTPRevitToolkit
 rem
@@ -75,6 +76,7 @@ rem ----------------------------------------------------------------------------
 	call :sign_it 2022
 	call :sign_it 2023
 	call :sign_it 2024
+	call :sign_it 2025
     
 goto :EOF
 

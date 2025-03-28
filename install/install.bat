@@ -42,7 +42,8 @@ echo  To check install results, check this file:
 echo.
 echo         C:\Program Files (x86)\GTP Software, Inc\GTPRevitToolkit\install.txt
 echo.
-echo  3 Sept 2023
+echo  3 Sept 2023 v 1.0
+echo  28 Mar 2025 v 1.1 added Revit 2025
 echo  Code Kill
 echo  https://github.com/srives/GTPRevitToolkit
 echo.
@@ -156,6 +157,7 @@ rem --------------------- Install these DLLS -------------------------
   call :RevitYear 2022
   call :RevitYear 2023
   call :RevitYear 2024
+  call :RevitYear 2025
 
   echo ------------------------------------------------ >> "%installLog%"
   echo GTP Revit Toolkit Install finished >> "%installLog%"

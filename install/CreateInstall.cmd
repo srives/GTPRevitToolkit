@@ -52,9 +52,12 @@ rem
 rem     2024:
 rem         Just build an installer for 2024 only
 rem
+rem     2025:
+rem         Just build an installer for 2025 only
 rem
 rem     Written for GTP, a Revit Toolkit
-rem     3 Sept 2023
+rem     3 Sept 2023 v 1.0
+rem     28 Mar 2025 v 1.1 added Revit 2025
 rem     Code Kill
 rem     https://github.com/srives/GTPRevitToolkit
 rem
@@ -154,8 +157,9 @@ rem -------------------------------------------------------------------
 	if (%DOBUILD%)==(0) echo Not Building (-NO was passed in) 
 	if (%DOBUILD%)==(0) goto :POST_BUILD
 
-	echo Building GTP Revit Toolkit
 	echo Creating %WHAT% version of the installer (pass in -D to this script to create the DEBUG version of the installer)
+	echo Building GTP Revit Toolkit (calling build.cmd -%BIT% -%WHAT% %1)
+
 	rem Passing in a parameter to build.cmd just limits the build to the year passed into this script
 	call .\build.cmd -%BIT% -%WHAT% %1
 
@@ -168,6 +172,7 @@ rem -------------------------------------------------------------------
   call :CHECK 2022
   call :CHECK 2023
   call :CHECK 2024
+  call :CHECK 2025
   
   if (%found%)==(0) echo No files found to create install package. Missing DLL %MainDLL% for all versions of Revit %SHOW%bit %WHAT%
   if (%found%)==(0) goto :EOF  
@@ -202,6 +207,7 @@ rem -------------------------------------------------------------------
 	mkdir "%StageRoot%\2022" 1>nul 2>nul
 	mkdir "%StageRoot%\2023" 1>nul 2>nul
 	mkdir "%StageRoot%\2024" 1>nul 2>nul
+	mkdir "%StageRoot%\2025" 1>nul 2>nul
 
 	echo Ready to create GTP Revit Install at c:\%AppName%\
 
@@ -230,6 +236,7 @@ rem -------------------------------------------------------------------
 		call :STAGE_BY_YEAR 2022
 		call :STAGE_BY_YEAR 2023
 		call :STAGE_BY_YEAR 2024
+		call :STAGE_BY_YEAR 2025
 
 	echo Files ready to be turned into a Zip
 goto :ZIP
@@ -346,8 +353,16 @@ rem -------------------------------------------------------------------
 	
 :FINI
 echo Your INSTALLER is: %EXEFile%
+
+if not exist ..\..\GTPRevitToolkitDownload\ echo ***** Clone the GIT Hub project GTPRevitToolkitDownload to get the installer ******
+if not exist ..\..\GTPRevitToolkitDownload\ echo ***** Makes it easier to distribute the EXE via GitHub                       ******
+if not exist ..\..\GTPRevitToolkitDownload\ goto :Copy2
 echo Copying installer to ..\..\GTPRevitToolkitDownload\
 copy "%EXEFile%" ..\..\GTPRevitToolkitDownload\
+
+:Copy2
+echo Copying installer to root of project
+copy "%EXEFile%" ..\
 
 echo The distribution file is copied to your GIT root for pushing up to your master branch, users can then download it from here:
 echo     https://github.com/srives/GTPRevitToolkitDownload/blob/master/GTPRevitToolkit64bit.exe

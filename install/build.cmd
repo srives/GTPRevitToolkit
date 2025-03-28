@@ -16,15 +16,16 @@ rem              build 2023 -86
 rem
 rem           Builds Relase and Debug toolkit for Revit 2023 version of the GTP addin in 32bit mode
 rem
-rem              build 2019 -64 -Release
+rem              build 2019 -32 -Release
 rem
-rem           Builds Relase toolkit for Revit 2019 version of the GTP addin in 64bit mode
+rem           Builds Relase toolkit for Revit 2019 version of the GTP addin in 32bit mode
 rem
 rem              build 2023 -32
 rem
 rem           -86 and -32 are the same (they build 32 bit)
 rem
-rem  3 Sept 2023
+rem  3 Sept 2023 (version 1.0)
+rem  28 Mar 2025 (version 1.1) Added Revit 2025
 rem  Code Kill
 rem  https://github.com/srives/GTPRevitToolkit
 rem
@@ -34,11 +35,21 @@ rem -----------------------------------------------------------------------
 rem ---------------------- Configure your MSBuild Here --------------------
 set VSVER=2022
 set MSBUILD=C:\Program Files\Microsoft Visual Studio\2022\Professional\Msbuild\Current\Bin\MSBuild.exe
+if not exist "%MSBUILD%" set MSBUILD=C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe
+
 if not exist "%MSBUILD%" set VSVER=2019
+if not exist "%MSBUILD%" set MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MSBuild.exe
 if not exist "%MSBUILD%" set MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
+
 if not exist "%MSBUILD%" set VSVER=2017
 if not exist "%MSBUILD%" set MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\MSBuild.exe
-if not exist "%MSBUILD%" echo Could not find MSBuild.exe. Change your build.cmd script.
+if not exist "%MSBUILD%" set MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe
+
+if not exist "%MSBUILD%" echo.
+if not exist "%MSBUILD%" echo ************************************************************************************************
+if not exist "%MSBUILD%" echo               Could not find MSBuild.exe. Change your build.cmd script.
+if not exist "%MSBUILD%" echo ************************************************************************************************
+if not exist "%MSBUILD%" echo.
 if not exist "%MSBUILD%" goto :EOF
 
 rem ---------------------- Command Line Parameters  ------------------------
@@ -78,13 +89,14 @@ rem ------------------------------ MAIN -------------------------------------
     cd ..
 	if not (%1)==() call :Build %1
 	if not (%1)==() goto :DONE
-
+	
 	call :Build 2019
 	call :Build 2020
 	call :Build 2021
 	call :Build 2022
 	call :Build 2023
 	call :Build 2024
+	call :Build 2025
 	
 	:DONE
 	cd install
@@ -115,7 +127,10 @@ rem ------------------------ Subroutine: Build() ---------------------------
     if (%WHICH%)==(Release) goto :Release
     echo. > debug%1.txt
     del .\bin\%1\Debug\GTPRevitToolkit.dll 1>nul 2>nul
-	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Debug (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 >> debug%1.txt
+	set Restore=
+	if not exist packages set Restore=/t:Restore
+	echo "%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Debug (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 %Restore%
+	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Debug (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 %Restore% >> debug%1.txt
     if exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"       echo          %1 Debug   build: SUCCESS
     if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   echo          %1 Debug   build: FAILED to create bin\x%BIT%\Debug (Revit %1)\Debug\GTPRevitToolkit.dll
     if not exist ".\bin\x%BIT%\Debug (Revit %1)\GTPRevitToolkit.dll"   type debug%1.txt | find /I "Error"
@@ -124,8 +139,11 @@ rem ------------------------ Subroutine: Build() ---------------------------
 :Release
     if (%WHICH%)==(Debug) goto :EOF	
     del .\bin\%1\Release\GTPRevitToolkit.dll 1>nul 2>nul	
+	set Restore=
+	if not exist packages set Restore=/t:Restore
     echo. > release%1.txt
-	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Release (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 >> release%1.txt
+	echo "%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Release (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 %Restore%
+	"%MSBUILD%" GTPRevitToolkit.sln "/property:Configuration=Release (Revit %1)" /p:Platform=x%BIT% /p:DefineConstants="Revit%1" /p:WarningLevel=0 %Restore% >> release%1.txt
     if exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll"     echo          %1 Release build: SUCCESS
     if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" echo          %1 Release build: FAILED to create bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll
 	if not exist ".\bin\x%BIT%\Release (Revit %1)\GTPRevitToolkit.dll" type release%1.txt | find /I "error"
