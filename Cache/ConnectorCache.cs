@@ -58,7 +58,7 @@ namespace Gtpx.ModelSync.Export.Revit.Caches
             Document document)
         {
             var connectors = GetNearestConnectors(connector, connectionTolerance);
-#if Revit2024
+#if Revit2024 || Revit2025
             var elementIds = connectors.Select(x => x.Owner.Id.Value)
                                        .Distinct();
 #else

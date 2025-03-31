@@ -1,9 +1,12 @@
+
 -----------------------------------------------------------------------------------
 GTP Revit Toolkit, a Revit Addin for Checking Model Health
                    Run the addin, and it will show you which element types are
                    slowing down your publish to STRATUS.
-                   
-                   
+
+
+****** Note well: Also read the Readme.txt in the .\install\ directory ************
+                                      
 
     Download and Install:
 

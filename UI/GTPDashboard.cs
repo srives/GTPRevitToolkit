@@ -1,20 +1,10 @@
-﻿using Autodesk.Revit.Creation;
-using Autodesk.Revit.DB;
-using GTP.Extractors;
+﻿using GTP.Extractors;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
 using Gtpx.ModelSync.Services.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using Document = Autodesk.Revit.DB.Document;
 using Form = System.Windows.Forms.Form;
@@ -23,6 +13,7 @@ namespace GTP.UI
 {
     public partial class GTPDashboard : Form
     {
+        private string _version = "2025-03-30";
         Document _document;
         bool stopProcess = false;
         CancellationTokenSource _source = null;
@@ -34,6 +25,24 @@ namespace GTP.UI
             _document = document;
             progress.Visible = false;
             lblProgress.Visible = false;
+
+#if Revit2025
+            Text = $"GTP Model HealthCheck for Revit 2025 v. {_version}";
+#elif Revit2024
+            Text = $"GTP Model HealthCheck for Revit 2024 v. {_version}";
+#elif Revit2023
+            Text = $"GTP Model HealthCheck for Revit 2023 v. {_version}";
+#elif Revit2022
+            Text = $"GTP Model HealthCheck for Revit 2022 v. {_version}";
+#elif Revit2021
+            Text = $"GTP Model HealthCheck for Revit 2021 v. {_version}";
+#elif Revit2020
+            Text = $"GTP Model HealthCheck for Revit 2020 v. {_version}";
+#elif Revit2019
+            Text = $"GTP Model HealthCheck for Revit 2019 v. {_version}";
+#else
+            Text = $"GTP Model HealthCheck for Revit ???? v. {_version}";
+#endif
         }
 
         private async void btnRun_Click(object sender, EventArgs e)
@@ -59,7 +68,7 @@ namespace GTP.UI
                     LocalFileContext lfc = new LocalFileContext();
                     Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
                     notifier.StatsReceived += Notifier_StatsReceived;
-                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, cbHighRefreshRate.Checked, cbMemory.Checked, (int)udProgressInterval.Value, start, stop, _token);
+                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, cbForceGCCollect.Checked, cbHighRefreshRate.Checked, cbMemory.Checked, (int)udProgressInterval.Value, start, stop, _token);
                     progress.Visible = false;
                     lblProgress.Visible = false;
                     UpdateGrid(templateIdRunTimeList);

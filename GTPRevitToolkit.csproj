@@ -38,14 +38,77 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>	
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release %28Revit 2025%29|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\2025\Release\</OutputPath>
     <DefineConstants>TRACE;Revit2025</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-	
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2024%29|AnyCPU'">
+    <OutputPath>bin\x64\Debug %28Revit 2024%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2024</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2024%29|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\2024\Release</OutputPath>
+    <DefineConstants>TRACE;Revit2024</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>	
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2023%29|AnyCPU'">
+    <OutputPath>bin\x64\Debug %28Revit 2023%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2023</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2023%29|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\2023\Release</OutputPath>
+    <DefineConstants>TRACE;Revit2023</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2022%29|AnyCPU'">
+    <OutputPath>bin\x64\Debug %28Revit 2022%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2022</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2022%29|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\2022\Release\</OutputPath>
+    <DefineConstants>TRACE;Revit2022</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2021%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug %28Revit 2021%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2021</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2021%29|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\2021\Release\</OutputPath>
+    <DefineConstants>TRACE;Revit2021</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2020%29|AnyCPU'">
     <OutputPath>bin\x64\Debug %28Revit 2020%29\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Revit2020</DefineConstants>
@@ -53,14 +116,12 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2020%29|AnyCPU'">
+    <Optimize>true</Optimize>
     <OutputPath>bin\2020\Release\</OutputPath>
     <DefineConstants>TRACE;Revit2020</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>	
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug %28Revit 2019%29|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,82 +134,37 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release %28Revit 2019%29|AnyCPU' ">
+    <Optimize>true</Optimize>
     <OutputPath>bin\2019\Release\</OutputPath>
     <DefineConstants>TRACE;Revit2019</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2022%29|AnyCPU'">
-    <OutputPath>bin\x64\Debug %28Revit 2022%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Revit2022</DefineConstants>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2022%29|AnyCPU'">
-    <OutputPath>bin\2022\Release\</OutputPath>
-    <DefineConstants>TRACE;Revit2022</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2021%29|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug %28Revit 2021%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Revit2021</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2021%29|AnyCPU'">
-    <OutputPath>bin\2021\Release\</OutputPath>
-    <DefineConstants>TRACE;Revit2021</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2023%29|AnyCPU'">
-    <OutputPath>bin\x64\Debug %28Revit 2023%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Revit2023</DefineConstants>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2023%29|AnyCPU'">
-    <OutputPath>bin\2023\Release</OutputPath>
-    <DefineConstants>TRACE;Revit2023</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2025%29|x64'">
-		<DebugSymbols>true</DebugSymbols>
-		<OutputPath>bin\x64\Debug %28Revit 2025%29\</OutputPath>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<DebugType>full</DebugType>
-		<PlatformTarget>x64</PlatformTarget>
-		<LangVersion>7.3</LangVersion>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2025%29|x64'">
-		<OutputPath>bin\x64\Release %28Revit 2025%29\</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
-		<Optimize>true</Optimize>
-		<DebugType>pdbonly</DebugType>
-		<PlatformTarget>x64</PlatformTarget>
-		<LangVersion>7.3</LangVersion>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2024%29|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2025%29|x64'">
+	<DebugSymbols>true</DebugSymbols>
+	<OutputPath>bin\x64\Debug %28Revit 2025%29\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;Revit2025</DefineConstants>
+	<DebugType>full</DebugType>
+	<PlatformTarget>x64</PlatformTarget>
+	<LangVersion>7.3</LangVersion>
+	<ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2025%29|x64'">
+	<OutputPath>bin\x64\Release %28Revit 2025%29\</OutputPath>
+	<DefineConstants>TRACE;Revit2025</DefineConstants>
+	<Optimize>true</Optimize>
+	<DebugType>pdbonly</DebugType>
+	<PlatformTarget>x64</PlatformTarget>
+	<LangVersion>7.3</LangVersion>
+	<ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2024%29|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug %28Revit 2024%29\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;Revit2024</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
@@ -156,97 +172,96 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2024%29|x64'">
     <OutputPath>bin\x64\Release %28Revit 2024%29\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;Revit2024</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-	
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2020%29|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug %28Revit 2020%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2020%29|x64'">
-    <OutputPath>bin\x64\Release %28Revit 2020%29\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2023%29|x64'">
+    <OutputPath>bin\x64\Debug %28Revit 2023%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2023</DefineConstants>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2019%29|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug %28Revit 2019%29\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
+  </PropertyGroup>	
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2023%29|x64'">
+    <OutputPath>bin\x64\Release %28Revit 2023%29\</OutputPath>
+    <DefineConstants>TRACE;Revit2023</DefineConstants>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2019%29|x64'">
-    <OutputPath>bin\x64\Release %28Revit 2019%29\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2022%29|x64'">
     <OutputPath>bin\x64\Debug %28Revit 2022%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Revit2022</DefineConstants>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2022%29|x64'">
     <OutputPath>bin\x64\Release %28Revit 2022%29\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;Revit2022</DefineConstants>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2021%29|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug %28Revit 2021%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Revit2021</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-	
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2021%29|x64'">
     <OutputPath>bin\x64\Release %28Revit 2021%29\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;Revit2021</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2020%29|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug %28Revit 2020%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Revit2020</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2020%29|x64'">
+    <OutputPath>bin\x64\Release %28Revit 2020%29\</OutputPath>
+    <DefineConstants>TRACE;Revit2020</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2019%29|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug %28Revit 2019%29\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;Revit2019</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2019%29|x64'">
+    <OutputPath>bin\x64\Release %28Revit 2019%29\</OutputPath>
+    <DefineConstants>TRACE;Revit2019</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Revit 2023%29|x64'">
-    <OutputPath>bin\x64\Debug %28Revit 2023%29\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-	
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2023%29|x64'">
-    <OutputPath>bin\x64\Release %28Revit 2023%29\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
 	
 
 	<ItemGroup>

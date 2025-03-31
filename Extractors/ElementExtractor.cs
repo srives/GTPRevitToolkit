@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Windows;
 using System.Windows.Documents;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 
@@ -25,17 +26,18 @@ namespace GTP.Extractors
         /// </summary>
         /// <param name="document"></param>
         /// <param name="notifier"></param>
+        /// <param name="garbageCollect">If true, we do a GC.Collect in loop</param>
         /// <param name="highRefreshRate">If true, we relinquish control to Revit more agressively for UI refresh</param>
         /// <param name="progressInterval"></param>
         /// <param name="start">0 based. -1 means ignore. We loop through X number of elements, and start is where to being that loop (with the starth element)</param>
         /// <param name="stop">Where to stop looping</param>
         /// <returns></returns>
-        static public List<ProfilerStats> Execute(Document document, Notifier notifier, bool highRefreshRate, bool collectMemoryStats, int progressInterval, int start, int stop, CancellationToken cancellationToken)
+        static public List<ProfilerStats> Execute(Document document, Notifier notifier, bool garbageCollect, bool highRefreshRate, bool collectMemoryStats, int progressInterval, int start, int stop, CancellationToken cancellationToken)
         {
             // Fresh run
             profiler.Reset();
             PropertyDefinitionCache.Reset(); 
-            ConnectorCache.Reset(); 
+            ConnectorCache.Reset();
 
             var revitElements = ElementFilterProvider.GetFilteredElements(document);
             var numElements = revitElements.Count();
@@ -63,15 +65,37 @@ namespace GTP.Extractors
                     skip = false;
                 }
 
+                long revitId = 0;
+                long revitTypeId = 0;
+#if Revit2025
+                try
+                {
+                    revitId = revitElement.Id.Value;
+                    revitTypeId = revitElement.GetTypeId().Value;
+                }
+                catch
+                {
+                    try
+                    {
+                        revitId = revitElement.Id.IntegerValue;
+                        revitTypeId = revitElement.GetTypeId().IntegerValue;
+                    }
+                    catch
+                    {
+                        System.Diagnostics.Debugger.Break();
+                    }
+                }
+#elif Revit2024
+                revitId = revitElement.Id.Value;
+                revitTypeId = revitElement.GetTypeId().Value;
+#else
+                revitId = revitElement.Id.IntegerValue;
+                revitTypeId = revitElement.GetTypeId().IntegerValue;
+#endif
                 var element = new GtpxElement
                 {
-#if Revit2024
-                    RevitId = revitElement.Id.Value,
-                    RevitTypeId = revitElement.GetTypeId().Value,
-#else
-                    RevitId = revitElement.Id.IntegerValue,
-                    RevitTypeId = revitElement.GetTypeId().IntegerValue,
-#endif
+                    RevitId = revitId,
+                    RevitTypeId = revitTypeId,
                     CadType = revitElement.GetType().ToString(),
                     FabricationItemKey = revitElement.UniqueId,
                     Index = index,
@@ -145,6 +169,11 @@ namespace GTP.Extractors
                     if (!highRefreshRate)
                     {
                         System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+                    }
+
+                    if (garbageCollect)
+                    {
+                        GC.Collect();
                     }
                 }
             }

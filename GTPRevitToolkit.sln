@@ -19,6 +19,8 @@ Global
 		Debug (Revit 2023)|x64 = Debug (Revit 2023)|x64
 		Debug (Revit 2024)|Any CPU = Debug (Revit 2024)|Any CPU
 		Debug (Revit 2024)|x64 = Debug (Revit 2024)|x64
+		Debug (Revit 2025)|Any CPU = Debug (Revit 2025)|Any CPU
+		Debug (Revit 2025)|x64 = Debug (Revit 2025)|x64
 		Release (Revit 2019)|Any CPU = Release (Revit 2019)|Any CPU
 		Release (Revit 2019)|x64 = Release (Revit 2019)|x64
 		Release (Revit 2020)|Any CPU = Release (Revit 2020)|Any CPU
@@ -55,10 +57,14 @@ Global
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2023)|Any CPU.Build.0 = Debug (Revit 2023)|Any CPU
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2023)|x64.ActiveCfg = Debug (Revit 2023)|x64
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2023)|x64.Build.0 = Debug (Revit 2023)|x64
-		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2024)|Any CPU.ActiveCfg = Release (Revit 2021)|Any CPU
-		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2024)|Any CPU.Build.0 = Release (Revit 2021)|Any CPU
+		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2024)|Any CPU.ActiveCfg = Release (Revit 2024)|Any CPU
+		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2024)|Any CPU.Build.0 = Release (Revit 2024)|Any CPU
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2024)|x64.ActiveCfg = Debug (Revit 2024)|x64
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2024)|x64.Build.0 = Debug (Revit 2024)|x64
+		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2025)|Any CPU.ActiveCfg = Release (Revit 2025)|Any CPU
+		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2025)|Any CPU.Build.0 = Release (Revit 2025)|Any CPU
+		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2025)|x64.ActiveCfg = Debug (Revit 2025)|x64
+		{328A18C5-6640-44F0-8096-394D831EFF36}.Debug (Revit 2025)|x64.Build.0 = Debug (Revit 2025)|x64
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Release (Revit 2019)|Any CPU.ActiveCfg = Release (Revit 2019)|Any CPU
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Release (Revit 2019)|Any CPU.Build.0 = Release (Revit 2019)|Any CPU
 		{328A18C5-6640-44F0-8096-394D831EFF36}.Release (Revit 2019)|x64.ActiveCfg = Release (Revit 2019)|x64

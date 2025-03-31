@@ -57,6 +57,7 @@
             this.Elements = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Memory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbForceGCCollect = new System.Windows.Forms.CheckBox();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -81,6 +82,7 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Black;
+            this.tabSettings.Controls.Add(this.cbForceGCCollect);
             this.tabSettings.Controls.Add(this.btnStop);
             this.tabSettings.Controls.Add(this.cbMemory);
             this.tabSettings.Controls.Add(this.cbHighRefreshRate);
@@ -408,6 +410,17 @@
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
             // 
+            // cbForceGCCollect
+            // 
+            this.cbForceGCCollect.AutoSize = true;
+            this.cbForceGCCollect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbForceGCCollect.Location = new System.Drawing.Point(459, 510);
+            this.cbForceGCCollect.Name = "cbForceGCCollect";
+            this.cbForceGCCollect.Size = new System.Drawing.Size(146, 17);
+            this.cbForceGCCollect.TabIndex = 22;
+            this.cbForceGCCollect.Text = "Force Garbage Collection";
+            this.cbForceGCCollect.UseVisualStyleBackColor = true;
+            // 
             // GTPDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,5 +475,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Elements;
         private System.Windows.Forms.DataGridViewTextBoxColumn Memory;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
+        private System.Windows.Forms.CheckBox cbForceGCCollect;
     }
 }

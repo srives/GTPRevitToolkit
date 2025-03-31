@@ -85,14 +85,14 @@ namespace Gtpx.ModelSync.Export.Revit.Services
             if (parameterName == "Category")
             {
                 // To make this code behave like V1 need to initialize the parameter value to -1 string
-#if Revit2024
+#if Revit2024 || Revit2025
                 parameterValue = elementId.Value.ToString();
 #else
                 parameterValue = elementId.IntegerValue.ToString();
 #endif
                 try
                 {
-#if Revit2024
+#if Revit2024 || Revit2025
                     parameterValue = document.Settings.Categories.get_Item((BuiltInCategory)elementId.Value).Name;
 #else
                     parameterValue = document.Settings.Categories.get_Item((BuiltInCategory)elementId.IntegerValue).Name;
@@ -106,7 +106,7 @@ namespace Gtpx.ModelSync.Export.Revit.Services
             else if (parameterName == "Family")
             {
                 // To make this code behave like V1 need to initialize the parameter value to -1 string
-#if Revit2024
+#if Revit2024 || Revit2025
                 parameterValue = elementId.Value.ToString();
 #else
                 parameterValue = elementId.IntegerValue.ToString();
@@ -148,7 +148,7 @@ namespace Gtpx.ModelSync.Export.Revit.Services
             else
             {
                 // To make this code behave like V1 need to initialize the parameter value to -1 string
-#if Revit2024
+#if Revit2024 || Revit2025
                 parameterValue = elementId.Value.ToString();
 #else
                 parameterValue = elementId.IntegerValue.ToString();
