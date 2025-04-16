@@ -27,51 +27,44 @@ namespace Gtpx.ModelSync.Export.Revit.Services
 
             try
             {
-                if (!parameter.HasValue)
+                // passing in parameterName since accessing parameter.Definition.Name is costly
+                var storageType = parameter.StorageType;
+                switch (storageType)
                 {
-                    return false;
+                    case StorageType.Double:
+                        var doubleValue = parameter.AsDouble();
+                        if (parameterName == "Weight") // assumes Imperial
+                        {
+                            // Revit expresses the weight in kgs, so need to convert to lbs
+                            doubleValue *= 2.20462262185;
+                        }
+                        parameterValue = StringFormatService.FormatDouble(doubleValue);
+                        break;
+
+                    case StorageType.ElementId:
+                        parameterValue = GetElementIdValue(document, notifier, parameter, parameterName) ?? string.Empty;
+                        break;
+
+                    case StorageType.Integer:
+                        parameterValue = LookupIntegerValue(document, revitElement, parameter) ?? string.Empty;
+                        break;
+
+                    case StorageType.None:
+                        break;
+
+                    case StorageType.String:
+                        parameterValue = parameter.AsString() ?? string.Empty;
+                        break;
+
+                    default:
+                        Debug.Assert(false, $"Unrecognized storage type: {parameter.StorageType}.");
+                        break;
                 }
             }
             catch
             {
-                // SPVR-10470 : The HasValue call was throwing an exception,
-                // when this happens just eat the exception and continue processing
-                notifier.Warning($"Failed to get value for Element: {revitElement.Id}, Parameter named: {parameterName}.");
+                notifier?.Warning($"Failed to get value for Element: {revitElement.Id}, Parameter named: {parameterName}.");
                 return false;
-            }
-
-            // passing in parameterName since accessing parameter.Definition.Name is costly
-            var storageType = parameter.StorageType;
-            switch (storageType)
-            {
-                case StorageType.Double:
-                    var doubleValue = parameter.AsDouble();
-                    if (parameterName == "Weight") // assumes Imperial
-                    {
-                        // Revit expresses the weight in kgs, so need to convert to lbs
-                        doubleValue *= 2.20462262185;
-                    }
-                    parameterValue = StringFormatService.FormatDouble(doubleValue);
-                    break;
-
-                case StorageType.ElementId:
-                    parameterValue = GetElementIdValue(document, notifier, parameter, parameterName) ?? string.Empty;
-                    break;
-
-                case StorageType.Integer:
-                    parameterValue = LookupIntegerValue(document, revitElement, parameter) ?? string.Empty;
-                    break;
-
-                case StorageType.None:
-                    break;
-
-                case StorageType.String:
-                    parameterValue = parameter.AsString() ?? string.Empty;
-                    break;
-
-                default:
-                    Debug.Assert(false, $"Unrecognized storage type: {parameter.StorageType}.");
-                    break;
             }
 
             return true;

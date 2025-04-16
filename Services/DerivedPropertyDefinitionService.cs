@@ -102,7 +102,7 @@ namespace Gtpx.ModelSync.Export.Revit.Services
                     Name = name,
                     StorageDataType = GetStorageDataType(derivedPropertyDefinition)
                 },
-                element);
+                element.ElementId);
 
             if (string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(derivedPropertyDefinition.DefaultValue))
             {

@@ -14,6 +14,11 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors
             idToPartTemplateMap = new Dictionary<string, PartTemplate>();
         }
 
+        public static int Count()
+        {
+            return idToPartTemplateMap.Count;
+        }
+
         public static void ProcessElement(Autodesk.Revit.DB.Element revitElement,
                                    GtpxElement element)
         {
@@ -38,7 +43,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors
                     idToPartTemplateMap[element.TemplateId] = partTemplate;
                 }
 
-                foreach (var propertyDefinitionId in PropertyDefinitionCache.GetPropertyDefinitionIds(element))
+                foreach (var propertyDefinitionId in PropertyDefinitionCache.GetPropertyDefinitionIds(element.ElementId))
                 {
                     partTemplate.PropertyDefinitionIds.Add(propertyDefinitionId);
                 }

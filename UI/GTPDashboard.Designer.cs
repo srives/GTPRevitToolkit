@@ -30,6 +30,7 @@
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.cbForceGCCollect = new System.Windows.Forms.CheckBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.cbMemory = new System.Windows.Forms.CheckBox();
             this.cbHighRefreshRate = new System.Windows.Forms.CheckBox();
@@ -47,7 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblncluded = new System.Windows.Forms.Label();
             this.includedList = new System.Windows.Forms.ListBox();
-            this.version = new System.Windows.Forms.Label();
             this.btnRun = new System.Windows.Forms.Button();
             this.tabRun = new System.Windows.Forms.TabPage();
             this.lblProgress = new System.Windows.Forms.Label();
@@ -56,8 +56,9 @@
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Elements = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Memory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Parameters = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SampleElementIDs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbForceGCCollect = new System.Windows.Forms.CheckBox();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -93,7 +94,6 @@
             this.tabSettings.Controls.Add(this.label1);
             this.tabSettings.Controls.Add(this.lblncluded);
             this.tabSettings.Controls.Add(this.includedList);
-            this.tabSettings.Controls.Add(this.version);
             this.tabSettings.Controls.Add(this.btnRun);
             this.tabSettings.Location = new System.Drawing.Point(4, 22);
             this.tabSettings.Name = "tabSettings";
@@ -101,6 +101,17 @@
             this.tabSettings.Size = new System.Drawing.Size(1162, 544);
             this.tabSettings.TabIndex = 0;
             this.tabSettings.Text = "Settings";
+            // 
+            // cbForceGCCollect
+            // 
+            this.cbForceGCCollect.AutoSize = true;
+            this.cbForceGCCollect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbForceGCCollect.Location = new System.Drawing.Point(459, 510);
+            this.cbForceGCCollect.Name = "cbForceGCCollect";
+            this.cbForceGCCollect.Size = new System.Drawing.Size(146, 17);
+            this.cbForceGCCollect.TabIndex = 22;
+            this.cbForceGCCollect.Text = "Force Garbage Collection";
+            this.cbForceGCCollect.UseVisualStyleBackColor = true;
             // 
             // btnStop
             // 
@@ -119,7 +130,7 @@
             // 
             this.cbMemory.AutoSize = true;
             this.cbMemory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbMemory.Location = new System.Drawing.Point(639, 510);
+            this.cbMemory.Location = new System.Drawing.Point(611, 510);
             this.cbMemory.Name = "cbMemory";
             this.cbMemory.Size = new System.Drawing.Size(125, 17);
             this.cbMemory.TabIndex = 20;
@@ -130,11 +141,11 @@
             // 
             this.cbHighRefreshRate.AutoSize = true;
             this.cbHighRefreshRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbHighRefreshRate.Location = new System.Drawing.Point(770, 510);
+            this.cbHighRefreshRate.Location = new System.Drawing.Point(742, 510);
             this.cbHighRefreshRate.Name = "cbHighRefreshRate";
-            this.cbHighRefreshRate.Size = new System.Drawing.Size(88, 17);
+            this.cbHighRefreshRate.Size = new System.Drawing.Size(123, 17);
             this.cbHighRefreshRate.TabIndex = 19;
-            this.cbHighRefreshRate.Text = "High Refresh";
+            this.cbHighRefreshRate.Text = "More Responsive UI";
             this.cbHighRefreshRate.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -308,16 +319,6 @@
             this.includedList.Size = new System.Drawing.Size(399, 470);
             this.includedList.TabIndex = 5;
             // 
-            // version
-            // 
-            this.version.AutoSize = true;
-            this.version.ForeColor = System.Drawing.Color.Lime;
-            this.version.Location = new System.Drawing.Point(14, 519);
-            this.version.Name = "version";
-            this.version.Size = new System.Drawing.Size(55, 13);
-            this.version.TabIndex = 4;
-            this.version.Text = "v2023.9.4";
-            // 
             // btnRun
             // 
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -376,6 +377,8 @@
             this.Time,
             this.Elements,
             this.Memory,
+            this.Parameters,
+            this.SampleElementIDs,
             this.TemplateId});
             this.grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grid.Location = new System.Drawing.Point(0, 0);
@@ -403,23 +406,24 @@
             this.Memory.Name = "Memory";
             this.Memory.ReadOnly = true;
             // 
+            // Parameters
+            // 
+            this.Parameters.HeaderText = "Avg # Parameters per Part";
+            this.Parameters.Name = "Parameters";
+            this.Parameters.ReadOnly = true;
+            // 
+            // SampleElementIDs
+            // 
+            this.SampleElementIDs.HeaderText = "Sample Elements";
+            this.SampleElementIDs.Name = "SampleElementIDs";
+            this.SampleElementIDs.ReadOnly = true;
+            // 
             // TemplateId
             // 
             this.TemplateId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.TemplateId.HeaderText = "TemplateId";
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
-            // 
-            // cbForceGCCollect
-            // 
-            this.cbForceGCCollect.AutoSize = true;
-            this.cbForceGCCollect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbForceGCCollect.Location = new System.Drawing.Point(459, 510);
-            this.cbForceGCCollect.Name = "cbForceGCCollect";
-            this.cbForceGCCollect.Size = new System.Drawing.Size(146, 17);
-            this.cbForceGCCollect.TabIndex = 22;
-            this.cbForceGCCollect.Text = "Force Garbage Collection";
-            this.cbForceGCCollect.UseVisualStyleBackColor = true;
             // 
             // GTPDashboard
             // 
@@ -454,7 +458,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblncluded;
         private System.Windows.Forms.ListBox includedList;
-        private System.Windows.Forms.Label version;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblProgress;
@@ -471,10 +474,12 @@
         private System.Windows.Forms.CheckBox cbHighRefreshRate;
         private System.Windows.Forms.CheckBox cbMemory;
         private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.CheckBox cbForceGCCollect;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Elements;
         private System.Windows.Forms.DataGridViewTextBoxColumn Memory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Parameters;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SampleElementIDs;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
-        private System.Windows.Forms.CheckBox cbForceGCCollect;
     }
 }

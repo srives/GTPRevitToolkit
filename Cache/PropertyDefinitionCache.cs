@@ -2,12 +2,60 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using PropertyDefinition = Gtpx.ModelSync.DataModel.Models.PropertyDefinition;
 
 namespace Gtpx.ModelSync.CAD.Cache
 {
     public static class PropertyDefinitionCache
+    {
+        private static Dictionary<string, PropertyDefinition> idToPropertyDefinitionMap;
+        private static Dictionary<string, SortedSet<string>> templateIdToPropertyDefinitionIdMap;
+        private static int _count = 0;
+
+        /// <summary>
+        /// Number of properties across all elements in the cache
+        /// </summary>
+        public static int Count { get; private set; } = _count;
+
+        public static void Reset()
+        {
+            _count = 0;
+            templateIdToPropertyDefinitionIdMap = new Dictionary<string, SortedSet<string>>();
+            idToPropertyDefinitionMap = new Dictionary<string, PropertyDefinition>();
+        }
+
+        public static void Add(PropertyDefinition propertyDefinition, string elementTemplateId)
+        {
+            _count++;
+            var id = $"{propertyDefinition.Name}:{propertyDefinition.StorageDataType}:{propertyDefinition.DisplayDataType}";
+            propertyDefinition.Id = id;
+            idToPropertyDefinitionMap[id] = propertyDefinition;
+
+            if (!string.IsNullOrEmpty(elementTemplateId))
+            {
+                if (!templateIdToPropertyDefinitionIdMap.TryGetValue(elementTemplateId, out var templatePropertyDefinitionIds))
+                {
+                    templatePropertyDefinitionIds = new SortedSet<string>();
+                    templateIdToPropertyDefinitionIdMap[elementTemplateId] = templatePropertyDefinitionIds;
+                }
+                templatePropertyDefinitionIds.Add(id);
+            }
+        }
+
+        public static IEnumerable<PropertyDefinition> GetPropertyDefinitions()
+        {
+            return idToPropertyDefinitionMap.Values;
+        }
+
+        public static IEnumerable<string> GetPropertyDefinitionIds(string elementTemplateId)
+        {
+            return templateIdToPropertyDefinitionIdMap[elementTemplateId].Select(x => idToPropertyDefinitionMap[x].Id);
+        }
+    }
+
+    public static class PropertyDefinitionCacheToFile
     {
         private static FileStream _cacheFileStream;
         private static string _cacheFileName = string.Empty;

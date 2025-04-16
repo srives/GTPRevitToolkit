@@ -16,6 +16,7 @@ namespace Gtpx.ModelSync.CAD.UI
         public List<ProfilerStats> TemplateIdRunTimeList { get; set; }
         public long Progress { get; set; }
         public long Total { get; set; }
+        public string MoreData { get; set; }
     }
 
     public class Notifier
@@ -40,13 +41,14 @@ namespace Gtpx.ModelSync.CAD.UI
             IsNotifyWindowLoaded = false;
         }
 
-        public void Stats(List<ProfilerStats> templateIdSeconds, long progress, long total)
+        public void Stats(List<ProfilerStats> templateIdSeconds, long progress, long total, string moreData)
         {
             StatsReceived?.Invoke(this, new NotificationEventArgs()
             {
                 Total= total,
                 Progress= progress,
-                TemplateIdRunTimeList = templateIdSeconds
+                TemplateIdRunTimeList = templateIdSeconds,
+                MoreData = moreData
             });
         }
 

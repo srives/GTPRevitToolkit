@@ -6,9 +6,9 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 {
     public static class ElementSubExtractor
     {
-        public static void ProcessElement(Document document, Notifier logger, Element revitElement, GtpxElement element)
+        public static int ProcessElement(Document document, Notifier logger, Element revitElement, GtpxElement element)
         {
-            ParameterExtractor.ProcessElement(document, logger, revitElement, element);
+            var numParameters = ParameterExtractor.ProcessElement(document, logger, revitElement, element);
             /*
              * To do: Finish these
             conduitRunPropetySubExtractor.ProcessElement(revitElement, element);
@@ -17,6 +17,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             straightPipeCutExtractor.ProcessElement(revitElement, element);
             worksetExtractor.ProcessElement(revitElement, element);
             */
+            return numParameters;
         }
     }
 }

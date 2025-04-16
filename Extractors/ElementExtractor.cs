@@ -38,6 +38,7 @@ namespace GTP.Extractors
             profiler.Reset();
             PropertyDefinitionCache.Reset(); 
             ConnectorCache.Reset();
+            long points = 0;
 
             var revitElements = ElementFilterProvider.GetFilteredElements(document);
             var numElements = revitElements.Count();
@@ -61,7 +62,8 @@ namespace GTP.Extractors
 
                 if (skip)
                 {
-                    notifier.Stats(null, index, (stop > 0) ? stop : numElements);
+                    var moreData = $"PropertyDefinitions: {PropertyDefinitionCache.Count}, PartTemplateSize {PartTemplateExtractor.Count()}, WallPoints {points}.";
+                    notifier.Stats(null, index, (stop > 0) ? stop : numElements, moreData);
                     skip = false;
                 }
 
@@ -132,12 +134,17 @@ namespace GTP.Extractors
                 }
 
                 if (cancellationToken.IsCancellationRequested) break;
-                ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
+                var numParams = ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
                 if (collectMemoryStats)
                     profiler.CatchTimeAndMemory($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 else
                     profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{nameof(ElementSubExtractor)}", 1);
+
+                if (numParams > 0)
+                {
+                    GTProfiler.AddElementId($"{nameof(ElementSubExtractor)}.{element.TemplateId}", element.ElementId);
+                }
 
                 if (cancellationToken.IsCancellationRequested) break;
                 PartTemplateExtractor.ProcessElement(revitElement, element);
@@ -155,17 +162,29 @@ namespace GTP.Extractors
                 // elementStorageProvider.Add(element, activityEvent);
 
                 if (cancellationToken.IsCancellationRequested) break;
+                points += element.Points?.Count ?? 0;
+
                 if (index % progressInterval == 0)
                 {
+                    var moreData = $"PropertyDefinitions: {PropertyDefinitionCache.Count}, PartTemplateSize {PartTemplateExtractor.Count()}, WallPoints {points}.";
                     var stats = profiler.SortedList();
-                    notifier.Stats(stats, index, (stop > 0) ? stop : numElements);
-                    profiler.CatchMemory("ElementExtractor");
-                    notifier.Information($"Extracted {index} elements out of {numElements}.");
+
+                    // Update the UI grid
+                    notifier.Stats(stats, index, (stop > 0) ? stop : numElements, moreData);
+
+                    if (collectMemoryStats)
+                    {
+                        GTProfiler.CatchMemory("ElementExtractor");
+                    }
+                    notifier.Information($"Extracted {index} elements out of {numElements} {moreData}");
                     foreach (var time in profiler.ToStrings())
                     {
                         notifier.LogSilent(time);
                     }
-                    profiler.CatchMemory("ElementExtractor");
+                    if (collectMemoryStats)
+                    {
+                        GTProfiler.CatchMemory("ElementExtractor");
+                    }
                     if (!highRefreshRate)
                     {
                         System.Windows.Forms.Application.DoEvents(); // pump out the message queue
@@ -178,7 +197,6 @@ namespace GTP.Extractors
                 }
             }
 
-            profiler.CatchMemory("ElementExtractor");
             foreach (var time in profiler.ToStrings(GTProfiler.GTProfOptions.Memory))
             {
                 notifier.LogSilent(time);

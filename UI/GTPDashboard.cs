@@ -13,7 +13,7 @@ namespace GTP.UI
 {
     public partial class GTPDashboard : Form
     {
-        private string _version = "2025-03-30";
+        private string _version = "2025-04-15";
         Document _document;
         bool stopProcess = false;
         CancellationTokenSource _source = null;
@@ -98,12 +98,12 @@ namespace GTP.UI
             {
                 lblProgress.Invoke(new Action(() =>
                 {
-                    lblProgress.Text = $"{DateTime.Now} {e.Progress} of {e.Total}";
+                    lblProgress.Text = $"{DateTime.Now} {e.Progress} of {e.Total} {e.MoreData ?? string.Empty}";
                 }));
             }
             else
             {
-                lblProgress.Text = $"{DateTime.Now} {e.Progress} of {e.Total}";
+                lblProgress.Text = $"{DateTime.Now} {e.Progress} of {e.Total} {e.MoreData ?? string.Empty}";
             }
 
             if (progress.InvokeRequired)
@@ -164,7 +164,9 @@ namespace GTP.UI
                         grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Milliseconds);
                         grid.Rows[i].Cells[1].Value = $"{TemplateIdRunTimeList[i].HitCount:n0}";
                         grid.Rows[i].Cells[2].Value = TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}";
-                        grid.Rows[i].Cells[3].Value = TemplateIdRunTimeList[i].Key;
+                        grid.Rows[i].Cells[3].Value = TemplateIdRunTimeList[i].ParameterCount;
+                        grid.Rows[i].Cells[4].Value = String.Join(",", TemplateIdRunTimeList[i].ElementIds);
+                        grid.Rows[i].Cells[5].Value = TemplateIdRunTimeList[i].Key;
                     }));
                 }
                 else
@@ -172,7 +174,9 @@ namespace GTP.UI
                     grid.Rows[i].Cells[0].Value = Seconds(TemplateIdRunTimeList[i].Milliseconds);
                     grid.Rows[i].Cells[1].Value = $"{TemplateIdRunTimeList[i].HitCount:n0}";
                     grid.Rows[i].Cells[2].Value = TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}";
-                    grid.Rows[i].Cells[3].Value = TemplateIdRunTimeList[i].Key;
+                    grid.Rows[i].Cells[3].Value = TemplateIdRunTimeList[i].ParameterCount;
+                    grid.Rows[i].Cells[4].Value = String.Join(",", TemplateIdRunTimeList[i].ElementIds);
+                    grid.Rows[i].Cells[5].Value = TemplateIdRunTimeList[i].Key;
                 }
             }
 
@@ -212,6 +216,8 @@ namespace GTP.UI
                             Seconds(TemplateIdRunTimeList[i].Milliseconds),
                             $"{TemplateIdRunTimeList[i].HitCount:n0}",
                             TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}",
+                            TemplateIdRunTimeList[i].ParameterCount > 0 ? $"{TemplateIdRunTimeList[i].ParameterCount}" : string.Empty,
+                            String.Join(",", TemplateIdRunTimeList[i].ElementIds),
                             TemplateIdRunTimeList[i].Key);
                     }));
                 }
@@ -221,6 +227,8 @@ namespace GTP.UI
                         Seconds(TemplateIdRunTimeList[i].Milliseconds),
                         $"{TemplateIdRunTimeList[i].HitCount:n0}",
                         TemplateIdRunTimeList[i].Memory < 0 ? "0" : $"{TemplateIdRunTimeList[i].Memory:n0}",
+                        TemplateIdRunTimeList[i].ParameterCount > 0 ? $"{TemplateIdRunTimeList[i].ParameterCount}" : string.Empty,
+                        String.Join(",", TemplateIdRunTimeList[i].ElementIds),
                         TemplateIdRunTimeList[i].Key);
                 }
             }

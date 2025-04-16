@@ -9,8 +9,8 @@ using Gtpx.ModelSync.Export.Revit.Caches;
 using Gtpx.ModelSync.Export.Revit.Providers;
 using Gtpx.ModelSync.Export.Revit.Services;
 using System.Collections.Generic;
-using System.Threading;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
+using Parameter = Autodesk.Revit.DB.Parameter;
 using PropertyDefinition = Gtpx.ModelSync.DataModel.Models.PropertyDefinition;
 using RevitElement = Autodesk.Revit.DB.Element;
 
@@ -22,15 +22,13 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
         private static bool cacheElementsForAssemblies;
         private static string propertyNameForAssembly;
         private static bool retrievedPropertyNameForAssembly;
-        private static GTProfiler _profiler = new GTProfiler();
 
         public static void Reset(HashSet<string> excludeList)
         {
             partPropertyNamesToExclude = excludeList;
         }
 
-        public static void ProcessElement(Document document, Notifier logger, RevitElement revitElement,
-                                   GtpxElement element)
+        public static int ProcessElement(Document document, Notifier logger, RevitElement revitElement, GtpxElement element)
         {
             SetElementIdProperty(revitElement, element);
 
@@ -56,11 +54,11 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             }
 
             // add all revit element parameters          
-            var usedParameters = AddPropertiesForParameterSet(document, logger, revitElement, element, revitElement.Parameters);
+            var numParameters = AddPropertiesForParameterSet(document, logger, revitElement, element, revitElement.Parameters);
 
             // Save statistics for the log file (useful for GTP Service Desk diagnostics on publishes)
-            _profiler.SaveValue("propertyDefinitionCacheSize", PropertyDefinitionCache.Count);
-            _profiler.Accum("Element.Parameters.UsedCount", usedParameters);
+            GTProfiler.SaveValue("propertyDefinitionCacheSize", PropertyDefinitionCache.Count);
+            GTProfiler.Accum($"Parameters.{element.TemplateId}", (double)numParameters);
 
             // process derived properties, which will leverage element.Properties more efficiently than revit parameters
             DerivedPropertySubExtractor.ProcessElement(revitElement, element);
@@ -70,6 +68,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             SetElementDescription(element);
 
             CacheElementForAssembly(revitElement, element);
+            return numParameters;
         }
 
         private static int AddPropertiesForParameterSet(Document document, Notifier logger, RevitElement revitElement,
@@ -108,7 +107,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                     Name = "ElementId",
                     StorageDataType = PropertyDataType.String
                 },
-                element);
+                element.ElementId);
 
             element.NameToPropertyMap["ElementId"] = new Property()
             {
@@ -154,7 +153,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                             Name = definition.Name,
                             StorageDataType = storageDataType
                         },
-                        element);
+                        element.ElementId);
 
                     property = new Property
                     {

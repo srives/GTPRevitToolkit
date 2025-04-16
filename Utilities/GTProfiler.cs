@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Windows.Interop;
+
 
 namespace Gtpx.ModelSync.CAD.Utilities
 {
@@ -14,6 +13,33 @@ namespace Gtpx.ModelSync.CAD.Utilities
         public long HitCount { get; set; }
         public long Milliseconds { get; set; }
         public long Memory { get; set; } 
+        public long ParameterCount { get; set; }
+        public List<string> ElementIds { get; set; } = new List<string>();
+    }
+
+    public class AccumStats
+    {
+        public int Count { get; set; }
+        public double Sum { get; set; }
+        public double Min { get; set; }
+        public double Max { get; set; }
+        public double Avg { get { return (Count > 0) ? Sum / Count : Sum; } }
+
+        public AccumStats(double value)
+        {
+            Count = 1;
+            Sum = value;
+            Min = value;
+            Max = value;
+        }
+
+        public AccumStats()
+        {
+            Count = 0;
+            Sum = 0;
+            Min = 0;
+            Max = 0;
+        }
     }
 
     /// <summary>
@@ -40,10 +66,12 @@ namespace Gtpx.ModelSync.CAD.Utilities
         static private Dictionary<string, (long, long)> _memory = new Dictionary<string, (long, long)>();
 
         // Save stats for an item by name. For each key, remember its count, sum, min, max    
-        static private Dictionary<string, (int, double, double, double)> _stats = new Dictionary<string, (int, double, double, double)>();
+        static private Dictionary<string, AccumStats> _stats = new Dictionary<string, AccumStats>();
 
         // Save latest value (by name)
         static private Dictionary<string, double> _values = new Dictionary<string, double>();
+
+        static private Dictionary<string, List<string>> _templateIdToElementId = new Dictionary<string, List<string>>();
 
         /// <summary>
         /// Set to false to turn off all stop watches
@@ -59,8 +87,9 @@ namespace Gtpx.ModelSync.CAD.Utilities
             _timings = new Dictionary<string, long>();
             _timingCounts = new Dictionary<string, long>();
             _memory = new Dictionary<string, (long, long)>();
-            _stats = new Dictionary<string, (int, double, double, double)>();
+            _stats = new Dictionary<string, AccumStats>();
             _values = new Dictionary<string, double>();
+            _templateIdToElementId = new Dictionary<string, List<string>>();
             TimerEnabled = true;
         }
 
@@ -96,22 +125,33 @@ namespace Gtpx.ModelSync.CAD.Utilities
             _sw[timerId].Restart();
         }
 
-        /// <summary>
-        /// Accumulate a value, and keep the sum of its values 
-        /// </summary>
-        public void Accum(string name, double value)
+        static public void AddElementId(string key, string elementId)
         {
-            if (!_stats.TryGetValue(name, out var data))
+            if (_templateIdToElementId.ContainsKey(key))
             {
-                //             ct  sum    min    max   
-                _stats[name] = (1, value, value, value);
+                _templateIdToElementId[key].Add(elementId);                
             }
             else
             {
-                data.Item1++; // ct
-                data.Item2 += value; // sum
-                if (value < data.Item3) data.Item3 = value; // min
-                if (value > data.Item4) data.Item4 = value; // max
+                _templateIdToElementId[key] = new List<string> { elementId };
+            }
+        }
+
+        /// <summary>
+        /// Accumulate a value, and keep the sum of its values 
+        /// </summary>
+        static public void Accum(string name, double value)
+        {
+            if (!_stats.TryGetValue(name, out var data))
+            {
+                _stats[name] = new AccumStats(value);
+            }
+            else
+            {
+                data.Count++; // ct
+                data.Sum += value; // sum
+                if (value < data.Min) data.Min = value; // min
+                if (value > data.Max) data.Max = value; // max
                 _stats[name] = data;
             }
         }
@@ -119,7 +159,7 @@ namespace Gtpx.ModelSync.CAD.Utilities
         /// <summary>
         /// Save a value by name. 
         /// </summary>
-        public void SaveValue(string name, int value)
+        static public void SaveValue(string name, int value)
         {
             _values[name] = value;
         }
@@ -149,7 +189,7 @@ namespace Gtpx.ModelSync.CAD.Utilities
         /// You must call CatchMemory() in pairs of two, the second one saves the diff from the first..
         /// </summary>
         /// <param name="memoryId">The name of the memory you wish to track</param>
-        public void CatchMemory(string memoryId)
+        static public void CatchMemory(string memoryId)
         {
             var currentProcess = Process.GetCurrentProcess();
             if (!_memory.TryGetValue(memoryId, out var data))
@@ -191,15 +231,20 @@ namespace Gtpx.ModelSync.CAD.Utilities
                 var memory = 0L;
                 if (_stats.TryGetValue(key, out var stats))
                 {
-                    memory = (long)stats.Item2;
+                    memory = (long)stats.Sum;
                 }
 
+                // take of the word ElementExtractor.
+                var templateId = key.Contains('.') ? key.Substring(key.IndexOf('.') + 1) : key;
+                
                 if (i < _statsCache.Count)
                 {
                     _statsCache[i].Key = key;
                     _statsCache[i].Milliseconds = sortedByMS[i].Value;
                     _statsCache[i].Memory = memory;
                     _statsCache[i].HitCount = _timingCounts[key];
+                    _statsCache[i].ParameterCount = _stats.ContainsKey($"Parameters.{templateId}") ? (long) _stats[$"Parameters.{templateId}"].Avg : -1;
+                    _statsCache[i].ElementIds = _templateIdToElementId.ContainsKey(key) ? _templateIdToElementId[key] : new List<string>();
                 }
                 else
                 {
@@ -207,7 +252,9 @@ namespace Gtpx.ModelSync.CAD.Utilities
                         Key = key,
                         Milliseconds = sortedByMS[i].Value,
                         Memory = memory,
-                        HitCount = _timingCounts[key]
+                        HitCount = _timingCounts[key],
+                        ParameterCount = _stats.ContainsKey($"Parameters.{templateId}") ? (long)_stats[$"Parameters.{templateId}"].Avg : -1,
+                        ElementIds = _templateIdToElementId.ContainsKey(key) ? _templateIdToElementId[key] : new List<string>()
                     });
                 }
             }
@@ -232,8 +279,8 @@ namespace Gtpx.ModelSync.CAD.Utilities
                 {
                     if (!_memory.ContainsKey(kvp.Key)) // memory collection also gets stored in _stats, and we will report memory usage below
                     {
-                        // ct  sum    min    max    avg
-                        msgs.Add($"{kvp.Key} : ct : {kvp.Value.Item1:N0} sum: {kvp.Value.Item2:N0} min: {kvp.Value.Item3:N0} max: {kvp.Value.Item4:N0} avg: {(kvp.Value.Item2 / kvp.Value.Item1):N0}");
+                        var accum = kvp.Value;
+                        msgs.Add($"{kvp.Key} : ct : {accum.Count:N0} sum: {accum.Sum:N0} min: {accum.Min:N0} max: {accum.Max:N0} avg: {accum.Avg:N0}");
                     }
                 }
             }
@@ -251,13 +298,13 @@ namespace Gtpx.ModelSync.CAD.Utilities
                 foreach (var memory in _memory)
                 {
                     var hasStats = _stats.TryGetValue(memory.Key, out var data);
-                    if (!hasStats || data.Item1 == 1)
+                    if (!hasStats || data.Count == 1)
                     {
                         msgs.Add($"{memory.Key} : {memory.Value.Item2:N0} bytes");
                     }
                     else
                     {
-                        msgs.Add($"{memory.Key} : {(data.Item2 / data.Item1):N0} bytes avg. (collected {data.Item1:N0} times; {data.Item2:N0} bytes ttl; {data.Item3:N0} bytes min; {data.Item4:N0} bytes max)");
+                        msgs.Add($"{memory.Key} : {(data.Avg):N0} bytes avg. (collected {data.Count:N0} times; {data.Sum:N0} bytes ttl; {data.Min:N0} bytes min; {data.Max:N0} bytes max)");
                     }
                 }
                 var currentProcess = Process.GetCurrentProcess();
