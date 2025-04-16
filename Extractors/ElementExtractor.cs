@@ -141,10 +141,6 @@ namespace GTP.Extractors
                     profiler.CatchTime($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 profiler.CatchTime($"TotalTime.{nameof(ElementSubExtractor)}", 1);
 
-                if (numParams > 0)
-                {
-                    GTProfiler.AddElementId($"{nameof(ElementSubExtractor)}.{element.TemplateId}", element.ElementId);
-                }
 
                 if (cancellationToken.IsCancellationRequested) break;
                 PartTemplateExtractor.ProcessElement(revitElement, element);

@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using Gtpx.ModelSync.CAD.UI;
+using Gtpx.ModelSync.CAD.Utilities;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 
 namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
@@ -9,6 +10,10 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
         public static int ProcessElement(Document document, Notifier logger, Element revitElement, GtpxElement element)
         {
             var numParameters = ParameterExtractor.ProcessElement(document, logger, revitElement, element);
+            if (numParameters > 0)
+            {
+                GTProfiler.AddElementId($"{nameof(ElementSubExtractor)}.{element?.TemplateId}", $"{element.RevitId}");
+            }
             /*
              * To do: Finish these
             conduitRunPropetySubExtractor.ProcessElement(revitElement, element);

@@ -387,16 +387,17 @@
             this.grid.RowHeadersVisible = false;
             this.grid.Size = new System.Drawing.Size(1162, 544);
             this.grid.TabIndex = 3;
+            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnCellClick);
             // 
             // Time
             // 
-            this.Time.HeaderText = "Seconds";
+            this.Time.HeaderText = "Seconds Processing";
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
             // 
             // Elements
             // 
-            this.Elements.HeaderText = "Elements";
+            this.Elements.HeaderText = "Elements Processed";
             this.Elements.Name = "Elements";
             this.Elements.ReadOnly = true;
             // 
@@ -408,20 +409,20 @@
             // 
             // Parameters
             // 
-            this.Parameters.HeaderText = "Avg # Parameters per Part";
+            this.Parameters.HeaderText = "Avg # Parameters per Element";
             this.Parameters.Name = "Parameters";
             this.Parameters.ReadOnly = true;
             // 
             // SampleElementIDs
             // 
-            this.SampleElementIDs.HeaderText = "Sample Elements";
+            this.SampleElementIDs.HeaderText = "Element Revit Ids";
             this.SampleElementIDs.Name = "SampleElementIDs";
             this.SampleElementIDs.ReadOnly = true;
             // 
             // TemplateId
             // 
             this.TemplateId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TemplateId.HeaderText = "TemplateId";
+            this.TemplateId.HeaderText = "Element TemplateId";
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
             // 

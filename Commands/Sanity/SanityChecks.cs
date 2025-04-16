@@ -22,6 +22,7 @@ namespace GTP.Commands.Sanity
 			try
 			{
                 UIApplication uiApp = commandData?.Application;
+                UIDocument uidoc = commandData.Application.ActiveUIDocument;
                 if (uiApp != null)
 				{
                     var ver = string.Empty;
@@ -32,7 +33,7 @@ namespace GTP.Commands.Sanity
                     }
 
                     Document doc = uiApp.ActiveUIDocument.Document;
-					using (GTPDashboard ui = new GTPDashboard(doc, ver))
+					using (GTPDashboard ui = new GTPDashboard(doc, uidoc, uiApp, ver))
 					{
 						var win32 = new IntPtrToIWin32Window(uiApp.MainWindowHandle);
 						ui.ShowDialog(win32);

@@ -1,6 +1,9 @@
-﻿using GTP.Extractors;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using GTP.Extractors;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
+using Gtpx.ModelSync.DataModel.Models;
 using Gtpx.ModelSync.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -15,14 +18,18 @@ namespace GTP.UI
     {
         private string _version = "2025-04-15";
         Document _document;
+        UIDocument _uiDoc; // do UIDocument uidoc = commandData.Application.ActiveUIDocument
+        UIApplication _uiApp;
         bool stopProcess = false;
         CancellationTokenSource _source = null;
         CancellationToken _token = CancellationToken.None;
 
-        public GTPDashboard(Document document, string version)
+        public GTPDashboard(Document document, UIDocument uidoc, UIApplication uiApp, string version)
         {
             InitializeComponent();
             _document = document;
+            _uiDoc = uidoc;
+            _uiApp = uiApp;
             progress.Visible = false;
             lblProgress.Visible = false;
 
@@ -326,6 +333,41 @@ namespace GTP.UI
             else
             {
                 e.Cancel = true;
+            }
+        }
+
+        /// <summary>
+        /// If user clicks in the cell, we load the first element id into the Revit view
+        /// </summary>
+        private void OnCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = grid.Rows[e.RowIndex];
+            var cell = row.Cells[e.ColumnIndex];
+            var cellValue = cell.Value.ToString();
+            if (string.IsNullOrEmpty(cellValue))
+            {
+                return;
+            }
+            var cellValueList = cellValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            if (cellValueList.Length == 0)
+            {
+                return;
+            }
+            if (long.TryParse(cellValueList[0], out var id))
+            {
+
+#if Revit2024 || Revit2025
+                var element = new ElementId(id);
+#else
+                var element = new ElementId((int)id);
+#endif
+                var el = _document.GetElement(element);
+                if (el == null)
+                {
+                    return;
+                }
+                var ids = new List<ElementId>() { element }; 
+                _uiDoc.ShowElements(ids);
             }
         }
     }
