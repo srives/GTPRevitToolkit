@@ -220,8 +220,8 @@ rem ----------------------------------------------------------------------------
   rem Create Manifest
   mkdir %adpath%%1 1>nul 2>nul
   set manifest=%adpath%%1\GTPRevitToolkit%1.addin
-  echo Creating %1 manifest, pointing to %DLL%
-  echo Creating %1 manifest, pointing to %DLL% >> "%installLog%"
+  echo Creating %1 manifest "%manifest%", pointing to %DLL%
+  echo Creating %1 manifest "%manifest%", pointing to %DLL% >> "%installLog%"
   
       echo ^<?xml version="1.0" encoding="utf-8" ?^> > "%manifest%" 2>nul
       echo ^<RevitAddIns^> >> "%manifest%"
