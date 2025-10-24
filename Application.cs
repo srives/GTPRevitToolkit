@@ -57,17 +57,15 @@ namespace GTP
                 "Get timing on how long to load all elments and process them in a publish",
                 ver);
 
-            /*
-            AddPushButtonToPanel(healthPanel,
-                "Button Name",
-                "Button Text",
-                Assembly.GetExecutingAssembly().Location,
-                "GTP.Commands.CLASS NAME",
-                "",
-                "", 
-                Properties.Resources.heart 
-                );
-            */
+            AddPushButtonToPanel(
+                   healthPanel,
+                   "LaunchNotepad",
+                   "Stratus Settings",
+                   Assembly.GetExecutingAssembly().Location,
+                   "GTP.Commands.LaunchNotepad",
+                   "Open settings.json in Notepad",
+                   $"Launches Notepad to edit {Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\GTP Software Inc\\STRATUS\\settings.json",
+                   Properties.Resources.notepad);
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             partPropertyNamesToExclude = excludeList;
         }
 
-        public static int ProcessElement(Document document, Notifier logger, RevitElement revitElement, GtpxElement element)
+        public static int ProcessElement(Document document, Notifier logger, RevitElement revitElement, GtpxElement element, long tolerance, bool searchForComplexParts)
         {
             SetElementIdProperty(revitElement, element);
 
@@ -61,7 +61,7 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             GTProfiler.Accum($"Parameters.{element.TemplateId}", (double)numParameters);
 
             // process derived properties, which will leverage element.Properties more efficiently than revit parameters
-            DerivedPropertySubExtractor.ProcessElement(revitElement, element);
+            DerivedPropertySubExtractor.ProcessElement(logger, revitElement, element, tolerance, searchForComplexParts);
 
             // Setting the element description requires the Description derived property to have already been extracted.  
             // So this call must happen after the derivedPropertySubExtractor.ProcessElement has been called.

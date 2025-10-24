@@ -11,8 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Windows;
-using System.Windows.Documents;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 
 namespace GTP.Extractors
@@ -31,8 +29,10 @@ namespace GTP.Extractors
         /// <param name="progressInterval"></param>
         /// <param name="start">0 based. -1 means ignore. We loop through X number of elements, and start is where to being that loop (with the starth element)</param>
         /// <param name="stop">Where to stop looping</param>
+        /// <param name="tolerance">How far beyond the avg till we consider a part complex?</param>
+        /// <param name="searchOnlyForComplexParts">If true, we just hunt down complex parts</param>
         /// <returns></returns>
-        static public List<ProfilerStats> Execute(Document document, Notifier notifier, bool garbageCollect, bool highRefreshRate, bool collectMemoryStats, int progressInterval, int start, int stop, CancellationToken cancellationToken)
+        static public List<ProfilerStats> Execute(Document document, Notifier notifier, bool garbageCollect, bool highRefreshRate, bool collectMemoryStats, int progressInterval, int start, int stop, long tolerance, bool searchOnlyForComplexParts, CancellationToken cancellationToken)
         {
             // Fresh run
             profiler.Reset();
@@ -63,7 +63,7 @@ namespace GTP.Extractors
                 if (skip)
                 {
                     var moreData = $"PropertyDefinitions: {PropertyDefinitionCache.Count}, PartTemplateSize {PartTemplateExtractor.Count()}, WallPoints {points}.";
-                    notifier.Stats(null, index, (stop > 0) ? stop : numElements, moreData);
+                    notifier?.Stats(null, index, (stop > 0) ? stop : numElements, moreData);
                     skip = false;
                 }
 
@@ -104,37 +104,40 @@ namespace GTP.Extractors
                     ElementId = revitElement.UniqueId
                 };
 
-                profiler.RestartTimer(1);
-                profiler.RestartTimer();
-                PartTemplateIdSubExtractor.ProcessElement(document, notifier, revitElement, element);
-                if (collectMemoryStats)
-                    profiler.CatchTimeAndMemory($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
-                else
-                    profiler.CatchTime($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
-                profiler.CatchTime($"TotalTime.{nameof(PartTemplateIdSubExtractor)}", 1);
+                if (!searchOnlyForComplexParts)
+                {
+                    profiler.RestartTimer(1);
+                    profiler.RestartTimer();
+                    PartTemplateIdSubExtractor.ProcessElement(document, notifier, revitElement, element);
+                    if (collectMemoryStats)
+                        profiler.CatchTimeAndMemory($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
+                    else
+                        profiler.CatchTime($"{nameof(PartTemplateIdSubExtractor)}.{element.TemplateId}");
+                    profiler.CatchTime($"TotalTime.{nameof(PartTemplateIdSubExtractor)}", 1);
+
+                    if (cancellationToken.IsCancellationRequested) break;
+                    if (revitElement is FamilyInstance familyInstance)
+                    {
+                        FamilyInstanceSubExtractor.ProcessFamilyInstance(document, familyInstance, element);
+                        if (collectMemoryStats)
+                            profiler.CatchTimeAndMemory($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
+                        else
+                            profiler.CatchTime($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
+                        profiler.CatchTime($"TotalTime.{nameof(FamilyInstanceSubExtractor)}", 1);
+                    }
+                    else if (revitElement is Wall wall)
+                    {
+                        WallExtractor.ProcessWall(wall, element);
+                        if (collectMemoryStats)
+                            profiler.CatchTimeAndMemory($"{nameof(WallExtractor)}.{element.TemplateId}");
+                        else
+                            profiler.CatchTime($"{nameof(WallExtractor)}.{element.TemplateId}");
+                        profiler.CatchTime($"TotalTime.{nameof(WallExtractor)}", 1);
+                    }
+                }
 
                 if (cancellationToken.IsCancellationRequested) break;
-                if (revitElement is FamilyInstance familyInstance)
-                {
-                    FamilyInstanceSubExtractor.ProcessFamilyInstance(document, familyInstance, element);
-                    if (collectMemoryStats)
-                        profiler.CatchTimeAndMemory($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
-                    else
-                        profiler.CatchTime($"{nameof(FamilyInstanceSubExtractor)}.{element.TemplateId}");
-                    profiler.CatchTime($"TotalTime.{nameof(FamilyInstanceSubExtractor)}", 1);
-                }
-                else if (revitElement is Wall wall)
-                {
-                    WallExtractor.ProcessWall(wall, element);
-                    if (collectMemoryStats)
-                        profiler.CatchTimeAndMemory($"{nameof(WallExtractor)}.{element.TemplateId}");
-                    else
-                        profiler.CatchTime($"{nameof(WallExtractor)}.{element.TemplateId}");
-                    profiler.CatchTime($"TotalTime.{nameof(WallExtractor)}", 1);
-                }
-
-                if (cancellationToken.IsCancellationRequested) break;
-                var numParams = ElementSubExtractor.ProcessElement(document, notifier, revitElement, element);
+                var numParams = ElementSubExtractor.ProcessElement(document, notifier, revitElement, element, tolerance, searchOnlyForComplexParts);
                 if (collectMemoryStats)
                     profiler.CatchTimeAndMemory($"{nameof(ElementSubExtractor)}.{element.TemplateId}");
                 else
@@ -142,13 +145,16 @@ namespace GTP.Extractors
                 profiler.CatchTime($"TotalTime.{nameof(ElementSubExtractor)}", 1);
 
 
-                if (cancellationToken.IsCancellationRequested) break;
-                PartTemplateExtractor.ProcessElement(revitElement, element);
-                if (collectMemoryStats)
-                    profiler.CatchTimeAndMemory($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
-                else
-                    profiler.CatchTime($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
-                profiler.CatchTime($"TotalTime.{nameof(PartTemplateExtractor)}", 1);
+                if (!searchOnlyForComplexParts)
+                {
+                    if (cancellationToken.IsCancellationRequested) break;
+                    PartTemplateExtractor.ProcessElement(revitElement, element);
+                    if (collectMemoryStats)
+                        profiler.CatchTimeAndMemory($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
+                    else
+                        profiler.CatchTime($"{nameof(PartTemplateExtractor)}.{element.TemplateId}");
+                    profiler.CatchTime($"TotalTime.{nameof(PartTemplateExtractor)}", 1);
+                }
 
                 if (element.CadType == "Autodesk.Revit.DB.FabricationPart" || element.CadType == "Autodesk.Fabrication.Item")
                 {
@@ -172,7 +178,7 @@ namespace GTP.Extractors
                     {
                         GTProfiler.CatchMemory("ElementExtractor");
                     }
-                    notifier.Information($"Extracted {index} elements out of {numElements} {moreData}");
+                    notifier.Trace($"Extracted {index} elements out of {numElements} {moreData}");
                     foreach (var time in profiler.ToStrings())
                     {
                         notifier.LogSilent(time);
@@ -200,7 +206,7 @@ namespace GTP.Extractors
 
             foreach (var time in profiler.ToStrings())
             {
-                notifier.Information(time);
+                notifier.Trace(time);
             }
 
             /*
@@ -210,7 +216,7 @@ namespace GTP.Extractors
             partTemplateExtractor.Finish(activityEvent);
             propertyDefinitionStorageProvider.Finish(activityEvent);
             */
-            notifier.Information($"Finished extracting {numElements} elements.");
+            notifier.Trace($"Finished extracting {numElements} elements.");
             var ret = profiler.SortedList();
             return ret;
         }

@@ -7,9 +7,9 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 {
     public static class ElementSubExtractor
     {
-        public static int ProcessElement(Document document, Notifier logger, Element revitElement, GtpxElement element)
+        public static int ProcessElement(Document document, Notifier logger, Element revitElement, GtpxElement element, long tolerance, bool searchForComplexParts)
         {
-            var numParameters = ParameterExtractor.ProcessElement(document, logger, revitElement, element);
+            var numParameters = ParameterExtractor.ProcessElement(document, logger, revitElement, element, tolerance, searchForComplexParts);
             if (numParameters > 0)
             {
                 GTProfiler.AddElementId($"{nameof(ElementSubExtractor)}.{element?.TemplateId}", $"{element.RevitId}");

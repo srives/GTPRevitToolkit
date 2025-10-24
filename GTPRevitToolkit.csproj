@@ -196,7 +196,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-	<DebugType>full</DebugType>
+    <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Revit 2022%29|x64'">
@@ -487,6 +487,7 @@
   <ItemGroup>
     <Compile Include="Cache\ParameterBasedAssemblyCache.cs" />
     <Compile Include="Cache\PropertyDefinitionCache.cs" />
+    <Compile Include="Commands\LaunchNotepad.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extensions\XYZExtensions.cs" />
     <Compile Include="Extractors\AnchorPointExtractor.cs" />
@@ -591,6 +592,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\doc.png" />
+    <Content Include="Resources\notepad.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

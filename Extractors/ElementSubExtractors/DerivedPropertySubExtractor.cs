@@ -1,11 +1,12 @@
-﻿using Gtpx.ModelSync.DataModel.Models;
+﻿using Gtpx.ModelSync.CAD.UI;
+using Gtpx.ModelSync.DataModel.Enums;
+using Gtpx.ModelSync.DataModel.Models;
+using Gtpx.ModelSync.Export.Revit.Models;
+using Gtpx.ModelSync.Export.Revit.Services;
 using Gtpx.ModelSync.Pipeline.Models;
 using System.Collections.Generic;
 using GtpxElement = Gtpx.ModelSync.DataModel.Models.Element;
 using RevitElement = Autodesk.Revit.DB.Element;
-using Gtpx.ModelSync.DataModel.Enums;
-using Gtpx.ModelSync.Export.Revit.Services;
-using Gtpx.ModelSync.Export.Revit.Models;
 
 namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 {    
@@ -19,10 +20,10 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
             currentModelContext = cmc;
         }
 
-        public static void ProcessElement(RevitElement revitElement, GtpxElement element)
+        public static void ProcessElement(Notifier notifier, RevitElement revitElement, GtpxElement element, long tolerance, bool searchOnlyForComplexParts)
         {
             ExtractElementPropertyBased(element);
-            ColorSubExtractor.ProcessElement(revitElement, element);
+            ColorSubExtractor.ProcessElement(notifier, revitElement, element, tolerance, searchOnlyForComplexParts);
 
             // TO DO: Fill in these
             /*

@@ -6,8 +6,6 @@ namespace Gtpx.ModelSync.Services.Models
 {
     public class LocalFileContext
     {
-        public bool IsSilentMode { get; set; }
-
         public string LocalImportLogPath { get; set; }
 
         public string ModelName { get; set; }

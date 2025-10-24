@@ -3,7 +3,6 @@ using Serilog;
 using System;
 using System.Windows;
 using Gtpx.ModelSync.DataModel.Enums;
-using System.Windows.Documents;
 using System.Collections.Generic;
 using Gtpx.ModelSync.CAD.Utilities;
 
@@ -28,7 +27,7 @@ namespace Gtpx.ModelSync.CAD.UI
         private readonly ILogger logger;
         private const string warningPrefix = "WARNING:";
         private const string silentPrefix = "LOGSILENT:";
-        public event EventHandler<NotificationEventArgs> NotificationReceived;
+        public event EventHandler<NotificationEventArgs> NotificationReceived; // For general string line notifications like trace, info, warnings, errors
         public event EventHandler<NotificationEventArgs> StatsReceived = null;
 
         public ILogger Logger => logger;
@@ -56,41 +55,41 @@ namespace Gtpx.ModelSync.CAD.UI
                           Exception ex = null,
                           bool allowMessageBox = true)
         {
-            if (!localFileContext.IsSilentMode)
+            if (IsNotifyWindowLoaded)
             {
-                if (IsNotifyWindowLoaded)
+                // A dialog with the Notifcation window is open, can send notications
+                NotificationReceived?.Invoke(this, new NotificationEventArgs()
                 {
-                    // A dialog with the Notifcation window is open, can send notications
-                    NotificationReceived?.Invoke(this, new NotificationEventArgs()
-                    {
-                        LogLevel = LogLevel.Error,
-                        Message = message
-                    });
-                }
-                else if (allowMessageBox)
-                {
-                    // A dialog with the Notification window is not open, bring up a message box
-                    MessageBox.Show(message,
-                                    $"GTP STRATUS [v{GetType().Assembly.GetName().Version}-CodeKill]", 
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
-                }
+                    LogLevel = LogLevel.Error,
+                    Message = message
+                });
+            }
+            else if (allowMessageBox)
+            {
+                // A dialog with the Notification window is not open, bring up a message box
+                MessageBox.Show(message,
+                                $"GTP STRATUS [v{GetType().Assembly.GetName().Version}-CodeKill]", 
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
             }
             logger.Error(message, ex);
         }
 
         public void Information(string message)
         {
-            if (!localFileContext.IsSilentMode)
+            NotificationReceived?.Invoke(this, new NotificationEventArgs()
             {
-                NotificationReceived?.Invoke(this, new NotificationEventArgs()
-                {
-                    LogLevel = LogLevel.Information,
-                    Message = message
-                });
-            }
+                LogLevel = LogLevel.Information,
+                Message = message
+            });
             logger.Information(message);
         }
+
+        public void Trace(string message)
+        {
+            logger.Information(message);
+        }
+
 
         public bool IsNotifyWindowLoaded { get; set; }
 
@@ -131,7 +130,7 @@ namespace Gtpx.ModelSync.CAD.UI
                 }
                 else if (outputLine.StartsWith(informationPrefix))
                 {
-                    Information(outputLine.Remove(0, informationPrefix.Length));
+                    Trace(outputLine.Remove(0, informationPrefix.Length));
                 }
                 else if (outputLine.StartsWith(warningPrefix))
                 {
@@ -146,14 +145,11 @@ namespace Gtpx.ModelSync.CAD.UI
 
         public void Warning(string message)
         {
-            if (!localFileContext.IsSilentMode)
+            NotificationReceived?.Invoke(this, new NotificationEventArgs()
             {
-                NotificationReceived?.Invoke(this, new NotificationEventArgs()
-                {
-                    LogLevel = LogLevel.Warning,
-                    Message = message
-                });
-            }
+                LogLevel = LogLevel.Warning,
+                Message = message
+            });
             logger.Warning(message);
         }
     }

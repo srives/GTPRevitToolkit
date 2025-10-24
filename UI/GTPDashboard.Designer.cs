@@ -30,6 +30,10 @@
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbTolerance = new System.Windows.Forms.TextBox();
             this.cbForceGCCollect = new System.Windows.Forms.CheckBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.cbMemory = new System.Windows.Forms.CheckBox();
@@ -50,6 +54,7 @@
             this.includedList = new System.Windows.Forms.ListBox();
             this.btnRun = new System.Windows.Forms.Button();
             this.tabRun = new System.Windows.Forms.TabPage();
+            this.rtfExtra = new System.Windows.Forms.RichTextBox();
             this.lblProgress = new System.Windows.Forms.Label();
             this.progress = new System.Windows.Forms.ProgressBar();
             this.grid = new System.Windows.Forms.DataGridView();
@@ -59,12 +64,21 @@
             this.Parameters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SampleElementIDs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbComplexSearch = new System.Windows.Forms.CheckBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.RunNotepad = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).BeginInit();
             this.tabRun.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -77,16 +91,16 @@
             this.tabs.Location = new System.Drawing.Point(-6, -3);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(1170, 570);
+            this.tabs.Size = new System.Drawing.Size(1494, 570);
             this.tabs.TabIndex = 0;
             // 
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Black;
-            this.tabSettings.Controls.Add(this.cbForceGCCollect);
+            this.tabSettings.Controls.Add(this.RunNotepad);
+            this.tabSettings.Controls.Add(this.panel3);
+            this.tabSettings.Controls.Add(this.panel2);
             this.tabSettings.Controls.Add(this.btnStop);
-            this.tabSettings.Controls.Add(this.cbMemory);
-            this.tabSettings.Controls.Add(this.cbHighRefreshRate);
             this.tabSettings.Controls.Add(this.panel1);
             this.tabSettings.Controls.Add(this.label3);
             this.tabSettings.Controls.Add(this.label2);
@@ -98,15 +112,59 @@
             this.tabSettings.Location = new System.Drawing.Point(4, 22);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(1162, 544);
+            this.tabSettings.Size = new System.Drawing.Size(1486, 544);
             this.tabSettings.TabIndex = 0;
             this.tabSettings.Text = "Settings";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cbComplexSearch);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.tbTolerance);
+            this.panel2.Location = new System.Drawing.Point(1175, 36);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(271, 184);
+            this.panel2.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Lime;
+            this.label8.Location = new System.Drawing.Point(4, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(128, 20);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Complex Objects";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Lime;
+            this.label10.Location = new System.Drawing.Point(30, 111);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(217, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Number of Parts Beyond Avg. to be Complex";
+            // 
+            // tbTolerance
+            // 
+            this.tbTolerance.Location = new System.Drawing.Point(33, 127);
+            this.tbTolerance.Name = "tbTolerance";
+            this.tbTolerance.Size = new System.Drawing.Size(75, 20);
+            this.tbTolerance.TabIndex = 14;
+            this.tbTolerance.Text = "15";
             // 
             // cbForceGCCollect
             // 
             this.cbForceGCCollect.AutoSize = true;
             this.cbForceGCCollect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbForceGCCollect.Location = new System.Drawing.Point(459, 510);
+            this.cbForceGCCollect.Location = new System.Drawing.Point(112, 13);
             this.cbForceGCCollect.Name = "cbForceGCCollect";
             this.cbForceGCCollect.Size = new System.Drawing.Size(146, 17);
             this.cbForceGCCollect.TabIndex = 22;
@@ -118,7 +176,7 @@
             this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnStop.Location = new System.Drawing.Point(1072, 508);
+            this.btnStop.Location = new System.Drawing.Point(1381, 506);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 21;
@@ -130,7 +188,7 @@
             // 
             this.cbMemory.AutoSize = true;
             this.cbMemory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbMemory.Location = new System.Drawing.Point(611, 510);
+            this.cbMemory.Location = new System.Drawing.Point(12, 38);
             this.cbMemory.Name = "cbMemory";
             this.cbMemory.Size = new System.Drawing.Size(125, 17);
             this.cbMemory.TabIndex = 20;
@@ -141,7 +199,7 @@
             // 
             this.cbHighRefreshRate.AutoSize = true;
             this.cbHighRefreshRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbHighRefreshRate.Location = new System.Drawing.Point(742, 510);
+            this.cbHighRefreshRate.Location = new System.Drawing.Point(143, 38);
             this.cbHighRefreshRate.Name = "cbHighRefreshRate";
             this.cbHighRefreshRate.Size = new System.Drawing.Size(123, 17);
             this.cbHighRefreshRate.TabIndex = 19;
@@ -158,7 +216,7 @@
             this.panel1.Controls.Add(this.tbStop);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tbStart);
-            this.panel1.Location = new System.Drawing.Point(877, 316);
+            this.panel1.Location = new System.Drawing.Point(1177, 229);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(271, 184);
             this.panel1.TabIndex = 18;
@@ -168,7 +226,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Lime;
-            this.label5.Location = new System.Drawing.Point(22, 12);
+            this.label5.Location = new System.Drawing.Point(6, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(229, 20);
             this.label5.TabIndex = 13;
@@ -255,7 +313,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Lime;
-            this.label3.Location = new System.Drawing.Point(893, 95);
+            this.label3.Location = new System.Drawing.Point(473, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 10;
@@ -282,7 +340,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(459, 30);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(399, 470);
+            this.listBox1.Size = new System.Drawing.Size(997, 470);
             this.listBox1.TabIndex = 8;
             // 
             // label1
@@ -316,7 +374,7 @@
             this.includedList.FormattingEnabled = true;
             this.includedList.Location = new System.Drawing.Point(36, 30);
             this.includedList.Name = "includedList";
-            this.includedList.Size = new System.Drawing.Size(399, 470);
+            this.includedList.Size = new System.Drawing.Size(723, 470);
             this.includedList.TabIndex = 5;
             // 
             // btnRun
@@ -324,7 +382,7 @@
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRun.ForeColor = System.Drawing.Color.Lime;
-            this.btnRun.Location = new System.Drawing.Point(977, 508);
+            this.btnRun.Location = new System.Drawing.Point(1300, 506);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(75, 23);
             this.btnRun.TabIndex = 2;
@@ -335,15 +393,28 @@
             // tabRun
             // 
             this.tabRun.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabRun.Controls.Add(this.rtfExtra);
             this.tabRun.Controls.Add(this.lblProgress);
             this.tabRun.Controls.Add(this.progress);
             this.tabRun.Controls.Add(this.grid);
             this.tabRun.Location = new System.Drawing.Point(4, 22);
             this.tabRun.Name = "tabRun";
             this.tabRun.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRun.Size = new System.Drawing.Size(1162, 544);
+            this.tabRun.Size = new System.Drawing.Size(1486, 544);
             this.tabRun.TabIndex = 1;
             this.tabRun.Text = "Run";
+            // 
+            // rtfExtra
+            // 
+            this.rtfExtra.BackColor = System.Drawing.SystemColors.MenuText;
+            this.rtfExtra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtfExtra.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtfExtra.ForeColor = System.Drawing.Color.Lime;
+            this.rtfExtra.Location = new System.Drawing.Point(1161, 0);
+            this.rtfExtra.Name = "rtfExtra";
+            this.rtfExtra.Size = new System.Drawing.Size(322, 541);
+            this.rtfExtra.TabIndex = 4;
+            this.rtfExtra.Text = "";
             // 
             // lblProgress
             // 
@@ -352,7 +423,7 @@
             this.lblProgress.BackColor = System.Drawing.Color.White;
             this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblProgress.Location = new System.Drawing.Point(3, 503);
+            this.lblProgress.Location = new System.Drawing.Point(5, 504);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(10, 16);
             this.lblProgress.TabIndex = 2;
@@ -426,12 +497,89 @@
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label9.Location = new System.Drawing.Point(5, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(267, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Parts in the model will have an avg number of sub-parts";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label11.Location = new System.Drawing.Point(5, 54);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(246, 13);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "A complex part is any part that has many sub-parts.";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label12.Location = new System.Drawing.Point(5, 83);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(216, 13);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Specify the number of parts beyond the avg.";
+            // 
+            // cbComplexSearch
+            // 
+            this.cbComplexSearch.AutoSize = true;
+            this.cbComplexSearch.ForeColor = System.Drawing.Color.GreenYellow;
+            this.cbComplexSearch.Location = new System.Drawing.Point(33, 154);
+            this.cbComplexSearch.Name = "cbComplexSearch";
+            this.cbComplexSearch.Size = new System.Drawing.Size(169, 17);
+            this.cbComplexSearch.TabIndex = 20;
+            this.cbComplexSearch.Text = "Only Search for Complex Parts";
+            this.cbComplexSearch.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.cbForceGCCollect);
+            this.panel3.Controls.Add(this.cbMemory);
+            this.panel3.Controls.Add(this.cbHighRefreshRate);
+            this.panel3.Location = new System.Drawing.Point(1175, 422);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(271, 71);
+            this.panel3.TabIndex = 19;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Lime;
+            this.label13.Location = new System.Drawing.Point(8, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(98, 20);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Run Options";
+            // 
+            // RunNotepad
+            // 
+            this.RunNotepad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RunNotepad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RunNotepad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.RunNotepad.Location = new System.Drawing.Point(36, 506);
+            this.RunNotepad.Name = "RunNotepad";
+            this.RunNotepad.Size = new System.Drawing.Size(156, 23);
+            this.RunNotepad.TabIndex = 22;
+            this.RunNotepad.Text = "Notepad Stratus Settings";
+            this.RunNotepad.UseVisualStyleBackColor = true;
+            this.RunNotepad.Click += new System.EventHandler(this.RunNotepad_Click);
+            // 
             // GTPDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1158, 560);
+            this.ClientSize = new System.Drawing.Size(1482, 560);
             this.Controls.Add(this.tabs);
             this.Name = "GTPDashboard";
             this.Text = "GTPDashboard";
@@ -439,12 +587,16 @@
             this.tabs.ResumeLayout(false);
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).EndInit();
             this.tabRun.ResumeLayout(false);
             this.tabRun.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -482,5 +634,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Parameters;
         private System.Windows.Forms.DataGridViewTextBoxColumn SampleElementIDs;
         private System.Windows.Forms.DataGridViewTextBoxColumn TemplateId;
+        private System.Windows.Forms.RichTextBox rtfExtra;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbTolerance;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox cbComplexSearch;
+        private System.Windows.Forms.Button RunNotepad;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label13;
     }
 }

@@ -3,10 +3,11 @@ using Autodesk.Revit.UI;
 using GTP.Extractors;
 using Gtpx.ModelSync.CAD.UI;
 using Gtpx.ModelSync.CAD.Utilities;
-using Gtpx.ModelSync.DataModel.Models;
 using Gtpx.ModelSync.Services.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Document = Autodesk.Revit.DB.Document;
@@ -16,7 +17,7 @@ namespace GTP.UI
 {
     public partial class GTPDashboard : Form
     {
-        private string _version = "2025-04-15";
+        private string _version = "23 Oct 25";
         Document _document;
         UIDocument _uiDoc; // do UIDocument uidoc = commandData.Application.ActiveUIDocument
         UIApplication _uiApp;
@@ -58,6 +59,10 @@ namespace GTP.UI
             tbStart.ForeColor = System.Drawing.Color.Green;
             tbStop.ForeColor = System.Drawing.Color.Green;
             List<ProfilerStats> templateIdRunTimeList = null;
+            if (int.TryParse(tbTolerance.Text, out var tolerance) == false)
+            {
+                tolerance = 20;
+            }
             success = int.TryParse(tbStart.Text, out var start);
             if (success)
             {
@@ -75,7 +80,8 @@ namespace GTP.UI
                     LocalFileContext lfc = new LocalFileContext();
                     Notifier notifier = new Notifier(lfc, Serilog.Log.Logger); // TO DO: Replace with my own logger
                     notifier.StatsReceived += Notifier_StatsReceived;
-                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, cbForceGCCollect.Checked, cbHighRefreshRate.Checked, cbMemory.Checked, (int)udProgressInterval.Value, start, stop, _token);
+                    notifier.NotificationReceived += Notifier_NotificationReceived;
+                    templateIdRunTimeList = ElementExtractor.Execute(_document, notifier, cbForceGCCollect.Checked, cbHighRefreshRate.Checked, cbMemory.Checked, (int)udProgressInterval.Value, start, stop, tolerance, cbComplexSearch.Checked, _token);
                     progress.Visible = false;
                     lblProgress.Visible = false;
                     UpdateGrid(templateIdRunTimeList);
@@ -91,6 +97,31 @@ namespace GTP.UI
             {
                 tbStart.ForeColor = System.Drawing.Color.Red;
                 RefreshSettingTab();
+            }
+        }
+
+        private void Notifier_NotificationReceived(object sender, NotificationEventArgs e)
+        {
+            if (stopProcess)
+            {
+                return;
+            }
+            if (e.LogLevel == Gtpx.ModelSync.DataModel.Enums.LogLevel.Error)
+            {
+                rtfExtra.ForeColor = System.Drawing.Color.Red;
+                rtfExtra.AppendText($"{e.Message}{Environment.NewLine}");
+                System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+            }
+            else if (e.LogLevel == Gtpx.ModelSync.DataModel.Enums.LogLevel.Warning)
+            {
+                rtfExtra.ForeColor = System.Drawing.Color.Yellow;
+                rtfExtra.AppendText($"{e.Message}{Environment.NewLine}");
+                System.Windows.Forms.Application.DoEvents(); // pump out the message queue
+            }
+            else
+            {
+                rtfExtra.ForeColor = System.Drawing.Color.Green;
+                rtfExtra.AppendText($"{e.Message}{Environment.NewLine}");
             }
         }
 
@@ -368,6 +399,23 @@ namespace GTP.UI
                 }
                 var ids = new List<ElementId>() { element }; 
                 _uiDoc.ShowElements(ids);
+            }
+        }
+
+        private void RunNotepad_Click(object sender, EventArgs e)
+        {
+            // Resolve the %appdata% environment variable
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string settingsPath = Path.Combine(appDataPath, @"GTP Software Inc\STRATUS\settings.json");
+
+            // Launch Notepad to edit the file
+            if (File.Exists(settingsPath))
+            {
+                Process.Start("notepad.exe", $"\"{settingsPath}\"");
+            }
+            else
+            {
+                MessageBox.Show($"File not found:\n{settingsPath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
