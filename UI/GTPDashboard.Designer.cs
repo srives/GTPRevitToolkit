@@ -30,14 +30,20 @@
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.RunNotepad = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cbForceGCCollect = new System.Windows.Forms.CheckBox();
+            this.cbMemory = new System.Windows.Forms.CheckBox();
+            this.cbHighRefreshRate = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbComplexSearch = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tbTolerance = new System.Windows.Forms.TextBox();
-            this.cbForceGCCollect = new System.Windows.Forms.CheckBox();
             this.btnStop = new System.Windows.Forms.Button();
-            this.cbMemory = new System.Windows.Forms.CheckBox();
-            this.cbHighRefreshRate = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,21 +70,14 @@
             this.Parameters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SampleElementIDs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cbComplexSearch = new System.Windows.Forms.CheckBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.RunNotepad = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabSettings.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udProgressInterval)).BeginInit();
             this.tabRun.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -116,49 +115,41 @@
             this.tabSettings.TabIndex = 0;
             this.tabSettings.Text = "Settings";
             // 
-            // panel2
+            // RunNotepad
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.cbComplexSearch);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.tbTolerance);
-            this.panel2.Location = new System.Drawing.Point(1175, 36);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(271, 184);
-            this.panel2.TabIndex = 19;
+            this.RunNotepad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RunNotepad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RunNotepad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.RunNotepad.Location = new System.Drawing.Point(36, 506);
+            this.RunNotepad.Name = "RunNotepad";
+            this.RunNotepad.Size = new System.Drawing.Size(156, 23);
+            this.RunNotepad.TabIndex = 22;
+            this.RunNotepad.Text = "Notepad Stratus Settings";
+            this.RunNotepad.UseVisualStyleBackColor = true;
+            this.RunNotepad.Click += new System.EventHandler(this.RunNotepad_Click);
             // 
-            // label8
+            // panel3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Lime;
-            this.label8.Location = new System.Drawing.Point(4, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(128, 20);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Complex Objects";
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.cbForceGCCollect);
+            this.panel3.Controls.Add(this.cbMemory);
+            this.panel3.Controls.Add(this.cbHighRefreshRate);
+            this.panel3.Location = new System.Drawing.Point(1163, 422);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(283, 71);
+            this.panel3.TabIndex = 19;
             // 
-            // label10
+            // label13
             // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Lime;
-            this.label10.Location = new System.Drawing.Point(30, 111);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(217, 13);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Number of Parts Beyond Avg. to be Complex";
-            // 
-            // tbTolerance
-            // 
-            this.tbTolerance.Location = new System.Drawing.Point(33, 127);
-            this.tbTolerance.Name = "tbTolerance";
-            this.tbTolerance.Size = new System.Drawing.Size(75, 20);
-            this.tbTolerance.TabIndex = 14;
-            this.tbTolerance.Text = "15";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Lime;
+            this.label13.Location = new System.Drawing.Point(4, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(98, 20);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Run Options";
             // 
             // cbForceGCCollect
             // 
@@ -170,19 +161,6 @@
             this.cbForceGCCollect.TabIndex = 22;
             this.cbForceGCCollect.Text = "Force Garbage Collection";
             this.cbForceGCCollect.UseVisualStyleBackColor = true;
-            // 
-            // btnStop
-            // 
-            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnStop.Location = new System.Drawing.Point(1381, 506);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 21;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // cbMemory
             // 
@@ -206,6 +184,93 @@
             this.cbHighRefreshRate.Text = "More Responsive UI";
             this.cbHighRefreshRate.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cbComplexSearch);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.tbTolerance);
+            this.panel2.Location = new System.Drawing.Point(1163, 36);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(283, 184);
+            this.panel2.TabIndex = 19;
+            // 
+            // cbComplexSearch
+            // 
+            this.cbComplexSearch.AutoSize = true;
+            this.cbComplexSearch.ForeColor = System.Drawing.Color.GreenYellow;
+            this.cbComplexSearch.Location = new System.Drawing.Point(33, 154);
+            this.cbComplexSearch.Name = "cbComplexSearch";
+            this.cbComplexSearch.Size = new System.Drawing.Size(217, 17);
+            this.cbComplexSearch.TabIndex = 20;
+            this.cbComplexSearch.Text = "Search Only for Complex Parts/Elements";
+            this.cbComplexSearch.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label12.Location = new System.Drawing.Point(4, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(261, 13);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "You specify the # of materials that constitute complex.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label11.Location = new System.Drawing.Point(4, 54);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(271, 13);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "A complex object is any element made of many materials";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Lime;
+            this.label8.Location = new System.Drawing.Point(4, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(128, 20);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Complex Objects";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Lime;
+            this.label10.Location = new System.Drawing.Point(30, 98);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(212, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "# of Materials for an Element to be Complex";
+            // 
+            // tbTolerance
+            // 
+            this.tbTolerance.Location = new System.Drawing.Point(33, 114);
+            this.tbTolerance.Name = "tbTolerance";
+            this.tbTolerance.Size = new System.Drawing.Size(75, 20);
+            this.tbTolerance.TabIndex = 14;
+            this.tbTolerance.Text = "15";
+            // 
+            // btnStop
+            // 
+            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnStop.Location = new System.Drawing.Point(1381, 506);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 21;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -216,9 +281,9 @@
             this.panel1.Controls.Add(this.tbStop);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tbStart);
-            this.panel1.Location = new System.Drawing.Point(1177, 229);
+            this.panel1.Location = new System.Drawing.Point(1163, 229);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 184);
+            this.panel1.Size = new System.Drawing.Size(285, 184);
             this.panel1.TabIndex = 18;
             // 
             // label5
@@ -226,7 +291,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Lime;
-            this.label5.Location = new System.Drawing.Point(6, 9);
+            this.label5.Location = new System.Drawing.Point(4, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(229, 20);
             this.label5.TabIndex = 13;
@@ -497,83 +562,6 @@
             this.TemplateId.Name = "TemplateId";
             this.TemplateId.ReadOnly = true;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label9.Location = new System.Drawing.Point(5, 69);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(267, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Parts in the model will have an avg number of sub-parts";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label11.Location = new System.Drawing.Point(5, 54);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(246, 13);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "A complex part is any part that has many sub-parts.";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label12.Location = new System.Drawing.Point(5, 83);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(216, 13);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Specify the number of parts beyond the avg.";
-            // 
-            // cbComplexSearch
-            // 
-            this.cbComplexSearch.AutoSize = true;
-            this.cbComplexSearch.ForeColor = System.Drawing.Color.GreenYellow;
-            this.cbComplexSearch.Location = new System.Drawing.Point(33, 154);
-            this.cbComplexSearch.Name = "cbComplexSearch";
-            this.cbComplexSearch.Size = new System.Drawing.Size(169, 17);
-            this.cbComplexSearch.TabIndex = 20;
-            this.cbComplexSearch.Text = "Only Search for Complex Parts";
-            this.cbComplexSearch.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.cbForceGCCollect);
-            this.panel3.Controls.Add(this.cbMemory);
-            this.panel3.Controls.Add(this.cbHighRefreshRate);
-            this.panel3.Location = new System.Drawing.Point(1175, 422);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(271, 71);
-            this.panel3.TabIndex = 19;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Lime;
-            this.label13.Location = new System.Drawing.Point(8, 9);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(98, 20);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Run Options";
-            // 
-            // RunNotepad
-            // 
-            this.RunNotepad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RunNotepad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RunNotepad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.RunNotepad.Location = new System.Drawing.Point(36, 506);
-            this.RunNotepad.Name = "RunNotepad";
-            this.RunNotepad.Size = new System.Drawing.Size(156, 23);
-            this.RunNotepad.TabIndex = 22;
-            this.RunNotepad.Text = "Notepad Stratus Settings";
-            this.RunNotepad.UseVisualStyleBackColor = true;
-            this.RunNotepad.Click += new System.EventHandler(this.RunNotepad_Click);
-            // 
             // GTPDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +575,8 @@
             this.tabs.ResumeLayout(false);
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -595,8 +585,6 @@
             this.tabRun.ResumeLayout(false);
             this.tabRun.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -641,7 +629,6 @@
         private System.Windows.Forms.TextBox tbTolerance;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox cbComplexSearch;
         private System.Windows.Forms.Button RunNotepad;
         private System.Windows.Forms.Panel panel3;

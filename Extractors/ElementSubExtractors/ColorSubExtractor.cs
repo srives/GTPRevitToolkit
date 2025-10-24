@@ -12,9 +12,6 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
     public static class ColorSubExtractor 
     {
         static private int colorProcessedCount = 0;
-        static long _subPartsPerPart = 0;
-        static long _parts = 0;
-        static long _avgSubPartsPerPart = 0;
 
         public static void ProcessElement(Notifier notifier, RevitElement revitElement, GtpxElement element, long tolerance, bool searchOnlyForComplexParts)
         {
@@ -30,18 +27,10 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                 {
                     var reid = revitElement.Id;
                     var reuid = revitElement.UniqueId;
-                    var eid = element.ElementId;
-                    var rid = element.RevitId;
 
-                    if (materialIds.Count > _avgSubPartsPerPart + tolerance)
+                    if (materialIds.Count > tolerance)
                     {
                         notifier?.Warning($"Element Id {reid} is complex ({materialIds.Count} materials), {revitElement.Name}");
-                    }
-                    else if (materialIds.Count > 0)
-                    {
-                        _subPartsPerPart += materialIds.Count;
-                        _parts++;
-                        _avgSubPartsPerPart = _subPartsPerPart / _parts;
                     }
 
                     if (searchOnlyForComplexParts)
@@ -59,15 +48,13 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
 
                     // if materialIds.Count > 10 or so, we are talking about a complex element like a machine.
                     foreach (var materialId in materialIds)
-                    {
-                        long mid = materialId.Value;
+                    {                        
                         ct++;
                         var material = revitElement.Document.GetElement(materialId) as Material;
                         if (material != null)
                         {
                             if (materialIds.Count == 1) // only one material
                             {
-                                validOneMaterialId.Add(mid);
                                 // don't need to actually calculate the area, just add the value
                                 materialAreaToColorMap.Add(1, FormatColorAsHex(material.Color));
                             }
@@ -76,19 +63,16 @@ namespace Gtpx.ModelSync.Export.Revit.Extractors.ElementSubExtractors
                                 var area = revitElement.GetMaterialArea(materialId, false);
                                 if (!materialAreaToColorMap.TryGetValue(area, out var value))
                                 {
-                                    validMaterialAreaId.Add(mid);
                                     materialAreaToColorMap.Add(area, FormatColorAsHex(material.Color));
                                 }
                                 else
                                 {
                                     err++;
-                                    errMaterialId.Add(mid);
                                 }
                             }
                         }
                         else
                         {
-                            notMaterial.Add(mid);
                         }
                     }
                     if (materialAreaToColorMap.Any())
